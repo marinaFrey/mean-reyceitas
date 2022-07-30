@@ -1,0 +1,11 @@
+:host {
+    .recipe-card {
+        display: flex;
+        gap: var(--space);
+
+        .recipe-description {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

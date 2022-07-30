@@ -1,15 +1,13 @@
 :host {
-    .main {
-        display: flex;
+    mat-toolbar {
         justify-content: center;
 
-        .main-container {
+        .navbar-content {
             display: flex;
-            padding: var(--space);
-            width: 100%;
             max-width: var(--max-content-width);
+            width: 100%;
+            align-items: center;
         }
     }
-
     
 }
