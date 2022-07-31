@@ -5,6 +5,7 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeRoutingModule } from './recipe-routing.module';
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { MaterialModule } from '../shared/material/material.module';
+import { RecipeService } from 'src/app/core/services/recipe.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,9 @@ import { MaterialModule } from '../shared/material/material.module';
     CommonModule,
     RecipeRoutingModule,
     MaterialModule
+  ],
+  providers: [
+    RecipeService
   ]
 })
 export class RecipeModule { }

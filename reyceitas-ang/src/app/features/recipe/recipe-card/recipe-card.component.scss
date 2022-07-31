@@ -2,6 +2,12 @@
     .recipe-card {
         display: flex;
         gap: var(--space);
+        cursor: pointer;
+
+        img {
+            width: 200px;
+            border-radius: var(--border-radius);
+        }
 
         .recipe-description {
             display: flex;

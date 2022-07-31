@@ -5,10 +5,10 @@ import { RecipeComponent } from './recipe/recipe.component';
 
 const routes: Routes = [
   {
-    path: 'list', component: RecipeListComponent,
+    path: '', component: RecipeListComponent,
   },
   {
-    path: 'recipe', component: RecipeComponent
+    path: 'recipe/:id', component: RecipeComponent
   }
 ];
 
