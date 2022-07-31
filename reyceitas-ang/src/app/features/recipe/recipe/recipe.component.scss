@@ -1,0 +1,22 @@
+:host {
+    .recipe-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space);
+
+        .recipe-overview-container {
+            display: flex;
+            gap: var(--space);
+
+            .recipe-basic-info-container {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+    
+    img {
+        max-width: 500px;
+        border-radius: var(--border-radius);
+    }
+}

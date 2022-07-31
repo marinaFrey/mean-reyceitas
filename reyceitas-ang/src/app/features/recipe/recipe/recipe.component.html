@@ -1,1 +1,13 @@
-<p>recipe works!</p>
+<div *ngIf="recipe" class="recipe-container">
+    <div class="recipe-overview-container">
+        <div>
+            <img src="assets/images/img-placeholder.jpg"/>
+        </div>
+        <div class="recipe-basic-info-container">
+            <h2> {{recipe.title}} </h2>
+            <p> {{recipe.description}} </p>
+        </div>
+    </div>
+    
+
+</div>

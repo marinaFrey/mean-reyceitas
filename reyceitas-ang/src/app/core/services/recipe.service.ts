@@ -22,8 +22,12 @@ export class RecipeService {
     return of(recipes)
   }
 
-  getRecipe() {
-
+  getRecipe(id: string | null): Observable<Recipe> {
+    return of({
+      id: 'uuid',
+      title: 'this is a title',
+      description: 'this is a description'
+    })
   }
 
   addRecipe() {
