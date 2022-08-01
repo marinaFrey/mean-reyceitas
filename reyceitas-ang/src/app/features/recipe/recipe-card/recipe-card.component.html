@@ -1,9 +1,9 @@
-<mat-card *ngIf="recipe" class="recipe-card" [routerLink]="'recipe/'+ recipe.id">
+<mat-card *ngIf="recipe" class="recipe-card" [routerLink]="'recipe/'+ recipe._id">
     <div>
         <img src="assets/images/img-placeholder.jpg"/>
     </div>
     <div class="recipe-description">
-        <h3>{{recipe.title}}</h3>
-        <p>{{recipe.description}}</p>
+        <h3>{{recipe.name}}</h3>
+        <p>{{recipe.instructions}}</p>
     </div>
 </mat-card>

@@ -8,6 +8,7 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { MaterialModule } from './features/shared/material/material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './core/interceptors/http.interceptor';
+import { ApiService } from './core/services/api.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RequestInterceptor } from './core/interceptors/http.interceptor';
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+    ApiService
   ],
   bootstrap: [AppComponent]
 })
