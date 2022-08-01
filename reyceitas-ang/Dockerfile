@@ -1,7 +1,9 @@
-FROM node:alpine AS mean-reyceitas-build
+FROM node:16-alpine as build
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install --quiet 
 COPY . .
-RUN npm ci && npm run build
+#RUN npm run build
+EXPOSE 4200
+EXPOSE 4201
 CMD npm start
-
-EXPOSE 80
