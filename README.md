@@ -1,7 +1,3 @@
-# mean-reyceitas
-docker build -t meanreyceitas:0.1 .
-
-docker run --network host -it --rm  meanreyceitas:0.1
-
-# backend:
+# MEAN Reyceitas
+docker compose build
 docker compose up -d

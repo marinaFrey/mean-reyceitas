@@ -25,7 +25,7 @@ services:
     container_name: NODEJS_SERVER_MEDIUM
     build: './reyceitas-backend'
     volumes:
-      - /node-app
+      - ./reyceitas-backend:/node-app
     #  - ./node_modules:/node-app/node_modules
       - /node-app/node_modules
     environment:
@@ -36,6 +36,8 @@ services:
       - db
     ports:
       - '9000:9000'
+    networks:
+      - app-network
 
   db:
     image: 'mongo'
