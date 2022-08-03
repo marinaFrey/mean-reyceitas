@@ -1,0 +1,49 @@
+
+version: '3' # Docker Compose Version
+
+services:
+
+  angular:
+    container_name: ANGULAR_MEDIUM
+    build: './reyceitas-ang'
+    volumes:
+      - /app
+      - /node_modules
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - server
+    links:
+      - server
+    ports:
+      - '4200:4200'
+      - '8888:80'
+    networks:
+      - app-network
+
+  server:
+    container_name: NODEJS_SERVER_MEDIUM
+    build: './reyceitas-backend'
+    volumes:
+      - ./reyceitas-backend:/node-app
+    #  - ./node_modules:/node-app/node_modules
+      - /node-app/node_modules
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - '9000:9000'
+
+  db:
+    image: 'mongo'
+    container_name: MONGODB_MEDIUM
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./reyceitas-backend/data/db:/data/db
+networks:
+  app-network:
+    driver: bridge 
