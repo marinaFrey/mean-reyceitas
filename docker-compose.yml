@@ -36,8 +36,6 @@ services:
       - db
     ports:
       - '9000:9000'
-    networks:
-      - app-network
 
   db:
     image: 'mongo'

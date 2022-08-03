@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+const cors = require('cors');
 const router = express.Router();
 
 // create application/json parser
@@ -9,7 +10,12 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
  
 const Recipe = require('../models/Recipe');
+var corsOptions = {
+  origin: 'https://api.mysite.com/',
+  optionsSuccessStatus: 200
+};
 
+router.use(cors());
 router.get('/', (req, res) => {
   Recipe.find()
     .then(recipes => {

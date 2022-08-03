@@ -5,13 +5,6 @@ const app = express();
 const cors = require('cors');
 const recipes = require('./routes/recipes');
 
-
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
-    app.use(cors());
-    next();
-});
 app.use('/api/recipes', recipes);
 
 mongoose
