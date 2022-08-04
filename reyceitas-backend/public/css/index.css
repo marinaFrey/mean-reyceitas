@@ -1,0 +1,78 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  height: 100vh;
+  align-items: center;
+  background-color: #f5f5f5;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+a {
+  color: #5000ff;
+}
+
+.btn-primary {
+  background-color: #5000ff;
+}
+.btn-primary:hover {
+  background-color: #4d02ee;
+}
+
+.error-text {
+  text-align: center;
+  color: #ff0000;
+}
+
+.links {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.links a {
+  margin-top: 0.5rem;
+}
+
+.content {
+  margin-top: 6rem;
+  padding: 1rem;
+}
+
+.my-2 {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+hr.divider {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+hr.divider:after {
+  content: "Or";
+  display: inline-block;
+  position: relative;
+  top: -14px;
+  text-align: center;
+  padding: 0 16px;
+  background-color: #f5f5f5;
+}
+
+.auth-container {
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.auth-container .form-control {
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.auth-container input[type="email"] {
+  margin-bottom: -1px;
+}
