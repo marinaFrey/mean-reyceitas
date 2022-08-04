@@ -10,4 +10,8 @@ export class ApiService {
   get<T>(request: string): Observable<T> {
     return this.http.get<T>(environment.apiUrl + request);
   }
+
+  post<T>(request: string, payload: any) {
+    return this.http.post(environment.apiUrl + request, payload);
+  }
 }
