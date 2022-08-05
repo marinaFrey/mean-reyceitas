@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RECIPES_ENDPOINT } from '@constants/endpoints.constant';
-import { Recipe } from '@models/recipe.model';
+import { Recipe } from '@models/recipe/recipe.model';
 import { Observable, of } from 'rxjs';
 import { ApiService } from './api.service';
 

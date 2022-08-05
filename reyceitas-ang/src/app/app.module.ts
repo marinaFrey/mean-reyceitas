@@ -9,6 +9,7 @@ import { MaterialModule } from './features/shared/material/material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './core/interceptors/http.interceptor';
 import { ApiService } from './core/services/api.service';
+import { AuthService } from '@services/auth.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ApiService } from './core/services/api.service';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
-    ApiService
+    ApiService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

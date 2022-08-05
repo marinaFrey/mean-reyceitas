@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AUTH_TOKEN_KEY } from '@constants/cookies.constant';
 import { User } from '@models/user.model';
+import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 
 @Injectable()
@@ -22,5 +23,9 @@ export class AuthService {
 
   public login(email: string, password: string) {
     return this.api.post('/api/authenticate', {'username' : email, 'password' : password});
+  }
+
+  public socialLogin(): Observable<any> {
+    return this.api.get("/auth/google");
   }
 }

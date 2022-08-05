@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Recipe } from 'src/app/core/models/recipe.model';
+import { Recipe } from '@models/recipe/recipe.model';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 
 @Component({

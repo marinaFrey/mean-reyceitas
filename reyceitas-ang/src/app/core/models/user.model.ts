@@ -6,6 +6,6 @@ export interface User {
 }
 
 export enum UserRole {
-    REGULAR,
-    ADMINISTRATOR
+    REGULAR = "REGULAR",
+    ADMIN = "ADMIN"
 }
