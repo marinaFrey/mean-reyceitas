@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const recipes = require('./routes/recipes');
 const app = express();
+const cors = require('cors');
 const passport = require("passport");
 
 
@@ -37,18 +38,19 @@ app.get("/", (req, res) => {
     res.render("index.ejs");
 });
 
-  app.use(passport.initialize());
+app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(cors());
 app.get(
-  "/auth/google",
+  "/auth/google", cors(),
   passport.authenticate("google", {
     scope: ["profile", "email"],
   })
 );
 
+
 app.get(
-  "/auth/google/callback",
+  "/auth/google/callback", cors(),
   passport.authenticate("google", {
     failureRedirect: "/",
     successRedirect: "/profile",
