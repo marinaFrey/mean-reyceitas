@@ -6,17 +6,25 @@ import { RecipeRoutingModule } from './recipe-routing.module';
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { RecipeService } from 'src/app/core/services/recipe.service';
+import { RecipeFormComponent } from './recipe-form/recipe-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InstructionsFormComponent } from './recipe-form/instructions-form/instructions-form.component';
+import { IngredientsFormComponent } from './recipe-form/ingredients-form/ingredients-form.component';
 
 @NgModule({
   declarations: [
     RecipeListComponent,
     RecipeComponent,
-    RecipeCardComponent
+    RecipeCardComponent,
+    RecipeFormComponent,
+    InstructionsFormComponent,
+    IngredientsFormComponent
   ],
   imports: [
     CommonModule,
     RecipeRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [
     RecipeService

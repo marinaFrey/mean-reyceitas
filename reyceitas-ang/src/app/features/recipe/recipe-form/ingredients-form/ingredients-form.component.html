@@ -1,0 +1,27 @@
+<h2>Ingredients</h2>
+
+<div *ngIf="form" class="add-form" [formGroup]="form">
+    <ng-container formArrayName="ingredients">
+        <ng-container *ngFor="let ingredientForm of ingredients.controls; let i = index">
+            <div class="form-container" [formGroup]="getIngredientFormGroup(ingredientForm)">
+                <mat-form-field appearance="outline">
+                    <mat-label>Amount</mat-label>
+                    <input matInput formControlName="amount">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Details</mat-label>
+                    <input matInput
+                           formControlName="details"
+                           placeholder="i.e. chopped, thinly sliced, etc">
+                </mat-form-field>
+                <button mat-mini-fab class="form-centralized-button" color="warn" (click)="deleteIngredient(i)">
+                    <mat-icon>delete_forever</mat-icon>
+                </button>
+            </div>
+        </ng-container>
+    </ng-container>
+  
+    <button mat-flat-button color="primary" (click)="addIngredient()">
+        <mat-icon class="add-button">add</mat-icon> New ingredient
+    </button>
+</div>

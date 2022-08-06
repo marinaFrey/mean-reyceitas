@@ -1,0 +1,35 @@
+<div *ngIf="form" [formGroup]="form" class="recipe-container">
+    <mat-form-field appearance="outline">
+        <mat-label>Recipe title</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <div class="recipe-overview-container">
+        <div>
+            <img src="assets/images/img-placeholder.jpg"/>
+        </div>
+        <div class="recipe-basic-info-container">
+            <h2>Basic Information</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>Servings</mat-label>
+                <input matInput type='number' formControlName="servings" placeholder="Number of people it serves">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Outline form field</mat-label>
+                <input matInput formControlName="servings" placeholder="Placeholder">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <app-ingredients-form [form]="form"></app-ingredients-form>
+
+    <app-instructions-form [form]="form"></app-instructions-form>
+
+    <h2>Notes</h2>
+    <mat-form-field appearance="outline">
+        <textarea matInput></textarea>
+    </mat-form-field>
+    
+    <button mat-flat-button color="primary" (click)="submit()">
+        <mat-icon>save</mat-icon> Save
+    </button>
+</div>

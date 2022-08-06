@@ -5,14 +5,16 @@ export interface Recipe {
     _id: string;
     createdAt: string;
     createdBy: string;
+    
     title: string;
-    difficulty: number;
     servings: number;
 
     ingredients?: Ingredient[];
     instructions?: Instruction[];
 
     notes?: string;
+    tags?: string[];
+    difficulty?: number;
 }
 
 
