@@ -1,0 +1,20 @@
+.add-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container {
+    width: 100%;
+    display: flex;
+    gap: var(--space);
+    height: fit-content;
+    align-items: center;
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.form-centralized-button {
+    margin-bottom: 1.34375em !important;
+}
