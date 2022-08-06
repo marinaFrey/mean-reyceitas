@@ -2,8 +2,9 @@ import { Unit } from "./unit.model";
 
 export interface Ingredient {
     _id: string;
-    unit: Unit;
-    food: Food;
+    amount: number;
+    unit: string; // id
+    food: string; // id
     details: string;
 }
 
