@@ -31,7 +31,7 @@ app.get("/auth/logout", (req, res) => {
     res.redirect("/");
   });
 });
-app.get("/login", (req,res,next) => {
+app.post("/login", (req,res,next) => {
     async function verify() {
         const ticket = await client.verifyIdToken({
             idToken : req.body.token,
@@ -46,7 +46,7 @@ app.get("/login", (req,res,next) => {
         let token = jwt.sign(userDetails, process.env.CLIENT_SECRET, {expiresIn: 1440});
         res.status(200).json({ token: token })
     }
-    verify().catch(console.error);
+    verify().catch(res.status(401));
 })
 db = 'mongodb://db:27017/reyceitas-mean'
 mongoose.connect(
