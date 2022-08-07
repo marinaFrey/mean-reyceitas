@@ -11,7 +11,7 @@ export class ApiService {
     return this.http.get<T>(environment.apiUrl + request);
   }
 
-  post<T>(request: string, payload: any) {
+  post<T>(request: string, payload: any): Observable<any> {
     return this.http.post(environment.apiUrl + request, payload);
   }
 }

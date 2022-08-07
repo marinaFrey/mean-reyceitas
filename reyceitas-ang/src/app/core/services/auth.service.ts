@@ -1,7 +1,7 @@
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Injectable } from '@angular/core';
 import { AUTH_TOKEN_KEY } from '@constants/cookies.constant';
-import { lastValueFrom, Observable } from 'rxjs';
+import { lastValueFrom, map, Observable, switchMap } from 'rxjs';
 import { ApiService } from './api.service';
 
 @Injectable()
@@ -21,12 +21,19 @@ export class AuthService {
     localStorage.setItem(AUTH_TOKEN_KEY, token);
   }
 
-  public login(email: string, password: string) {
-    return this.api.post('/api/authenticate', {'username' : email, 'password' : password});
+  public login(token:string): Observable<{token: string}> {
+    return this.api.post('/login', {'token': token});
   }
 
-  public getUserInfo(): Observable<SocialUser> {
-    return this.socialAuthService.authState;
+  public getUserInfo(): Observable<any> {
+    return this.socialAuthService.authState.pipe(
+      switchMap(user => {
+        return this.login(user.idToken)
+      }),
+      map(auth => {
+        this.setUserAuthentication(auth.token)
+      })
+    );
   }
 
   public socialLogin(): Promise<any> {
