@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpResponse, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from "rxjs/operators";
+import { AUTH_TOKEN_KEY } from '@constants/cookies.constant';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const API_KEY = '123456'; // TODO: get and set actual token
-    return next.handle(httpRequest.clone({ setHeaders: { API_KEY } }))
+    const API_KEY = localStorage.getItem(AUTH_TOKEN_KEY) ?? ''; // TODO: get and set actual token
+    return next.handle(httpRequest.clone({ setHeaders: { token: API_KEY } }))
             .pipe(
                 catchError(this.handleErrors)
             )

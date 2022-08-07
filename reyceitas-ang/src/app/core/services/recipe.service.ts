@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RECIPES_ENDPOINT } from '@constants/endpoints.constant';
 import { Recipe } from '@models/recipe/recipe.model';
+import { Unit, UnitType } from '@models/recipe/unit.model';
 import { Observable, of } from 'rxjs';
 import { ApiService } from './api.service';
 
@@ -29,5 +30,40 @@ export class RecipeService {
 
   deleteRecipe() {
 
+  }
+
+  getUnits(): Observable<Unit[]> {
+    return of([
+      {
+        _id: "sdkjfl",
+        abbreviation: "g",
+        name: "grams",
+        type: UnitType.WEIGHT
+      },
+      {
+        _id: "sdk3423jfl",
+        abbreviation: "l",
+        name: "liters",
+        type: UnitType.VOLUME
+      },
+      {
+        _id: "sdkdfdgjfl",
+        abbreviation: "ml",
+        name: "mililiters",
+        type: UnitType.VOLUME
+      },
+      {
+        _id: "sdkj43ffgfl",
+        abbreviation: "units",
+        name: "an item",
+        type: UnitType.UNIT
+      },
+      {
+        _id: "sdk4234fgsjfl",
+        abbreviation: "kg",
+        name: "kilograms",
+        type: UnitType.WEIGHT
+      }
+    ])
   }
 }

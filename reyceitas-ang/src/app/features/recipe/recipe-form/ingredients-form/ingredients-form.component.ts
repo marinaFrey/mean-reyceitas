@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Unit } from '@models/recipe/unit.model';
+import { RecipeService } from '@services/recipe.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ingredients-form',
@@ -8,8 +11,11 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class IngredientsFormComponent implements OnInit {
   @Input() form!: FormGroup;
+
+  units$: Observable<Unit[]> = this.recipeService.getUnits();
   
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private recipeService: RecipeService) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +27,7 @@ export class IngredientsFormComponent implements OnInit {
   addIngredient() {
     const ingredientForm = this.formBuilder.group({
       amount: [null, Validators.required],
-      unit: [null],
+      unit: [null, Validators.required],
       food: [null],
       details: [""]
     });
@@ -37,5 +43,7 @@ export class IngredientsFormComponent implements OnInit {
     return ingredient as FormGroup;
   }
 
-
+  getUnitName(unit: Unit) {
+    return unit?.abbreviation;
+  }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Reyceitas';
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.getUserInfo().subscribe((user)=> console.log(user))
+  }
 }

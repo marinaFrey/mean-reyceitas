@@ -1,13 +1,14 @@
 <mat-toolbar>
     <div class="navbar-content">
+      <div>
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-          </button>
-          <span>Reyceitas</span>
-          <span class="example-spacer"></span>
-          <button mat-icon-button class="example-icon favorite-icon" (click)="login()">
-            <mat-icon>favorite</mat-icon>
-          </button>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Reyceitas</span>
+      </div>
+      <div>
+        <asl-google-signin-button #googleBtnRef size="medium" type="standard"></asl-google-signin-button>
+      </div>
     </div>
     
 </mat-toolbar>

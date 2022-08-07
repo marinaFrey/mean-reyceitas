@@ -10,6 +10,7 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InstructionsFormComponent } from './recipe-form/instructions-form/instructions-form.component';
 import { IngredientsFormComponent } from './recipe-form/ingredients-form/ingredients-form.component';
+import { ImageUploadFormComponent } from './recipe-form/image-upload-form/image-upload-form.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,14 @@ import { IngredientsFormComponent } from './recipe-form/ingredients-form/ingredi
     RecipeCardComponent,
     RecipeFormComponent,
     InstructionsFormComponent,
-    IngredientsFormComponent
+    IngredientsFormComponent,
+    ImageUploadFormComponent
   ],
   imports: [
     CommonModule,
     RecipeRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     RecipeService

@@ -7,6 +7,12 @@
             max-width: var(--max-content-width);
             width: 100%;
             align-items: center;
+            justify-content: space-between;
+
+            div {
+                display: flex;
+                align-items: center;
+            }
         }
     }
     
