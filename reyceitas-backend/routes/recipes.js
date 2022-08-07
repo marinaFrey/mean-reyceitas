@@ -25,9 +25,12 @@ router.get('/', (req, res) => {
 });
 
 router.post('/new', jsonParser,(req, res) => {
-    console.log(req.body)
   const newRecipe = new Recipe({
-    name: req.body.name,
+    title: req.body.title,
+    createdBy: req.body.createdBy,
+    servings: req.body.servings,
+    ingredients: req.body.ingredients,
+    difficulty: req.body.difficulty,
     instructions: req.body.instructions
   });
 
@@ -42,7 +45,14 @@ router.post('/new', jsonParser,(req, res) => {
 });
 
 router.put('/edit/:id', jsonParser, (req, res) => {
-  const newData = { name: req.body.name, instructions: req.body.instructions };
+  const newData = { 
+    title: req.body.title,
+    createdBy: req.body.createdBy,
+    servings: req.body.servings,
+    ingredients: req.body.ingredients,
+    difficulty: req.body.difficulty,
+    instructions: req.body.instructions
+  };
 
   Recipe.findOneAndUpdate({ _id: req.params.id }, newData, { new: true })
     .then(recipe => {
@@ -52,8 +62,6 @@ router.put('/edit/:id', jsonParser, (req, res) => {
 });
 
 router.get('/get/:id', jsonParser, (req, res) => {
-  const newData = { name: req.body.name, instructions: req.body.instructions };
-
   Recipe.findOne({ _id: req.params.id })
     .then(recipe => {
       res.json(recipe);

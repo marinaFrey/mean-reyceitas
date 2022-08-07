@@ -3,17 +3,30 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const recipeSchema = new Schema({
-  name: {
+  title: {
     type: String,
     required: true
   },
+  ingredients: {
+    type: Array  
+  },
   instructions: {
-    type: String,
-    require: true
+    type: Array 
   },
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  createdBy: {
+    type: String, //Should become Object ID
+    required: true
+  },
+  difficulty: {
+    type: Number
+  },
+  servings: {
+    type: Number,
+    required: true
   }
 });
 
