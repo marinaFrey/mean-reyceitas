@@ -1,8 +1,9 @@
 export interface User {
-    username: string;
-    name: string;
-    email: string;
-    role: UserRole;
+    firstName: string;
+    lastName: string;
+    profilePhoto: string;
+    token: string;
+    role?: UserRole;
 }
 
 export enum UserRole {

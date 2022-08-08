@@ -7,9 +7,15 @@
         <span>Reyceitas</span>
       </div>
       <div>
-        <button *ngIf="isLoggedIn$ | async" mat-flat-button color="primary" (click)="logout()">
-          <mat-icon>logout</mat-icon> Logout
-        </button>
+        <div *ngIf="(isLoggedIn$ | async)">
+          <ng-container *ngIf="user$ | async as user">
+            <button mat-button [matMenuTriggerFor]="menu"> {{user?.firstName}} </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item  (click)="logout()"><mat-icon>logout</mat-icon> Logout</button>
+            </mat-menu>
+          </ng-container>
+          
+        </div>
         <asl-google-signin-button *ngIf="!(isLoggedIn$ | async)" #googleBtnRef size="medium" type="standard"></asl-google-signin-button>
       </div>
     </div>

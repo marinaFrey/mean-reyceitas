@@ -42,7 +42,7 @@ import { CookieModule } from 'ngx-cookie';
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: false,
+        autoLogin: true,
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
@@ -67,5 +67,4 @@ export function appInitializer(authService: AuthService) {
       // attempt to refresh token on app start up to auto authenticate
       return authService.refreshToken().then(resolve);
   });
-}
-*/
+}*/

@@ -1,45 +1,51 @@
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Injectable } from '@angular/core';
 import { AUTH_TOKEN_KEY } from '@constants/cookies.constant';
+import { User } from '@models/user.model';
 import { CookieService } from 'ngx-cookie';
 import { BehaviorSubject, lastValueFrom, map, Observable, of, switchMap } from 'rxjs';
 import { ApiService } from './api.service';
 
 @Injectable()
 export class AuthService {
+  userSubject = new BehaviorSubject<User | null>(null);
   isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
 
   constructor(private api: ApiService, 
               private socialAuthService: SocialAuthService,
               private cookieService: CookieService) { }
 
-  public isLoggedIn() : Observable<boolean> {
+  public isLoggedIn(): Observable<boolean> {
     return this.isAuthenticatedSubject.asObservable();
+  }
+
+  public getUser(): Observable<User | null> {
+    return this.userSubject.asObservable();
   }
 
   public setUserAuthentication(token: string) {
     this.cookieService.put(AUTH_TOKEN_KEY, token);
   }
 
-  public login(token:string): Observable<{token: string}> {
+  public login(token:string): Observable<User> {
     return this.api.post('/login', {'token': token});
   }
 
   public getUserInfo(): Observable<any> {
     return this.socialAuthService.authState.pipe(
-      switchMap(user => {
-        if(user)
-          return this.login(user.idToken)
+      switchMap(socialUser => {
+        if(socialUser)
+          return this.login(socialUser.idToken)
         else
           return of(null)
       }),
-      map(auth => {
-        console.log(auth)
-        if(auth)
-          this.setUserAuthentication(auth?.token)
-
-        this.isAuthenticatedSubject.next(auth ? true : false);
-        
+      map(user => {
+        console.log(user)
+        if(user)
+          this.setUserAuthentication(user?.token)
+        this.userSubject.next(user);
+        this.isAuthenticatedSubject.next(user ? true : false);
+        return user;
       })
     );
   }
@@ -58,7 +64,7 @@ export class AuthService {
   }
 
   public refreshToken(): Promise<void> {
-    return this.socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID).then(()=>console.log('in'));
+    return this.socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }
 
   private isAuthenticated(): boolean {
