@@ -7,7 +7,10 @@
         <span>Reyceitas</span>
       </div>
       <div>
-        <asl-google-signin-button #googleBtnRef size="medium" type="standard"></asl-google-signin-button>
+        <button *ngIf="isLoggedIn$ | async" mat-flat-button color="primary" (click)="logout()">
+          <mat-icon>logout</mat-icon> Logout
+        </button>
+        <asl-google-signin-button *ngIf="!(isLoggedIn$ | async)" #googleBtnRef size="medium" type="standard"></asl-google-signin-button>
       </div>
     </div>
     

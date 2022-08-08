@@ -13,6 +13,7 @@ import { AuthService } from '@services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { SocialLoginModule, GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { environment } from 'src/environments/environment';
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    CookieModule.withOptions()
   ],
   providers: [
     /*
