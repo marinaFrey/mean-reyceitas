@@ -72,7 +72,7 @@ app.post("/login", (req,res,next) => {
             lastName : payload['family_name']
         }
         let token = jwt.sign(userDetails, process.env.CLIENT_SECRET, {expiresIn: 1440});
-        res.status(200).json({ token: token })
+        res.status(200).json({ token: token, ...userDetails })
     }
     verify().catch((e) => {res.status(401).json({"Error":"Not authorized"})});
 })
