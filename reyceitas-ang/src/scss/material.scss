@@ -2,4 +2,9 @@
     display: flex !important;
     align-items: center !important;
     gap: var(--space-small) !important;
+    justify-content: center;
 }
+
+.mat-icon-button {
+    line-height: unset;
+ }

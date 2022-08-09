@@ -15,11 +15,15 @@
             }
         }
 
+        .title {
+            cursor: pointer;
+        }
+
         .user-menu {
             display: flex;
             gap: var(--space);
             align-items: center;
-            
+
             img {
                 height: 32px;
                 border-radius: 50%;

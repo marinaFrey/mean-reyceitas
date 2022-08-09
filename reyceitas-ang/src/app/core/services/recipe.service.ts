@@ -20,16 +20,16 @@ export class RecipeService {
     return this.api.get(`${RECIPES_ENDPOINT}/get/${id}`);
   }
 
-  addRecipe() {
-    
+  addRecipe(recipe: Recipe): Observable<any> {
+    return this.api.post(`${RECIPES_ENDPOINT}/new`, recipe)
   }
 
-  editRecipe() {
-
+  editRecipe(index: number, recipe: Recipe) {
+    return this.api.post(`${RECIPES_ENDPOINT}/edit/${index}`, recipe)
   }
 
-  deleteRecipe() {
-
+  deleteRecipe(index: number) {
+    return this.api.post(`${RECIPES_ENDPOINT}/delete/${index}`, null)
   }
 
   getUnits(): Observable<Unit[]> {

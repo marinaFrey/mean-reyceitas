@@ -25,11 +25,13 @@
     <app-ingredients-form [form]="form"></app-ingredients-form>
 
     <app-instructions-form [form]="form"></app-instructions-form>
-
-    <h2>Notes</h2>
-    <mat-form-field appearance="outline">
-        <textarea matInput></textarea>
-    </mat-form-field>
+    <div class="flex-col">
+        <h2>Notes</h2>
+        <mat-form-field appearance="outline">
+            <textarea matInput></textarea>
+        </mat-form-field>
+    </div>
+    
     
     <button mat-flat-button color="primary" (click)="submit()">
         <mat-icon>save</mat-icon> Save
