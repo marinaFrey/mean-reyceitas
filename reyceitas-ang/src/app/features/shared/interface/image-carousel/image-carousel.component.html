@@ -1,0 +1,24 @@
+<div *ngIf="images?.length; else placeholder" class="img-carousel-container">
+    <div class="img-controls-container">
+        <button mat-icon-button color="primary" (click)="changeSelectedImage(shownImageIndex-1)" 
+                [disabled]="shownImageIndex == 0">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        <img *ngIf="images[shownImageIndex]; else placeholder" [src]="images[shownImageIndex]"/>
+        <button mat-icon-button color="primary" (click)="changeSelectedImage(shownImageIndex+1)" 
+                [disabled]="shownImageIndex >= images.length - 1">
+            <mat-icon>chevron_right</mat-icon>
+        </button>
+    </div>
+    <div class="img-navigation-container">
+        <div *ngFor="let img of images; let i = index" 
+            [ngClass]="{'selected': shownImageIndex == i}" 
+            class="list-index"
+            (click)="changeSelectedImage(i)">
+        </div>
+    </div>
+</div>
+
+<ng-template #placeholder>
+    <img src="assets/images/img-placeholder.jpg"/>
+</ng-template>

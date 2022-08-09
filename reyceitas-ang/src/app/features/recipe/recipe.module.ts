@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InstructionsFormComponent } from './recipe-form/instructions-form/instructions-form.component';
 import { IngredientsFormComponent } from './recipe-form/ingredients-form/ingredients-form.component';
 import { ImageUploadFormComponent } from './recipe-form/image-upload-form/image-upload-form.component';
+import { InterfaceModule } from '../shared/interface/interface.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ImageUploadFormComponent } from './recipe-form/image-upload-form/image-
   imports: [
     CommonModule,
     RecipeRoutingModule,
+    InterfaceModule,
     MaterialModule,
     ReactiveFormsModule,
   ],

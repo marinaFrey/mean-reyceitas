@@ -1,0 +1,34 @@
+:host {
+    img {
+        max-width: 580px;
+    }
+
+    .img-carousel-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space); 
+
+        .img-controls-container {
+            display: flex;
+            align-items: center;
+            gap: var(--space);
+
+        }
+
+        .img-navigation-container {
+            display: flex;
+            gap: var(--space-small);
+
+            .list-index {
+                height: 8px;
+                width: 8px;
+                border-radius: 50%;
+                background: grey;
+                &.selected {
+                    background: red
+                }
+            }
+        }
+    }
+}
