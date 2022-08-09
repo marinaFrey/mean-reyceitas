@@ -1,7 +1,6 @@
 import { Unit } from "./unit.model";
 
 export interface Ingredient {
-    _id: string;
     amount: number;
     unit: string; // id
     food: string; // id
@@ -11,10 +10,10 @@ export interface Ingredient {
 export interface Food {
     _id: string;
     name: string;
-    foodGroup: FoodGroup;
+    foodType: FoodType;
 }
 
-export interface FoodGroup {
+export interface FoodType{
     name: string;
     icon: string;
 }

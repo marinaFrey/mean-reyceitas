@@ -2,11 +2,17 @@ require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
-const recipes = require('./routes/recipes');
 const cors = require('cors');
 const {OAuth2Client} = require('google-auth-library');
 const jwt = require('jsonwebtoken');
 const app = express();
+
+const recipes = require('./routes/recipes');
+const foods = require('./routes/foods');
+const foodTypes = require('./routes/foodTypes');
+const instructionTypes = require('./routes/instructionTypes');
+const units = require('./routes/units');
+const unitTypes = require('./routes/unitTypes');
 
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
@@ -31,7 +37,13 @@ function verifyJWT(req, res, next){
       next();
     });
 }
-app.use('/api/recipes', verifyJWT, recipes);
+//app.use('/api/recipes', verifyJWT, recipes);
+app.use('/api/recipes', recipes);
+app.use('/api/foods', foods);
+app.use('/api/food-types', foodTypes);
+app.use('/api/instruction-types', instructionTypes);
+app.use('/api/units', units);
+app.use('/api/unit-types', unitTypes);
   
 app.get("/profile", isLoggedIn, (req, res) => {
   res.render("profile.ejs", { user: req.user });

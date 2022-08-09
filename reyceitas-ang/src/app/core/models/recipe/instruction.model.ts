@@ -1,7 +1,6 @@
 export interface Instruction {
     description: string;
     type: InstructionType;
-    links?: string[];
     relatedRecipesId?: number[];
 }
 

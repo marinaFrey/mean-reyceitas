@@ -5,28 +5,24 @@ const router = express.Router();
 
 var jsonParser = bodyParser.json()
  
-const Recipe = require('../models/Recipe');
+const Food = require('../models/Food');
 
 router.use(cors());
 router.get('/', (req, res) => {
-  Recipe.find()
-    .then(recipes => {
-      res.json(recipes);
+  Food.find()
+    .then(foods => {
+      res.json(foods);
     })
     .catch(error => res.status(500).json(error));
 });
 
 router.post('/new', jsonParser,(req, res) => {
-  const newRecipe = new Recipe({
-    title: req.body.title,
-    createdBy: req.body.createdBy,
-    servings: req.body.servings,
-    ingredients: req.body.ingredients,
-    difficulty: req.body.difficulty,
-    instructions: req.body.instructions
+  const newFood = new Food({
+    name: req.body.name,
+    foodType: req.body.foodType
   });
 
-  newRecipe
+  newFood
     .save()
     .then(recipe => {
       res.json(recipe);
@@ -38,34 +34,30 @@ router.post('/new', jsonParser,(req, res) => {
 
 router.put('/edit/:id', jsonParser, (req, res) => {
   const newData = { 
-    title: req.body.title,
-    createdBy: req.body.createdBy,
-    servings: req.body.servings,
-    ingredients: req.body.ingredients,
-    difficulty: req.body.difficulty,
-    instructions: req.body.instructions
+    name: req.body.name,
+    foodType: req.body.foodType
   };
 
-  Recipe.findOneAndUpdate({ _id: req.params.id }, newData, { new: true })
-    .then(recipe => {
-      res.json(recipe);
+  Food.findOneAndUpdate({ _id: req.params.id }, newData, { new: true })
+    .then(food => {
+      res.json(food);
     })
     .catch(error => res.status(500).json(error));
 });
 
 router.get('/get/:id', jsonParser, (req, res) => {
-  Recipe.findOne({ _id: req.params.id })
-    .then(recipe => {
-      res.json(recipe);
+  Food.findOne({ _id: req.params.id })
+    .then(food => {
+      res.json(food);
     })
     .catch(error => res.status(500).json(error));
 });
 
 
 router.delete('/delete/:id', jsonParser, (req, res) => {
-  Recipe.findOneAndDelete({ _id: req.params.id })
-    .then(recipe => {
-      res.json(recipe);
+  Food.findOneAndDelete({ _id: req.params.id })
+    .then(food => {
+      res.json(food);
     })
     .catch(error => res.status(500).json(error));
 });
