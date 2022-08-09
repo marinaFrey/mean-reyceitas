@@ -19,7 +19,8 @@ const isLoggedIn = (req, res, next) => {
 };
 
 function verifyJWT(req, res, next){
-    const token = req.headers['token'];
+    const authHeader = req.headers['Authorization'];
+    const token = authHeader.split(" ").pop();
     if (!token) return res.status(401).json({ auth: false, message: 'No token provided.' });
     
     jwt.verify(token, process.env.CLIENT_SECRET, function(err, decoded) {
