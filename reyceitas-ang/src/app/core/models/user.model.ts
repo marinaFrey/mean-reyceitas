@@ -1,7 +1,7 @@
 export interface User {
     firstName: string;
     lastName: string;
-    profilePhoto: string;
+    profilePicture: string;
     token: string;
     role?: UserRole;
 }

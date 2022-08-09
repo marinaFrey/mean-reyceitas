@@ -2,7 +2,6 @@ import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/an
 import { Injectable } from '@angular/core';
 import { AUTH_TOKEN_KEY } from '@constants/cookies.constant';
 import { User } from '@models/user.model';
-import { CookieService } from 'ngx-cookie';
 import { BehaviorSubject, lastValueFrom, map, Observable, of, switchMap } from 'rxjs';
 import { ApiService } from './api.service';
 
@@ -12,8 +11,7 @@ export class AuthService {
   isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
 
   constructor(private api: ApiService, 
-              private socialAuthService: SocialAuthService,
-              private cookieService: CookieService) { }
+              private socialAuthService: SocialAuthService) { }
 
   public isLoggedIn(): Observable<boolean> {
     return this.isAuthenticatedSubject.asObservable();
@@ -24,7 +22,7 @@ export class AuthService {
   }
 
   public setUserAuthentication(token: string) {
-    this.cookieService.put(AUTH_TOKEN_KEY, token);
+    localStorage.setItem(AUTH_TOKEN_KEY, token);
   }
 
   public login(token:string): Observable<User> {
@@ -59,7 +57,7 @@ export class AuthService {
   }
 
   public signOut(): void {
-    this.cookieService.remove(AUTH_TOKEN_KEY);
+    localStorage.removeItem(AUTH_TOKEN_KEY);
     this.socialAuthService.signOut();
   }
 
@@ -68,6 +66,6 @@ export class AuthService {
   }
 
   private isAuthenticated(): boolean {
-    return this.cookieService.hasKey(AUTH_TOKEN_KEY)
+    return localStorage.getItem(AUTH_TOKEN_KEY) != "" ? true : false
   }
 }

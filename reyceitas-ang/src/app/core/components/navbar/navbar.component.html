@@ -9,7 +9,11 @@
       <div>
         <div *ngIf="(isLoggedIn$ | async)">
           <ng-container *ngIf="user$ | async as user">
-            <button mat-button [matMenuTriggerFor]="menu"> {{user?.firstName}} </button>
+            <button mat-button class="user-menu" [matMenuTriggerFor]="menu"> 
+                <img [src]="user?.profilePicture" referrerpolicy="no-referrer"/>
+                {{user?.firstName}} 
+                <mat-icon>expand_more</mat-icon>
+              </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item  (click)="logout()"><mat-icon>logout</mat-icon> Logout</button>
             </mat-menu>

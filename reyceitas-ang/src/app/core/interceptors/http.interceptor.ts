@@ -6,12 +6,15 @@ import { AUTH_TOKEN_KEY } from '@constants/cookies.constant';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
+
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const API_KEY = localStorage.getItem(AUTH_TOKEN_KEY) ?? ''; // TODO: get and set actual token
-    return next.handle(httpRequest.clone({ setHeaders: { token: API_KEY } }))
-            .pipe(
-                catchError(this.handleErrors)
-            )
+    const API_KEY = localStorage.getItem(AUTH_TOKEN_KEY) ?? ''; 
+    const authReq = httpRequest.clone({
+      headers: httpRequest.headers.set('Authorization', `Bearer ${API_KEY}`)
+    });
+    return next.handle(authReq).pipe(
+      catchError((error) => this.handleErrors(error))
+    );
   }
 
   private handleErrors(error: HttpErrorResponse) {
