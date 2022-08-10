@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Recipe } from '@models/recipe/recipe.model';
+import { RecipeService } from '@services/recipe.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-form',
@@ -12,32 +14,32 @@ export class RecipeFormComponent implements OnInit {
   
   form: FormGroup | undefined;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private recipeService: RecipeService) { }
 
   ngOnInit(): void {
     this.createForm();
   }
 
   submit() {
+    console.log(this.form)
     if(this.form?.invalid) {
       this.form.markAllAsTouched();
       return;
     }
-    // TODO: call endpoint to store recipe
+    this.recipeService.addRecipe(this.form?.value as Recipe)
+      .pipe(take(1)).subscribe(console.log)
   }
 
   private createForm(): void {
     this.form = this.formBuilder.group({
       title: [this.recipe?.title, Validators.required],
       servings: [this.recipe?.servings, [Validators.required, Validators.min(1)]],
+      difficulty: [this.recipe?.difficulty, [ Validators.min(1), Validators.max(10)]],
       ingredients: this.formBuilder.array(this.recipe?.ingredients ?? []),
       instructions: this.formBuilder.array(this.recipe?.instructions ?? []),
       notes: [this.recipe?.notes]
     });
   }
-
-  
-
-  
 
 }

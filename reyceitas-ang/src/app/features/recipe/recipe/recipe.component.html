@@ -1,13 +1,34 @@
 <div *ngIf="recipe" class="recipe-container">
+    <div class="header-container">
+        <h1>{{recipe.title}}</h1>
+        <div class="flex-row gapped">
+            <button mat-flat-button color="primary" [routerLink]="['']">
+                <mat-icon>edit</mat-icon> Edit
+            </button>
+            <button mat-flat-button color="warn" (click)="deleteRecipe()">
+                <mat-icon>delete_forever</mat-icon> Delete
+            </button>
+        </div>
+    </div>
+    
     <div class="recipe-overview-container">
 
         <app-image-carousel [images]="images"></app-image-carousel>
 
         <div class="recipe-basic-info-container">
             <h2> {{recipe.title}} </h2>
-            <p> {{recipe.instructions}} </p>
+            <p> Servings: {{recipe.servings}} </p>
+            <p> Difficulty: {{recipe.difficulty}} </p>
         </div>
-    </div>
-    
 
+    </div>
+    <h2 *ngIf="recipe.ingredients?.length">Ingredients</h2>
+    <div *ngFor="let ingredient of recipe.ingredients" class="flex-col">
+        <p> {{ingredient.amount}} {{ingredient.unit?.name}} {{ingredient.food?.name}} {{ ingredient.details }} </p>
+    </div>
+
+    <h2 *ngIf="recipe.instructions?.length">Instructions</h2>
+    <div *ngFor="let instruction of recipe.instructions" class="flex-col">
+        <p> {{instruction.description}} </p>
+    </div>
 </div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { RECIPES_ENDPOINT } from '@constants/endpoints.constant';
+import { FOODS_ENDPOINT, RECIPES_ENDPOINT, UNITS_ENDPOINT } from '@constants/endpoints.constant';
+import { Food } from '@models/recipe/ingredient.model';
 import { Recipe } from '@models/recipe/recipe.model';
 import { Unit, UnitType } from '@models/recipe/unit.model';
 import { Observable, of } from 'rxjs';
@@ -24,46 +25,19 @@ export class RecipeService {
     return this.api.post(`${RECIPES_ENDPOINT}/new`, recipe)
   }
 
-  editRecipe(index: number, recipe: Recipe) {
+  editRecipe(index: string, recipe: Recipe) {
     return this.api.post(`${RECIPES_ENDPOINT}/edit/${index}`, recipe)
   }
 
-  deleteRecipe(index: number) {
+  deleteRecipe(index: string) {
     return this.api.post(`${RECIPES_ENDPOINT}/delete/${index}`, null)
   }
 
   getUnits(): Observable<Unit[]> {
-    return of([
-      {
-        _id: "sdkjfl",
-        abbreviation: "g",
-        name: "grams",
-        type: UnitType.WEIGHT
-      },
-      {
-        _id: "sdk3423jfl",
-        abbreviation: "l",
-        name: "liters",
-        type: UnitType.VOLUME
-      },
-      {
-        _id: "sdkdfdgjfl",
-        abbreviation: "ml",
-        name: "mililiters",
-        type: UnitType.VOLUME
-      },
-      {
-        _id: "sdkj43ffgfl",
-        abbreviation: "units",
-        name: "an item",
-        type: UnitType.UNIT
-      },
-      {
-        _id: "sdk4234fgsjfl",
-        abbreviation: "kg",
-        name: "kilograms",
-        type: UnitType.WEIGHT
-      }
-    ])
+    return this.api.get(`${UNITS_ENDPOINT}`);
+  }
+
+  getFoods(): Observable<Food[]> {
+    return this.api.get(`${FOODS_ENDPOINT}`);
   }
 }

@@ -1,10 +1,6 @@
 export interface Instruction {
     description: string;
-    type: InstructionType;
+    instructionType?: string;
+    instructionTypeId?: string;
     relatedRecipesId?: number[];
-}
-
-export enum InstructionType {
-    Preparation,
-    Cooking,
 }

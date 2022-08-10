@@ -14,10 +14,22 @@
                     <mat-label>Unit</mat-label>
                     <input matInput type="text"
                            formControlName="unit"
-                           [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="getUnitName">
+                           [matAutocomplete]="unitAuto">
+                    <mat-autocomplete #unitAuto="matAutocomplete" [displayWith]="getUnitName">
                       <mat-option *ngFor="let unit of units$ | async" [value]="unit">
                         {{unit.abbreviation}} ({{unit.name}})
+                      </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Food</mat-label>
+                    <input matInput type="text"
+                           formControlName="food"
+                           [matAutocomplete]="foodAuto">
+                    <mat-autocomplete #foodAuto="matAutocomplete" [displayWith]="getFoodName">
+                      <mat-option *ngFor="let food of foods$ | async" [value]="food">
+                        {{food.name}}
                       </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
@@ -29,7 +41,7 @@
                            placeholder="i.e. chopped, thinly sliced, etc">
                 </mat-form-field>
                 <button mat-mini-fab class="form-centralized-button" color="warn" (click)="deleteIngredient(i)">
-                    <mat-icon>delete_forever</mat-icon>
+                    <mat-icon>delete</mat-icon>
                 </button>
             </div>
         </ng-container>
