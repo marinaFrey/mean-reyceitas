@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const app = express();
 
 const recipes = require('./routes/recipes');
-const seeds = require('./seeders/types');
+const seeds = require('./seeders/base');
 
 const foods = require('./routes/foods');
 const foodTypes = require('./routes/foodTypes');
@@ -103,7 +103,8 @@ mongoose.connect(
 )
 .then(result => {
     console.log('Connected to MongoDB');
-//mongoose.connection.db.dropDatabase();
+    mongoose.connection.db.dropDatabase(seeds); //Drop and seed
+    // seeds() //Only seed
 })
 .catch(error => {
     console.log(error);

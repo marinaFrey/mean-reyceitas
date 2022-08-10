@@ -57,6 +57,9 @@ router.get('/get/:id', jsonParser, (req, res) => {
   Recipe.findOne({ _id: req.params.id })
     .populate({
       path:'ingredients.unit',
+      populate: {
+        path: "unitType"
+      },
       model: 'unit'
     })
     .populate({
