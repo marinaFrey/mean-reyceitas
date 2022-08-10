@@ -14,11 +14,14 @@ import { FormsModule } from '@angular/forms';
 import { SocialLoginModule, GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { CookieModule } from 'ngx-cookie';
+import { AlertService } from '@services/alert.service';
+import { AlertComponent } from './core/components/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,10 @@ import { CookieModule } from 'ngx-cookie';
       deps: [AuthService],
       multi: true
     },*/
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, 
+      useClass: RequestInterceptor, 
+      multi: true
+    },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -55,7 +61,8 @@ import { CookieModule } from 'ngx-cookie';
       } as SocialAuthServiceConfig,
     },
     ApiService,
-    AuthService
+    AuthService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

@@ -8,3 +8,17 @@
 .mat-icon-button {
     line-height: unset;
  }
+
+ .alert-success {
+    background-color: var(--color-success);
+    .mat-button-wrapper {
+        color: white;
+    }
+ }
+
+ .alert-error {
+    background-color: var(--color-danger);
+    .mat-button-wrapper {
+        color: white;
+    }
+ }

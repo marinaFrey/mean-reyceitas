@@ -9,8 +9,7 @@ html {
   /* Copy & Lists */
   p {
     line-height: 1.5rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   }
   ul,
   ol {
@@ -43,7 +42,7 @@ html {
     /* Change heading typefaces here */
     font-family: sans-serif;
     margin-top: 1.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
     line-height: 1.5rem;
   }
   h1 {
