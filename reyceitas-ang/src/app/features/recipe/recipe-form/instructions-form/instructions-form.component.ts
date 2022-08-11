@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Instruction } from '@models/recipe/instruction.model';
 
 @Component({
   selector: 'app-instructions-form',
@@ -8,30 +9,39 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class InstructionsFormComponent implements OnInit {
   @Input() form!: FormGroup;
+  @Input() instructions: Instruction[] | undefined;
   
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    if(this.instructions)
+      this.getInstructions(this.instructions);
   }
 
-  get instructions() {
+  get instructionsFormArray() {
     return this.form?.controls["instructions"] as FormArray;
   }
 
-  addInstruction() {
+  addInstruction(instruction?: Instruction) {
     const instructionForm = this.formBuilder.group({
-      description: ['', Validators.required]
+      description: [instruction?.description ?? '', Validators.required]
     });
 
-    this.instructions.push(instructionForm);
+    this.instructionsFormArray.push(instructionForm);
   }
 
   deleteInstruction(index: number) {
-    this.instructions.removeAt(index);
+    this.instructionsFormArray.removeAt(index);
   }
 
   getInstructionFormGroup(instruction: any) {
     return instruction as FormGroup;
+  }
+
+  private getInstructions(instructions: Instruction[]) {
+    instructions.forEach(instruction => {
+      this.addInstruction(instruction);
+    });
   }
 
 }

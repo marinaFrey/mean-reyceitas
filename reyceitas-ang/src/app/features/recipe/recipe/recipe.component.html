@@ -2,7 +2,7 @@
     <div class="header-container">
         <h1>{{recipe.title}}</h1>
         <div class="flex-row gapped">
-            <button mat-flat-button color="primary" [routerLink]="['']">
+            <button mat-flat-button color="primary" [routerLink]="['/recipes/edit/'+ recipe._id]">
                 <mat-icon>edit</mat-icon> Edit
             </button>
             <button mat-flat-button color="warn" (click)="deleteRecipe()">

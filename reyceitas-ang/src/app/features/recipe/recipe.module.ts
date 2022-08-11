@@ -12,6 +12,8 @@ import { InstructionsFormComponent } from './recipe-form/instructions-form/instr
 import { IngredientsFormComponent } from './recipe-form/ingredients-form/ingredients-form.component';
 import { ImageUploadFormComponent } from './recipe-form/image-upload-form/image-upload-form.component';
 import { InterfaceModule } from '../shared/interface/interface.module';
+import { RecipeAddComponent } from './recipe-add/recipe-add.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { InterfaceModule } from '../shared/interface/interface.module';
     RecipeFormComponent,
     InstructionsFormComponent,
     IngredientsFormComponent,
-    ImageUploadFormComponent
+    ImageUploadFormComponent,
+    RecipeAddComponent,
+    RecipeEditComponent
   ],
   imports: [
     CommonModule,

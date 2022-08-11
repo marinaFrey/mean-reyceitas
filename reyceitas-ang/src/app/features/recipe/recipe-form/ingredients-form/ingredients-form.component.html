@@ -2,7 +2,7 @@
 
 <div *ngIf="form" class="add-form" [formGroup]="form">
     <ng-container formArrayName="ingredients">
-        <ng-container *ngFor="let ingredientForm of ingredients.controls; let i = index">
+        <ng-container *ngFor="let ingredientForm of ingredientsFormArray.controls; let i = index">
             <div class="form-container" [formGroup]="getIngredientFormGroup(ingredientForm)">
 
                 <mat-form-field appearance="outline">
@@ -33,6 +33,13 @@
                       </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
+
+                <app-dropdown   *ngIf="foods$ | async as food"
+                                [form]="getIngredientFormGroup(ingredientForm)" 
+                                formControlName="food" 
+                                [options]="food"
+                                label="Name" placeholder="Select food name">
+                </app-dropdown>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Details</mat-label>

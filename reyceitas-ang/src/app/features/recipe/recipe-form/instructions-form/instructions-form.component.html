@@ -3,7 +3,7 @@
 
 <div *ngIf="form" class="add-form" [formGroup]="form">
     <ng-container formArrayName="instructions">
-        <ng-container *ngFor="let instructionForm of instructions.controls; let i = index">
+        <ng-container *ngFor="let instructionForm of instructionsFormArray.controls; let i = index">
             <div class="form-container" [formGroup]="getInstructionFormGroup(instructionForm)">
                 <mat-form-field appearance="outline">
                     <mat-label>Step {{i + 1}} </mat-label>
