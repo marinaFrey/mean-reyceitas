@@ -10,6 +10,7 @@ const Unit = require('../models/Unit');
 router.use(cors());
 router.get('/', (req, res) => {
   Unit.find()
+    .populate('unitType')
     .then(units => {
       res.json(units);
     })
@@ -49,6 +50,7 @@ router.put('/edit/:id', jsonParser, (req, res) => {
 
 router.get('/get/:id', jsonParser, (req, res) => {
   Unit.findOne({ _id: req.params.id })
+    .populate('unitType')
     .then(unit => {
       res.json(unit);
     })

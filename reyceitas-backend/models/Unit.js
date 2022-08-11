@@ -3,8 +3,8 @@ const { Schema } = mongoose;
 const UnitType = require('../models/UnitType');
 
 const unitSchema = new Schema({
-  name:         { type: String, required: true},
-  abbreviation: { type: String, required: true},
+  name:             { type: String, required: true, index: true, unique: true},
+  abbreviation:     { type: String, required: true},
   unitType:         { type: Schema.Types.ObjectId, ref: UnitType },
 })
 

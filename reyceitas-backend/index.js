@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken');
 const app = express();
 
 const recipes = require('./routes/recipes');
+const seeds = require('./seeders/base');
+
 const foods = require('./routes/foods');
 const foodTypes = require('./routes/foodTypes');
 const instructionTypes = require('./routes/instructionTypes');
@@ -97,12 +99,14 @@ mongoose.connect(
         useNewUrlParser: true,
         useFindAndModify: false,
         useCreateIndex: true
-    })
-    .then(result => {
-        console.log('Connected to MongoDB');
-    })
-    .catch(error => {
-        console.log(error);
-    });
-
+    }
+)
+.then(result => {
+    console.log('Connected to MongoDB');
+    mongoose.connection.db.dropDatabase(seeds); //Drop and seed
+    // seeds() //Only seed
+})
+.catch(error => {
+    console.log(error);
+});
 app.listen(9000, () => console.log('Server listening on port 9000'));

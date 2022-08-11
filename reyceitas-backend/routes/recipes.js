@@ -17,19 +17,19 @@ router.get('/', (req, res) => {
 });
 
 router.post('/new', jsonParser,(req, res) => {
-  const newRecipe = new Recipe({
+  const newRecipe= new Recipe({ 
     title: req.body.title,
     createdBy: req.body.createdBy,
     servings: req.body.servings,
-    ingredients: req.body.ingredients,
+    ingredients: req.body.ingredients, 
     difficulty: req.body.difficulty,
     instructions: req.body.instructions
   });
 
   newRecipe
     .save()
-    .then(recipe => {
-      res.json(recipe);
+    .then(newRecipe => {
+      res.json(newRecipe._id ); //Returning only the id
     })
     .catch(error => {
       res.status(500).json(error);
@@ -41,20 +41,38 @@ router.put('/edit/:id', jsonParser, (req, res) => {
     title: req.body.title,
     createdBy: req.body.createdBy,
     servings: req.body.servings,
-    ingredients: req.body.ingredients,
+    ingredients: req.body.ingredients, 
     difficulty: req.body.difficulty,
     instructions: req.body.instructions
   };
 
   Recipe.findOneAndUpdate({ _id: req.params.id }, newData, { new: true })
-    .then(recipe => {
-      res.json(recipe);
+    .then(newRecipe => {
+      res.json(newRecipe._id ); //Returning only the id
     })
     .catch(error => res.status(500).json(error));
 });
 
 router.get('/get/:id', jsonParser, (req, res) => {
   Recipe.findOne({ _id: req.params.id })
+    .populate({
+      path:'ingredients.unit',
+      populate: {
+        path: "unitType"
+      },
+      model: 'unit'
+    })
+    .populate({
+      path:'ingredients.food',
+      populate: {
+        path: "foodType"
+      },
+      model: 'food'
+    })
+    .populate({
+      path:'instructions.instructionType',
+      model: 'instructionType'
+    })
     .then(recipe => {
       res.json(recipe);
     })

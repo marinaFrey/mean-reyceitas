@@ -1,0 +1,48 @@
+{
+    "_id": "62f30806475c3003d52d3f55",
+    "title": "Massinha Miojo",
+    "createdBy": "Nicolas",
+    "servings": 1,
+    "ingredients": [
+      {
+        "_id": "62f30806475c3003d52d3f56",
+        "amount": 1,
+        "unit": {
+          "_id": "62f2fb6e0a912c027034c9de",
+          "name": "unit",
+          "abbreviation": " ",
+          "unitType": "62f29e89bf56de01da9d0519",
+          "__v": 0
+        },
+        "food": {
+          "_id": "62f2fc0e0a912c027034c9e2",
+          "name": "Macaroni",
+          "foodType": {
+            "_id": "62f2fbc10a912c027034c9e0",
+            "name": "Pastas",
+            "__v": 0
+          },
+          "__v": 0
+        },
+        "details": "Miojo"
+      }
+    ],
+    "difficulty": 1,
+    "instructions": [
+      {
+        "_id": "62f30806475c3003d52d3f57",
+        "description": "Cozinhe a massa miojo",
+        "instructionType": {
+          "_id": "62f2f9549bf936023c0886c4",
+          "name": "Cooking",
+          "__v": 0
+        }
+      },
+      {
+        "_id": "62f30806475c3003d52d3f58",
+        "description": "Adicione o pozinho maldito"
+      }
+    ],
+    "createdAt": "2022-08-10T01:21:10.231Z",
+    "__v": 0
+  }
