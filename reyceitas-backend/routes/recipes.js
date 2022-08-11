@@ -28,8 +28,8 @@ router.post('/new', jsonParser,(req, res) => {
 
   newRecipe
     .save()
-    .then(newRecipe => {
-      res.json(newRecipe._id ); //Returning only the id
+    .then(unitType => {
+      res.json(unitType);
     })
     .catch(error => {
       res.status(500).json(error);
@@ -55,6 +55,7 @@ router.put('/edit/:id', jsonParser, (req, res) => {
 
 router.get('/get/:id', jsonParser, (req, res) => {
   Recipe.findOne({ _id: req.params.id })
+    .populate('createdBy')
     .populate({
       path:'ingredients.unit',
       populate: {

@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const cors = require('cors');
-const {OAuth2Client} = require('google-auth-library');
 const jwt = require('jsonwebtoken');
 const app = express();
 
@@ -15,8 +14,8 @@ const foodTypes = require('./routes/foodTypes');
 const instructionTypes = require('./routes/instructionTypes');
 const units = require('./routes/units');
 const unitTypes = require('./routes/unitTypes');
+const users = require('./routes/users');
 
-const client = new OAuth2Client(process.env.CLIENT_ID);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,8 +27,8 @@ const isLoggedIn = (req, res, next) => {
 
 function verifyJWT(req, res, next){
     const authHeader = req.headers['authorization']?.split(" ");
+    if (!authHeader) return res.status(401).json({ auth: false, message: 'No token provided.' });
     const token = authHeader[1];
-    if (!token) return res.status(401).json({ auth: false, message: 'No token provided.' });
     
     jwt.verify(token, process.env.CLIENT_SECRET, function(err, decoded) {
       if (err) return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
@@ -46,51 +45,8 @@ app.use('/api/food-types', foodTypes);
 app.use('/api/instruction-types', instructionTypes);
 app.use('/api/units', units);
 app.use('/api/unit-types', unitTypes);
+app.use('/auth', users);
   
-app.get("/profile", isLoggedIn, (req, res) => {
-  res.render("profile.ejs", { user: req.user });
-});
-
-app.get("/auth/logout", (req, res) => {
-  req.flash("success", "Successfully logged out");
-  req.session.destroy(function () {
-    res.clearCookie("connect.sid");
-    res.redirect("/");
-  });
-});
-app.get('/auth', (req, res) => {
-    const token = req.body.token;
-    if(token) {
-        const decode = jwt.verify(token, process.env.CLIENT_SECRET);
-        res.json({
-            login: true,
-            data: decode
-        });
-    } else {
-        res.json({
-            login: false,
-            data: 'error'
-        });
-    }
-});
-app.post("/login", (req,res,next) => {
-    async function verify() {
-        const ticket = await client.verifyIdToken({
-            idToken : req.body.token,
-            audience : process.env.CLIENT_ID
-        });
-        const payload = ticket.getPayload();
-        const userDetails = {
-            email : payload['email'],
-            profilePicture : payload['picture'],
-            firstName : payload['given_name'],
-            lastName : payload['family_name']
-        }
-        let token = jwt.sign(userDetails, process.env.CLIENT_SECRET, {expiresIn: 1440});
-        res.status(200).json({ token: token, ...userDetails })
-    }
-    verify().catch((e) => {res.status(401).json({"Error":"Not authorized"})});
-})
 db = 'mongodb://db:27017/reyceitas-mean'
 mongoose.connect(
     db,

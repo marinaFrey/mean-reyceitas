@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   public login(token:string): Observable<User> {
-    return this.api.post('/login', {'token': token});
+    return this.api.post('/auth/login', {'token': token});
   }
 
   public getUserInfo(): Observable<any> {
@@ -52,7 +52,7 @@ export class AuthService {
     return this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((user) => {
         this.setUserAuthentication(user.authToken);
-        return lastValueFrom(this.api.get('/login'));
+        return lastValueFrom(this.api.get('/auth/login'));
       })
   }
 

@@ -18,13 +18,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/new', jsonParser,(req, res) => {
-  const newRecipe = new Unit({
+  const newUnit = new Unit({
     name: req.body.name,
     abbreviation: req.body.abbreviation,
     unitType: req.body.unitType
   });
 
-  newRecipe
+  newUnit
     .save()
     .then(unit => {
       res.json(unit);

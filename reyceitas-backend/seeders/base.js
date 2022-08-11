@@ -71,6 +71,12 @@ async function saveBasics(){
     new Food({ name: "Macaroni", foodType: pastas }),
   ]
   await saveSeeds(foods)
+  const User = require('../models/User');
+  const users = [   
+    new User({ email:"nicolassk@reyceitas.com", firstName: "Nicolas", lastName: "Kagami", source: "seeds"}),
+  ]
+  await saveSeeds(users)
+  var user = await User.findOne({email: "nicolassk@reyceitas.com"})
   var macaroni = await Food.findOne({ name: "Macaroni" })
   var cooking = await InstructionType.findOne({ name: "Cooking" })
   var seasoning = await InstructionType.findOne({ name: "Seasoning" })
@@ -79,7 +85,7 @@ async function saveBasics(){
   const recipes = [   
   new Recipe({
       "title": "Massinha Miojo",
-      "createdBy": "Nicolas",
+      "createdBy": user, 
       "servings": 1,
       "ingredients": [
         {

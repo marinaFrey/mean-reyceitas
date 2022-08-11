@@ -2,13 +2,14 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const Unit = require('../models/Unit');
+const User = require('../models/User');
 const Food = require('../models/Food');
 const InstructionType = require('../models/InstructionType');
 
 const recipeSchema = new Schema({
   title:        { type: String, required: true },
   createdAt:    { type: Date, default: Date.now },
-  createdBy:    { type: String, required: true },
+  createdBy:    { type: Schema.Types.ObjectId, ref: User},
   difficulty:   { type: Number },
   servings:     { type: Number, required: true },
   ingredients:  [{ 
