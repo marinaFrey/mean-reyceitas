@@ -21,8 +21,6 @@ curl -H "content-type: application/json" -d '{"name":"Parmesan"}' -X POST http:/
 curl -H "content-type: application/json" -d '{"name":"Cutting"}' -X POST http://localhost:9000/api/instruction-types/new
 
 # TODO
-Understand how to combine req
-Save user
 CreatedBy from user
 Mongo SEEDs
 Populate DB
