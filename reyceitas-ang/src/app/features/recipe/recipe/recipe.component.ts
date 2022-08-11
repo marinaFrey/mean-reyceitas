@@ -4,6 +4,7 @@ import { Recipe } from '@models/recipe/recipe.model';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 import { take } from 'rxjs';
 import { RECIPE_LIST_ROUTE } from '@constants/routes.constant';
+import { AlertService } from '@services/alert.service';
 
 @Component({
   selector: 'app-recipe',
@@ -18,6 +19,7 @@ export class RecipeComponent implements OnInit {
     'assets/images/img-placeholder.jpg']
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private alert: AlertService,
               private recipeService: RecipeService) { }
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class RecipeComponent implements OnInit {
   deleteRecipe(): void {
     this.recipeService.deleteRecipe(this.recipe._id)
       .pipe(take(1)).subscribe(() => {
-        
+        this.alert.success('Recipe deleted')
         this.router.navigate([RECIPE_LIST_ROUTE])
       });
   }

@@ -22,9 +22,9 @@
         </div>
     </div>
 
-    <app-ingredients-form [form]="form"></app-ingredients-form>
+    <app-ingredients-form [form]="form" [ingredients]="recipe?.ingredients"></app-ingredients-form>
 
-    <app-instructions-form [form]="form"></app-instructions-form>
+    <app-instructions-form [form]="form" [instructions]="recipe?.instructions"></app-instructions-form>
     <div class="flex-col">
         <h2>Notes</h2>
         <mat-form-field appearance="outline">

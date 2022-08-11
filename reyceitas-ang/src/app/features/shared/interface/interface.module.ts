@@ -3,18 +3,23 @@ import { CommonModule } from '@angular/common';
 import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
 import { MaterialModule } from '../material/material.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const components = [
-  ImageCarouselComponent
+  ImageCarouselComponent,
+  DropdownComponent
 ]
 
 @NgModule({
-  declarations: [components],
+  declarations: [components ],
   exports: [components],
   imports: [
     CommonModule,
     MaterialModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class InterfaceModule { }

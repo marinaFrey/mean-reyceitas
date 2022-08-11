@@ -4,8 +4,6 @@ export interface Ingredient {
     amount: number;
     unit?: Unit; 
     food?: Food; 
-    unitId?: string; // id
-    foodId?: string; // id
     details?: string;
 }
 

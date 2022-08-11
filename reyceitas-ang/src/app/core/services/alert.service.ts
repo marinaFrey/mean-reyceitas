@@ -11,11 +11,11 @@ export class AlertService {
       this.alertEvents = this._alertEvents.asObservable();
     }
   
-    success(message: string, action: string) {
+    success(message: string, action?: string) {
         this.showAlert(AlertType.Success, message, action);
     }
 
-    error(message: string, action: string) {
+    error(message: string, action?: string) {
         this.showAlert(AlertType.Error, message, action);
     }
     

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Food } from '@models/recipe/ingredient.model';
+import { Food, Ingredient } from '@models/recipe/ingredient.model';
 import { Unit } from '@models/recipe/unit.model';
 import { RecipeService } from '@services/recipe.service';
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class IngredientsFormComponent implements OnInit {
   @Input() form!: FormGroup;
+  @Input() ingredients: Ingredient[] | undefined;
 
   units$: Observable<Unit[]> = this.recipeService.getUnits();
   foods$: Observable<Food[]> = this.recipeService.getFoods();
@@ -20,25 +21,28 @@ export class IngredientsFormComponent implements OnInit {
               private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+    if(this.ingredients)
+      this.getIngredients(this.ingredients);
   }
 
-  get ingredients() {
+  get ingredientsFormArray() {
     return this.form?.controls["ingredients"] as FormArray;
   }
 
-  addIngredient() {
+  addIngredient(ingredient?: Ingredient) {
+    console.log(ingredient)
     const ingredientForm = this.formBuilder.group({
-      amount: [null, Validators.required],
-      unitId: [null, Validators.required],
-      foodId: [null],
-      details: [""]
+      amount: [ingredient?.amount ?? null, Validators.required],
+      unit: [ingredient?.unit, Validators.required],
+      food: [ingredient?.food],
+      details: [ingredient?.details ?? ""]
     });
 
-    this.ingredients.push(ingredientForm);
+    this.ingredientsFormArray.push(ingredientForm);
   }
 
   deleteIngredient(index: number) {
-    this.ingredients.removeAt(index);
+    this.ingredientsFormArray.removeAt(index);
   }
 
   getIngredientFormGroup(ingredient: any) {
@@ -51,5 +55,11 @@ export class IngredientsFormComponent implements OnInit {
 
   getFoodName(food: Food) {
     return food?.name;
+  }
+
+  private getIngredients(ingredients: Ingredient[]): void {
+    ingredients.forEach(ingredient => {
+      this.addIngredient(ingredient);
+    });
   }
 }
