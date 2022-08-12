@@ -9,6 +9,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const materialModules = [
   MatToolbarModule,
@@ -19,7 +21,9 @@ const materialModules = [
   MatInputModule,
   MatAutocompleteModule,
   FormsModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSelectModule,
+  MatProgressBarModule
 ]
 
 @NgModule({

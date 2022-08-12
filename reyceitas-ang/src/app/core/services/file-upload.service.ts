@@ -10,6 +10,12 @@ export class FileUploadService {
 
   constructor(private http: HttpClient, private api: ApiService) { }
 
+  public upload(image: File): Observable<Response> {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.api.post('/api/v1/image-upload', formData);
+  }
+  /*
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
     formData.append('file', file);
@@ -23,5 +29,5 @@ export class FileUploadService {
 
   getFiles(): Observable<any> {
     return this.api.get(`/files`);
-  }
+  }*/
 }
