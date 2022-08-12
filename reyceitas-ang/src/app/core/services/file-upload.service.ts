@@ -13,7 +13,7 @@ export class FileUploadService {
   public upload(image: File): Observable<Response> {
     const formData = new FormData();
     formData.append('image', image);
-    return this.api.post('/api/v1/image-upload', formData);
+    return this.api.post('/img/upload-single', formData);
   }
   /*
   upload(file: File): Observable<HttpEvent<any>> {

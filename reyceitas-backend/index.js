@@ -15,6 +15,7 @@ const instructionTypes = require('./routes/instructionTypes');
 const units = require('./routes/units');
 const unitTypes = require('./routes/unitTypes');
 const users = require('./routes/users');
+const images = require('./routes/images');
 
 
 app.use(bodyParser.json());
@@ -45,6 +46,8 @@ app.use('/api/instruction-types', instructionTypes);
 app.use('/api/units', units);
 app.use('/api/unit-types', unitTypes);
 app.use('/auth', users);
+app.use('/img/', images);
+app.use('/uploads', express.static(__dirname));
   
 db = 'mongodb://db:27017/reyceitas-mean'
 mongoose.connect(
