@@ -34,12 +34,11 @@ function verifyJWT(req, res, next){
       if (err) return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
       
       req.userId = decoded.id;
-      console.log(decoded)
       next();
     });
 }
-//app.use('/api/recipes', verifyJWT, recipes);
-app.use('/api/recipes', recipes);
+app.use('/api/recipes', verifyJWT, recipes);
+//app.use('/api/recipes', recipes);
 app.use('/api/foods', foods);
 app.use('/api/food-types', foodTypes);
 app.use('/api/instruction-types', instructionTypes);

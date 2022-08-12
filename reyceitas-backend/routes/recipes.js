@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 router.post('/new', jsonParser,(req, res) => {
   const newRecipe= new Recipe({ 
     title: req.body.title,
-    createdBy: req.body.createdBy,
+    createdBy: req.userId,
     servings: req.body.servings,
     ingredients: req.body.ingredients, 
     difficulty: req.body.difficulty,
