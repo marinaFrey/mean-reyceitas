@@ -17,20 +17,24 @@ export class ImageUploadComponent implements OnInit {
   @Output() deleted: EventEmitter<any> = new EventEmitter<any>();
 
   fileName = '';
-  imagePreview: string | ArrayBuffer | null = null
+  imagePreview: string | ArrayBuffer | null = null;
+  alreadyUploadedImage: boolean = false;
+
   uploadProgress: number | null = null;
   uploadSub: Subscription | null = null;
 
   constructor(private fileUploadService: FileUploadService){}
 
   ngOnInit(): void {
-    console.log(this.formControl)
+    if(this.formControl.value != null) {
+      this.imagePreview = this.formControl.value;
+      this.alreadyUploadedImage = true;
+    }
   }
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     this.setImagePreview(file);
-    console.log(event, file)
     if (file) {
       this.uploadSub = this.fileUploadService.upload(file).pipe(
         finalize(() => this.reset())

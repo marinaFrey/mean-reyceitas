@@ -11,11 +11,12 @@ import { ImageComponent } from './image/image.component';
 const components = [
   ImageCarouselComponent,
   ImageUploadComponent,
-  DropdownComponent
+  DropdownComponent,
+  ImageComponent
 ]
 
 @NgModule({
-  declarations: [components, ImageComponent],
+  declarations: [components, ],
   exports: [components],
   imports: [
     CommonModule,

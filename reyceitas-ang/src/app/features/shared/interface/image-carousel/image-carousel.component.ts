@@ -20,8 +20,4 @@ export class ImageCarouselComponent implements OnInit {
     this.shownImageIndex = index;
   }
 
-  getImageUrl(image: string): string {
-    return `${environment.apiUrl}/uploads/${image}`
-  }
-
 }

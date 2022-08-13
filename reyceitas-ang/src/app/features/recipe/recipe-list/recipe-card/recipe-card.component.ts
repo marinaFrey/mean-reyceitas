@@ -14,4 +14,8 @@ export class RecipeCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getPicture(): string {
+    return this.recipe?.pictures ? this.recipe.pictures[0] : '';
+  }
+
 }

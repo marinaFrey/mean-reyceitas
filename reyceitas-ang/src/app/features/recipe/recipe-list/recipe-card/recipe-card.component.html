@@ -1,8 +1,6 @@
 
 <div *ngIf="recipe" class="recipe-card" [routerLink]="'recipe/'+ recipe._id">
-    <div>
-        <img src="assets/images/img-placeholder.jpg"/>
-    </div>
+    <app-image [imageUrl]="getPicture()" imageWidth="200px"></app-image>
     <div class="recipe-description">
         <h2>{{recipe.title}}</h2>
         <p>Serves {{recipe.servings}}</p>

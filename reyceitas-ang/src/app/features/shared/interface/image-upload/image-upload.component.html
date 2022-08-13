@@ -4,7 +4,8 @@
 
 <div class="file-upload">
 
-    <app-image [imageUrl]="imagePreview" imageWidth="100px"></app-image>
+    <app-image [imageUrl]="imagePreview" imageWidth="100px" 
+              [getFromServer]="alreadyUploadedImage ? true : false"></app-image>
 
     <button mat-mini-fab *ngIf="!imagePreview"  color="primary" class="upload-btn"
       (click)="fileUpload.click()">

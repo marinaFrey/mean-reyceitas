@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-image',
@@ -8,10 +9,26 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ImageComponent implements OnInit {
   @Input() imageUrl: string | undefined;
   @Input() imageWidth: string | undefined;
+  @Input() getFromServer: boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(`ngon init`)
+    console.log(this.imageUrl)
+  }
+
+  getImageUrl(): string {
+    if(!this.imageUrl) return 'assets/images/img-placeholder.jpg';
+
+    if(this.getFromServer)
+      return this.getServerImageUrl(this.imageUrl)
+
+    return this.imageUrl;
+  }
+
+  getServerImageUrl(image: string): string {
+    return `${environment.apiUrl}/uploads/${image}`
   }
 
 }
