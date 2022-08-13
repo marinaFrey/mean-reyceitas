@@ -23,6 +23,7 @@ router.post('/new', jsonParser,(req, res) => {
     servings: req.body.servings,
     ingredients: req.body.ingredients, 
     difficulty: req.body.difficulty,
+    pictures: req.body.pictures,
     instructions: req.body.instructions
   });
 
@@ -42,6 +43,7 @@ router.put('/edit/:id', jsonParser, (req, res) => {
     createdBy: req.body.createdBy,
     servings: req.body.servings,
     ingredients: req.body.ingredients, 
+    pictures: req.body.pictures,
     difficulty: req.body.difficulty,
     instructions: req.body.instructions
   };

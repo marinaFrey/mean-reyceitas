@@ -11,6 +11,7 @@ const recipeSchema = new Schema({
   createdAt:    { type: Date, default: Date.now },
   createdBy:    { type: Schema.Types.ObjectId, ref: User},
   difficulty:   { type: Number },
+  pictures:     [ String ],
   servings:     { type: Number, required: true },
   ingredients:  [{ 
     amount: Number, 

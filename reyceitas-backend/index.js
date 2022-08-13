@@ -16,6 +16,7 @@ const units = require('./routes/units');
 const unitTypes = require('./routes/unitTypes');
 const users = require('./routes/users');
 const images = require('./routes/images');
+const serveStatic = require('serve-static')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,7 +31,7 @@ app.use('/api/units', units);
 app.use('/api/unit-types', unitTypes);
 app.use('/auth', users);
 app.use('/img/', images);
-app.use('/uploads', express.static(__dirname));
+app.use('/uploads', serveStatic('/uploads'));
   
 db = 'mongodb://db:27017/reyceitas-mean'
 mongoose.connect(
