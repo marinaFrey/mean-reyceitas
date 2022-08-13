@@ -60,6 +60,10 @@ export class IngredientsFormComponent implements OnInit {
     return food?.name;
   }
 
+  compareFn(op1: any, op2: any) {
+    return op1._id === op2._id;
+  }
+
   private getIngredients(ingredients: Ingredient[]): void {
     ingredients.forEach(ingredient => {
       this.addIngredient(ingredient);
