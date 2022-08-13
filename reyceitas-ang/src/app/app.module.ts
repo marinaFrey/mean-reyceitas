@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 import { CookieModule } from 'ngx-cookie';
 import { AlertService } from '@services/alert.service';
 import { AlertComponent } from './core/components/alert/alert.component';
+import { firstValueFrom } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -34,13 +35,12 @@ import { AlertComponent } from './core/components/alert/alert.component';
     CookieModule.withOptions()
   ],
   providers: [
-    /*
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
       deps: [AuthService],
       multi: true
-    },*/
+    },
     { provide: HTTP_INTERCEPTORS, 
       useClass: RequestInterceptor, 
       multi: true
@@ -67,11 +67,9 @@ import { AlertComponent } from './core/components/alert/alert.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-/*
+
 export function appInitializer(authService: AuthService) {
   return () => new Promise(resolve => {
-      console.log('app initializer')
-      // attempt to refresh token on app start up to auto authenticate
-      return authService.refreshToken().then(resolve);
+      return firstValueFrom(authService.checkTokenValidation()).then(resolve);
   });
-}*/
+}

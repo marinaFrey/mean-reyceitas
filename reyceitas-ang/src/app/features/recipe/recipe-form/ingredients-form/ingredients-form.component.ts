@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Food, Ingredient } from '@models/recipe/ingredient.model';
 import { Unit } from '@models/recipe/unit.model';
 import { RecipeService } from '@services/recipe.service';
@@ -47,6 +47,10 @@ export class IngredientsFormComponent implements OnInit {
 
   getIngredientFormGroup(ingredient: any) {
     return ingredient as FormGroup;
+  }
+
+  getFoodFormControl(ingredient: any) {
+    return ingredient.get('food') as FormControl;
   }
 
   getUnitName(unit: Unit) {

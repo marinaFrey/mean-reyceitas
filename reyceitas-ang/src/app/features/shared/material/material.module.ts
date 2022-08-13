@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDividerModule} from '@angular/material/divider';
 
 const materialModules = [
   MatToolbarModule,
@@ -23,7 +24,8 @@ const materialModules = [
   FormsModule,
   MatMenuModule,
   MatSelectModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatDividerModule
 ]
 
 @NgModule({

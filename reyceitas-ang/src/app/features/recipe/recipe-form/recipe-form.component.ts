@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Ingredient } from '@models/recipe/ingredient.model';
 import { Instruction } from '@models/recipe/instruction.model';
 import { Recipe } from '@models/recipe/recipe.model';
+import { AlertService } from '@services/alert.service';
 import { RecipeService } from '@services/recipe.service';
 import { take } from 'rxjs';
 
@@ -13,10 +14,12 @@ import { take } from 'rxjs';
 })
 export class RecipeFormComponent implements OnInit {
   @Input() recipe: Recipe | undefined;
+  @Output() recipeSubmitted: EventEmitter<Recipe> = new EventEmitter<Recipe>();
   
   form: FormGroup | undefined;
 
   constructor(private formBuilder: FormBuilder,
+              private alert: AlertService,
               private recipeService: RecipeService) { }
 
   ngOnInit(): void {
@@ -24,13 +27,12 @@ export class RecipeFormComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form)
     if(this.form?.invalid) {
+      this.alert.error('Please fill all required fields')
       this.form.markAllAsTouched();
       return;
     }
-    this.recipeService.addRecipe(this.form?.value as Recipe)
-      .pipe(take(1)).subscribe(console.log)
+    this.recipeSubmitted.emit(this.form?.value as Recipe);
   }
 
   private createForm(): void {

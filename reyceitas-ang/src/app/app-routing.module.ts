@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RECIPE_LIST_ROUTE } from '@constants/routes.constant';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -8,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'recipes',
+    path: RECIPE_LIST_ROUTE,
     loadChildren: () => import('./features/recipe/recipe.module').then(m => m.RecipeModule)
   }
   //{ path: '**', component: PageNotFoundComponent }, 

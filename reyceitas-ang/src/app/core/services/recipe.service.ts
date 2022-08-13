@@ -30,7 +30,7 @@ export class RecipeService {
   }
 
   deleteRecipe(index: string) {
-    return this.api.post(`${RECIPES_ENDPOINT}/delete/${index}`, null)
+    return this.api.delete(`${RECIPES_ENDPOINT}/delete/${index}`)
   }
 
   getUnits(): Observable<Unit[]> {
