@@ -1,15 +1,22 @@
-<form *ngIf="form && formControlName" [formGroup]="form">
-    <mat-form-field appearance="outline">
-        <mat-label *ngIf="label"> {{label}} </mat-label>
-        <input type="text" 
-            [placeholder]="placeholder" matInput 
-            [formControl]="formControl" 
-            [matAutocomplete]="auto">
-           <mat-autocomplete #auto="matAutocomplete" [displayWith]="getName">
-             <mat-option *ngFor="let option of filteredOptions | async" 
-                        [value]="option" >
-               {{option[displayProperty]}}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-</form>
+<mat-form-field appearance="outline">
+    <mat-label *ngIf="label"> {{label}} </mat-label>
+    <input type="text" ngDefaultControl
+        [placeholder]="placeholder" matInput 
+        [formControl]="formControl"
+        [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="getName">
+            <mat-option *ngFor="let option of filteredOptions | async" 
+                    [value]="option" >
+            {{option[displayProperty]}}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+
+<!--
+    Example:
+                   <app-dropdown   *ngIf="foods$ | async as food" ngDefaultControl
+                                [formControl]="getFoodFormControl(ingredientForm)" 
+                                [options]="food"
+                                label="Food" placeholder="Select food name">
+                </app-dropdown>
+-->

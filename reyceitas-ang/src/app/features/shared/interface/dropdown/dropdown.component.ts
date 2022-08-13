@@ -12,8 +12,7 @@ export class DropdownComponent implements OnInit {
   @Input() placeholder: string = '';
   @Input() options: any[] = [];
 
-  @Input() form!: FormGroup;
-  @Input() formControlName!: string;
+  @Input() formControl!: FormControl;
   @Input() displayProperty: string = 'name';
 
   filteredOptions!: Observable<any> | undefined;
@@ -21,24 +20,20 @@ export class DropdownComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.filteredOptions = this.form.get(this.formControlName)?.valueChanges
+    this.filteredOptions = this.formControl?.valueChanges
       .pipe(
         startWith(''),
         map(val => this.filter(val))
       );
   }
 
-  get formControl() {
-    console.log(this.form.get(this.formControlName))
-    return this.form.get(this.formControlName) as FormControl
-  }
-
   getName(item: any) {
     return item?.[this.displayProperty];
   }
 
-  filter(val: string): string[] {
+  filter(val: any): any[] {
+    if(val[this.displayProperty]) this.formControl.setValue(val)
     return this.options.filter(option =>
-      option[this.displayProperty].toLowerCase().indexOf(val.toLowerCase()) === 0);
+      option[this.displayProperty].toLowerCase().indexOf(val?.toLowerCase()) === 0);
   }
 }

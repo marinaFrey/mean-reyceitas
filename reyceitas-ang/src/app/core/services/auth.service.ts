@@ -1,6 +1,7 @@
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Injectable } from '@angular/core';
 import { AUTH_TOKEN_KEY } from '@constants/cookies.constant';
+import { AUTH_ENDPOINT, VALIDATE_TOKEN_ENDPOINT } from '@constants/endpoints.constant';
 import { User } from '@models/user.model';
 import { BehaviorSubject, lastValueFrom, map, Observable, of, switchMap } from 'rxjs';
 import { ApiService } from './api.service';
@@ -26,7 +27,14 @@ export class AuthService {
   }
 
   public login(token:string): Observable<User> {
-    return this.api.post('/auth/login', {'token': token});
+    return this.api.post(AUTH_ENDPOINT+'/login', {'token': token});
+  }
+
+  public checkTokenValidation(): Observable<void> {
+    return this.api.get(AUTH_ENDPOINT+VALIDATE_TOKEN_ENDPOINT)
+      .pipe(map((user) => {
+        this.userSubject.next(user as User)
+      }));
   }
 
   public getUserInfo(): Observable<any> {

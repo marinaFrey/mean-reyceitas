@@ -7,39 +7,26 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Amount</mat-label>
-                    <input matInput formControlName="amount">
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Unit</mat-label>
-                    <input matInput type="text"
-                           formControlName="unit"
-                           [matAutocomplete]="unitAuto">
-                    <mat-autocomplete #unitAuto="matAutocomplete" [displayWith]="getUnitName">
-                      <mat-option *ngFor="let unit of units$ | async" [value]="unit">
-                        {{unit.abbreviation}} ({{unit.name}})
-                      </mat-option>
-                    </mat-autocomplete>
+                    <input matInput type='number' formControlName="amount">
                 </mat-form-field>
                 
-                <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Food</mat-label>
-                    <input matInput type="text"
-                           formControlName="food"
-                           [matAutocomplete]="foodAuto">
-                    <mat-autocomplete #foodAuto="matAutocomplete" [displayWith]="getFoodName">
-                      <mat-option *ngFor="let food of foods$ | async" [value]="food">
-                        {{food.name}}
-                      </mat-option>
-                    </mat-autocomplete>
+                <mat-form-field appearance="outline">
+                    <mat-label>Unit</mat-label>
+                    <mat-select formControlName="unit">
+                        <mat-option *ngFor="let unit of units$ | async" [value]="unit">
+                            {{unit.abbreviation}} ({{unit.name}})
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
 
-                <app-dropdown   *ngIf="foods$ | async as food"
-                                [form]="getIngredientFormGroup(ingredientForm)" 
-                                formControlName="food" 
-                                [options]="food"
-                                label="Name" placeholder="Select food name">
-                </app-dropdown>
+                <mat-form-field appearance="outline">
+                    <mat-label>Food</mat-label>
+                    <mat-select formControlName="food">
+                        <mat-option *ngFor="let food of foods$ | async" [value]="food">
+                            {{food.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Details</mat-label>

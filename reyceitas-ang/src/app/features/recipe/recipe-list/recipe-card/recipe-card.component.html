@@ -1,4 +1,5 @@
-<mat-card *ngIf="recipe" class="recipe-card" [routerLink]="'recipe/'+ recipe._id">
+
+<div *ngIf="recipe" class="recipe-card" [routerLink]="'recipe/'+ recipe._id">
     <div>
         <img src="assets/images/img-placeholder.jpg"/>
     </div>
@@ -7,4 +8,4 @@
         <p>Serves {{recipe.servings}}</p>
         <p>{{recipe.difficulty}} levels of difficulty</p>
     </div>
-</mat-card>
+</div>
