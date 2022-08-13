@@ -1,9 +1,15 @@
 
 <div *ngIf="recipe" class="recipe-card" [routerLink]="'recipe/'+ recipe._id">
-    <app-image [imageUrl]="getPicture()" imageWidth="200px"></app-image>
+    <app-image [imageUrl]="getPicture()" imageWidth="200px" imageHeight="150px"></app-image>
     <div class="recipe-description">
-        <h2>{{recipe.title}}</h2>
-        <p>Serves {{recipe.servings}}</p>
-        <p>{{recipe.difficulty}} levels of difficulty</p>
+        <div class="recipe-header">
+            <h2>{{recipe.title}}</h2>
+            <div class="servings-counter">
+                <mat-icon>people</mat-icon>
+                <p>{{recipe.servings}}</p>
+            </div>
+        </div>
+        
+        <app-difficulty [difficulty]="recipe.difficulty"></app-difficulty>
     </div>
 </div>

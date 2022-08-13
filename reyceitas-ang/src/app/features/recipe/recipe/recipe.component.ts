@@ -5,6 +5,7 @@ import { RecipeService } from 'src/app/core/services/recipe.service';
 import { take } from 'rxjs';
 import { RECIPE_LIST_ROUTE } from '@constants/routes.constant';
 import { AlertService } from '@services/alert.service';
+import { Ingredient } from '@models/recipe/ingredient.model';
 
 @Component({
   selector: 'app-recipe',
@@ -13,6 +14,7 @@ import { AlertService } from '@services/alert.service';
 })
 export class RecipeComponent implements OnInit {
   recipe!: Recipe;
+  calculatedIngredients: Ingredient[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -30,6 +32,11 @@ export class RecipeComponent implements OnInit {
         this.alert.success('Recipe deleted')
         this.router.navigate([RECIPE_LIST_ROUTE])
       });
+  }
+
+  getIngredients(): Ingredient[] | undefined {
+    if(this.calculatedIngredients.length) return this.calculatedIngredients;
+    return this.recipe?.ingredients;
   }
 
   private getRecipe(id: string | null): void {

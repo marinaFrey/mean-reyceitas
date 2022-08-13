@@ -15,14 +15,12 @@
 
     <div class="recipe-basic-info-container">
         <p *ngIf="recipe.createdBy">Created by {{recipe.createdBy?.firstName}} {{recipe.createdBy?.lastName}}</p>
-        <mat-divider [vertical]="true"></mat-divider>
-        <app-servings [recipe]="recipe"></app-servings>
-        <mat-divider [vertical]="true"></mat-divider>
+        <app-servings [recipe]="recipe" (recalculatedIngredientAmounts)="calculatedIngredients = $event"></app-servings>
         <app-difficulty [difficulty]="recipe.difficulty"></app-difficulty>
     </div>
 
     <h2 *ngIf="recipe.ingredients?.length">Ingredients</h2>
-    <div *ngFor="let ingredient of recipe.ingredients" class="flex-col">
+    <div *ngFor="let ingredient of getIngredients()" class="flex-col">
         <app-ingredient [ingredient]="ingredient"></app-ingredient>
     </div>
 

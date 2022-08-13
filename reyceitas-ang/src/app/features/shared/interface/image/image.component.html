@@ -1,3 +1,4 @@
 <img class="image" 
-    [ngStyle]="{'width': imageWidth ? imageWidth : 'auto'}"
+    [ngStyle]="{'width': imageWidth ? imageWidth : 'auto', 
+                'height': imageHeight ? imageHeight : 'auto'}"
     [src]="getImageUrl()" />

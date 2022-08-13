@@ -4,20 +4,19 @@
         <input matInput formControlName="title">
     </mat-form-field>
     <app-pictures-form [form]="form" [pictures]="recipe?.pictures" ></app-pictures-form>
-    <div class="recipe-overview-container">
-        <div class="recipe-basic-info-container">
-            <h2>Basic Information</h2>
-            <mat-form-field appearance="outline">
-                <mat-label>Servings</mat-label>
-                <input matInput type='number' formControlName="servings" 
-                    placeholder="Number of people it serves">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Difficulty</mat-label>
-                <input matInput formControlName="difficulty" 
-                    placeholder="1 - very easy, 5 - very hard">
-            </mat-form-field>
-        </div>
+
+    <div class="flex-col">
+        <h2>Basic Information</h2>
+        <mat-form-field appearance="outline">
+            <mat-label>Servings</mat-label>
+            <input matInput type='number' formControlName="servings" 
+                placeholder="Number of people it serves">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Difficulty</mat-label>
+            <input matInput formControlName="difficulty" 
+                placeholder="1 - very easy, 5 - very hard">
+        </mat-form-field>
     </div>
 
     <app-ingredients-form [form]="form" [ingredients]="recipe?.ingredients"></app-ingredients-form>

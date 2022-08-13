@@ -1,5 +1,6 @@
 :host {
     .image {
         border-radius: var(--border-radius);
+        object-fit: cover;
     }
 }

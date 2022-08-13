@@ -1,4 +1,4 @@
-<div class="flex-col gapped">
+<div class="pictures-container">
     <h2>Pictures</h2>
     <ng-container *ngFor="let picture of picturesFormArray.controls; let i = index">
         <app-image-upload [formControl]="picture" (deleted)="deletePicture(i)" ngDefaultControl>

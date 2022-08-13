@@ -2,6 +2,7 @@
     .recipe-card {
         display: flex;
         gap: var(--space);
+        width: 100%;
         cursor: pointer;
 
         img {
@@ -9,9 +10,21 @@
             border-radius: var(--border-radius);
         }
 
+        .recipe-header {
+            display: flex;
+            justify-content: space-between;
+            .servings-counter {
+                display: flex;
+                align-items: center;
+                gap: var(--space-small);
+                color: var(--color-neutral);
+            }
+        }
+
         .recipe-description {
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
     }
 }

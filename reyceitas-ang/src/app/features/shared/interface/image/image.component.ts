@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ImageComponent implements OnInit {
   @Input() imageUrl: string | undefined;
   @Input() imageWidth: string | undefined;
+  @Input() imageHeight: string | undefined;
   @Input() getFromServer: boolean = true;
 
   constructor() { }

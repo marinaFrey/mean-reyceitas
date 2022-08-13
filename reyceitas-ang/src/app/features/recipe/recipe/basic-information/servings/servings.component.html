@@ -2,6 +2,6 @@
     <mat-form-field appearance="outline">
         <mat-label>Servings</mat-label>
         <mat-icon matPrefix>set_meal</mat-icon>
-        <input matInput type='number' [(ngModel)]="servings">
+        <input matInput type='number' [(ngModel)]="servings" (change)="calculateIngredientAmounts()">
     </mat-form-field>
 </div>
