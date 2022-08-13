@@ -13,12 +13,14 @@
     
     <app-image-carousel [images]="recipe.pictures"></app-image-carousel>
 
-    <div class="recipe-overview-container">
-        <div class="recipe-basic-info-container">
-            <p> Servings: {{recipe.servings}} </p>
-            <p> Difficulty: {{recipe.difficulty}} </p>
-        </div>
+    <div class="recipe-basic-info-container">
+        <p *ngIf="recipe.createdBy">Created by {{recipe.createdBy?.firstName}} {{recipe.createdBy?.lastName}}</p>
+        <mat-divider [vertical]="true"></mat-divider>
+        <app-servings [recipe]="recipe"></app-servings>
+        <mat-divider [vertical]="true"></mat-divider>
+        <app-difficulty [difficulty]="recipe.difficulty"></app-difficulty>
     </div>
+
     <h2 *ngIf="recipe.ingredients?.length">Ingredients</h2>
     <div *ngFor="let ingredient of recipe.ingredients" class="flex-col">
         <app-ingredient [ingredient]="ingredient"></app-ingredient>

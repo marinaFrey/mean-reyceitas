@@ -1,0 +1,9 @@
+<div class="difficulty-wrapper">
+    <div class="difficulty-container">
+        <div *ngFor="let marker of markers" 
+            [ngClass]="{'marked': marker}" class="difficulty-marker">
+        </div>
+    </div>
+    <p> {{difficultyMap[difficulty-1]}} </p>
+
+</div>

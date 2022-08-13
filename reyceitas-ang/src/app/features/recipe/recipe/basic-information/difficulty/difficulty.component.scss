@@ -1,0 +1,22 @@
+:host {
+    .difficulty-wrapper {
+        display: flex;
+        gap: var(--space);
+        align-items: center;
+    }
+    .difficulty-container {
+        display: flex;
+        gap: 2px;
+    }
+
+    .difficulty-marker {
+        border: 2px solid var(--color-primary);
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+
+        &.marked {
+            background-color: var(--color-primary);
+        }
+    }
+}

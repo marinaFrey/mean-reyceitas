@@ -16,6 +16,8 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { PicturesFormComponent } from './recipe-form/pictures-form/pictures-form.component';
 import { IngredientComponent } from './recipe/ingredient/ingredient.component';
 import { InstructionComponent } from './recipe/instruction/instruction.component';
+import { ServingsComponent } from './recipe/basic-information/servings/servings.component';
+import { DifficultyComponent } from './recipe/basic-information/difficulty/difficulty.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { InstructionComponent } from './recipe/instruction/instruction.component
     RecipeEditComponent,
     PicturesFormComponent,
     IngredientComponent,
-    InstructionComponent
+    InstructionComponent,
+    ServingsComponent,
+    DifficultyComponent
   ],
   imports: [
     CommonModule,

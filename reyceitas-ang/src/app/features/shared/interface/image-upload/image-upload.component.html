@@ -16,7 +16,8 @@
         <mat-icon>delete</mat-icon>
     </button>
 
-    {{fileName || "No file uploaded yet."}}
+    <p *ngIf="fileName"> {{fileName}} </p>
+    <p *ngIf="!fileName && !imagePreview"> No file uploaded yet. </p>
 
 </div>
 
