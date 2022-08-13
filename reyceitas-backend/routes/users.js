@@ -6,13 +6,14 @@ const router = express.Router();
 const {OAuth2Client} = require('google-auth-library');
 const jwt = require('jsonwebtoken');
 const client = new OAuth2Client(process.env.CLIENT_ID);
+const verifyJWT = require('../config/auth');
 
 var jsonParser = bodyParser.json()
 
 const User = require('../models/User');
 
 router.use(cors())
-router.get('/users', (req, res) => {
+router.get('/users', verifyJWT, (req, res) => {
   User.find()
     .then(units => {
       res.json(units);
@@ -20,20 +21,21 @@ router.get('/users', (req, res) => {
     .catch(error => res.status(500).json(error));
 });
 
-router.get('/', jsonParser, (req, res) => {
-    const token = req.body.token;
-    if(token) {
-        const decode = jwt.verify(token, process.env.CLIENT_SECRET);
-        res.json({
-            login: true,
-            data: decode
-        });
-    } else {
-        res.json({
-            login: false,
-            data: 'error'
-        });
-    }
+router.get('/token-validate', jsonParser, (req, res) => {
+    const authHeader = req.headers['authorization']?.split(" ");
+    if (!authHeader) return res.status(401).json({ auth: false, message: 'No token provided.' });
+    const token = authHeader[1];
+    
+    jwt.verify(token, process.env.CLIENT_SECRET, function(err, decoded) {
+      if (err) return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+      
+      req.userId = decoded.id;
+      User.findOne({ _id: req.userId })
+        .then(user => {
+            res.json(user);
+        })
+        .catch(error => res.status(500).json(error));
+    });
 });
 router.post("/login", jsonParser, (req,res,next) => {
     async function verify() {
