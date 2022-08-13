@@ -46,7 +46,6 @@ export class AuthService {
           return of(null)
       }),
       map(user => {
-        console.log(user)
         if(user)
           this.setUserAuthentication(user?.token)
         this.userSubject.next(user);

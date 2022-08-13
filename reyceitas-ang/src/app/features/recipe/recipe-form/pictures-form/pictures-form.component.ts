@@ -22,8 +22,7 @@ export class PicturesFormComponent implements OnInit {
   }
 
   addPicture(picture: string | null = null) {
-    console.log(picture)
-    this.picturesFormArray.push(new FormControl([picture]));
+    this.picturesFormArray.push(new FormControl(picture));
   }
 
   deletePicture(index: number) {

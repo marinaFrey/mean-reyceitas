@@ -30,7 +30,6 @@ export class IngredientsFormComponent implements OnInit {
   }
 
   addIngredient(ingredient?: Ingredient) {
-    console.log(ingredient)
     const ingredientForm = this.formBuilder.group({
       amount: [ingredient?.amount ?? null, Validators.required],
       unit: [ingredient?.unit, Validators.required],

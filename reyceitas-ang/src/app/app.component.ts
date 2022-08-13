@@ -12,6 +12,6 @@ export class AppComponent {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.getUserInfo().subscribe((user)=> console.log(user))
+    this.authService.getUserInfo().subscribe()
   }
 }

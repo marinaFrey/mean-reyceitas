@@ -42,7 +42,6 @@ export class ImageUploadComponent implements OnInit {
         this.fileName = file.name;
         this.formControl.setValue(event)
         //this.uploaded.emit(event as string);
-        console.log(event); 
         
         
         /*

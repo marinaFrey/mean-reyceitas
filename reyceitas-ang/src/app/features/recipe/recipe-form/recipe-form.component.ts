@@ -34,7 +34,7 @@ export class RecipeFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       title: [this.recipe?.title, Validators.required],
       servings: [this.recipe?.servings, [Validators.required, Validators.min(1)]],
-      difficulty: [this.recipe?.difficulty, [ Validators.min(1), Validators.max(10)]],
+      difficulty: [this.recipe?.difficulty, [ Validators.min(1), Validators.max(5)]],
       ingredients: this.formBuilder.array([]),
       instructions: this.formBuilder.array([]),
       pictures: this.formBuilder.array([]),

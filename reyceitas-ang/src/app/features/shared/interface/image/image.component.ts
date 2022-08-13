@@ -14,8 +14,6 @@ export class ImageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(`ngon init`)
-    console.log(this.imageUrl)
   }
 
   getImageUrl(): string {
