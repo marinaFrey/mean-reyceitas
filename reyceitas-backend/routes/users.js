@@ -27,7 +27,7 @@ router.get('/token-validate', jsonParser, (req, res) => {
     const token = authHeader[1];
     
     jwt.verify(token, process.env.CLIENT_SECRET, function(err, decoded) {
-      if (err) return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+      if (err) return res.status(200).json({ auth: false, message: 'Failed to authenticate token.' });
       
       req.userId = decoded.id;
       User.findOne({ _id: req.userId })
