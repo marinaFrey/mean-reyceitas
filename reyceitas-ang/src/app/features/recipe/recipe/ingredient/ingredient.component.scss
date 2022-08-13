@@ -1,0 +1,9 @@
+:host {
+    .ingredient {
+        display: flex;
+        gap: var(--space);
+        background-color: var(--color-secondary-light);
+        border-radius: var(--border-radius);
+        padding: var(--space);
+    }
+}

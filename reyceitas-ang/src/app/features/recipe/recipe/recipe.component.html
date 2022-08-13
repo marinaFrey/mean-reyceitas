@@ -21,11 +21,16 @@
     </div>
     <h2 *ngIf="recipe.ingredients?.length">Ingredients</h2>
     <div *ngFor="let ingredient of recipe.ingredients" class="flex-col">
-        <p> {{ingredient.amount}} {{ingredient.unit?.name}} {{ingredient.food?.name}} {{ ingredient.details }} </p>
+        <app-ingredient [ingredient]="ingredient"></app-ingredient>
     </div>
 
     <h2 *ngIf="recipe.instructions?.length">Instructions</h2>
     <div *ngFor="let instruction of recipe.instructions" class="flex-col">
-        <p> {{instruction.description}} </p>
+        <app-instruction [instruction]="instruction"></app-instruction>
     </div>
+
+    <ng-container *ngIf="recipe.notes">
+        <h2>Notes</h2>
+        <p> {{recipe.notes}} </p>
+    </ng-container>
 </div>

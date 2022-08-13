@@ -1,0 +1,9 @@
+:host {
+    .instruction {
+        display: flex;
+        gap: var(--space);
+        background-color: var(--color-primary-light);
+        border-radius: var(--border-radius);
+        padding: var(--space);
+    }
+}
