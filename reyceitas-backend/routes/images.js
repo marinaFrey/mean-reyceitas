@@ -10,8 +10,10 @@ var storage = multer.diskStorage({
       cb(null, '/uploads/')
     },
     filename: function (req, file, cb) {
+        let extArray = file.mimetype.split("/");
+        let extension = extArray[extArray.length - 1];
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix)
+        cb(null, file.fieldname + '-' + uniqueSuffix + '.' + extension);
     }
 })
 var upload = multer({ storage: storage })
