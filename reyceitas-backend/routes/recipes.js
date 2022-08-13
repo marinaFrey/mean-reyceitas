@@ -50,7 +50,7 @@ router.put('/edit/:id', jsonParser, (req, res) => {
 
   Recipe.findOneAndUpdate({ _id: req.params.id }, newData, { new: true })
     .then(newRecipe => {
-      res.json(newRecipe._id ); //Returning only the id
+      res.json(newRecipe ); //Returning only the id
     })
     .catch(error => res.status(500).json(error));
 });
