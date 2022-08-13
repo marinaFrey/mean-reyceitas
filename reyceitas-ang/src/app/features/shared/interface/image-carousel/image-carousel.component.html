@@ -4,7 +4,7 @@
                 [disabled]="shownImageIndex == 0">
             <mat-icon>chevron_left</mat-icon>
         </button>
-        <img *ngIf="images[shownImageIndex]; else placeholder" [src]="images[shownImageIndex]"/>
+        <app-image [imageUrl]="getImageUrl(images[shownImageIndex])"></app-image>
         <button mat-icon-button color="primary" (click)="changeSelectedImage(shownImageIndex+1)" 
                 [disabled]="shownImageIndex >= images.length - 1">
             <mat-icon>chevron_right</mat-icon>

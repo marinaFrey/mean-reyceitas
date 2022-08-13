@@ -3,10 +3,8 @@
         <mat-label>Recipe title</mat-label>
         <input matInput formControlName="title">
     </mat-form-field>
+    <app-pictures-form [form]="form" [pictures]="recipe?.pictures" ></app-pictures-form>
     <div class="recipe-overview-container">
-        <div>
-            <app-image-upload></app-image-upload>
-        </div>
         <div class="recipe-basic-info-container">
             <h2>Basic Information</h2>
             <mat-form-field appearance="outline">

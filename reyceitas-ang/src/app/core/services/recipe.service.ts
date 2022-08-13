@@ -26,7 +26,7 @@ export class RecipeService {
   }
 
   editRecipe(index: string, recipe: Recipe) {
-    return this.api.post(`${RECIPES_ENDPOINT}/edit/${index}`, recipe)
+    return this.api.put(`${RECIPES_ENDPOINT}/edit/${index}`, recipe)
   }
 
   deleteRecipe(index: string) {

@@ -1,0 +1,10 @@
+<div class="flex-col gapped">
+    <ng-container *ngFor="let picture of picturesFormArray.controls; let i = index">
+        <app-image-upload [formControl]="picture" (deleted)="deletePicture(i)" ngDefaultControl>
+        </app-image-upload>
+    </ng-container>
+    <button mat-flat-button color="primary" (click)="addPicture()">
+        <mat-icon class="add-button">add</mat-icon> New picture
+    </button>
+</div>
+

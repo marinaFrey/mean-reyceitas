@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-image-carousel',
@@ -17,6 +18,10 @@ export class ImageCarouselComponent implements OnInit {
 
   changeSelectedImage(index: number): void {
     this.shownImageIndex = index;
+  }
+
+  getImageUrl(image: string): string {
+    return `${environment.apiUrl}/uploads/${image}`
   }
 
 }

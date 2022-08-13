@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { ImageComponent } from './image/image.component';
 
 const components = [
   ImageCarouselComponent,
@@ -14,7 +15,7 @@ const components = [
 ]
 
 @NgModule({
-  declarations: [components],
+  declarations: [components, ImageComponent],
   exports: [components],
   imports: [
     CommonModule,

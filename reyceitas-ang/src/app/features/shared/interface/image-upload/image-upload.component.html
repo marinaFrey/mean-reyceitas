@@ -4,13 +4,18 @@
 
 <div class="file-upload">
 
-   {{fileName || "No file uploaded yet."}}
+    <app-image [imageUrl]="imagePreview" imageWidth="100px"></app-image>
 
-    <button mat-mini-fab color="primary" class="upload-btn"
+    <button mat-mini-fab *ngIf="!imagePreview"  color="primary" class="upload-btn"
       (click)="fileUpload.click()">
         <mat-icon>attach_file</mat-icon>
-
     </button>
+    <button mat-mini-fab *ngIf="imagePreview" color="warn" class="upload-btn"
+      (click)="deleteFile()">
+        <mat-icon>delete</mat-icon>
+    </button>
+
+    {{fileName || "No file uploaded yet."}}
 
 </div>
 

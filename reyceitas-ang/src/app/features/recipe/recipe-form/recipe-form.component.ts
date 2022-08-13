@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Ingredient } from '@models/recipe/ingredient.model';
-import { Instruction } from '@models/recipe/instruction.model';
 import { Recipe } from '@models/recipe/recipe.model';
 import { AlertService } from '@services/alert.service';
-import { RecipeService } from '@services/recipe.service';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-form',
@@ -19,8 +15,7 @@ export class RecipeFormComponent implements OnInit {
   form: FormGroup | undefined;
 
   constructor(private formBuilder: FormBuilder,
-              private alert: AlertService,
-              private recipeService: RecipeService) { }
+              private alert: AlertService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -42,6 +37,7 @@ export class RecipeFormComponent implements OnInit {
       difficulty: [this.recipe?.difficulty, [ Validators.min(1), Validators.max(10)]],
       ingredients: this.formBuilder.array([]),
       instructions: this.formBuilder.array([]),
+      pictures: this.formBuilder.array([]),
       notes: [this.recipe?.notes]
     });
   }

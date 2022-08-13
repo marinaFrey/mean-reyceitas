@@ -11,6 +11,7 @@ export interface Recipe {
 
     ingredients?: Ingredient[];
     instructions?: Instruction[];
+    pictures?: string[];
 
     notes?: string;
     tags?: string[];

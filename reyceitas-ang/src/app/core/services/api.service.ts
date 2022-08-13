@@ -15,6 +15,10 @@ export class ApiService {
     return this.http.post(environment.apiUrl + request, payload);
   }
 
+  put<T>(request: string, payload: any): Observable<any> {
+    return this.http.put(environment.apiUrl + request, payload);
+  }
+
   delete<T>(request: string): Observable<any> {
     return this.http.delete(environment.apiUrl + request);
   }

@@ -13,10 +13,7 @@ import { AlertService } from '@services/alert.service';
 })
 export class RecipeComponent implements OnInit {
   recipe!: Recipe;
-  images = ['assets/images/img-placeholder.jpg',
-    'assets/images/img-placeholder.jpg',
-    'assets/images/img-placeholder.jpg',
-    'assets/images/img-placeholder.jpg']
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private alert: AlertService,
