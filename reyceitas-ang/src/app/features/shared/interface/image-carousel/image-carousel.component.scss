@@ -24,9 +24,9 @@
                 height: 8px;
                 width: 8px;
                 border-radius: 50%;
-                background: grey;
+                background: var(--color-neutral-light);
                 &.selected {
-                    background: red
+                    background: var(--color-primary)
                 }
             }
         }
