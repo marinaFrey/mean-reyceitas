@@ -17,7 +17,7 @@ import { PicturesFormComponent } from './recipe-form/pictures-form/pictures-form
 import { InstructionComponent } from './recipe/instruction/instruction.component';
 import { ServingsComponent } from './recipe/basic-information/servings/servings.component';
 import { DifficultyComponent } from './recipe/basic-information/difficulty/difficulty.component';
-import { IngredientsComponent } from './recipe/basic-information/ingredients/ingredients.component';
+import { IngredientsComponent } from './recipe/ingredients/ingredients.component';
 
 @NgModule({
   declarations: [

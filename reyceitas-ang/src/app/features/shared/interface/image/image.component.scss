@@ -2,5 +2,6 @@
     .image {
         border-radius: var(--border-radius);
         object-fit: cover;
+        max-width: 100%;
     }
 }

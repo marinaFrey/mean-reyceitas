@@ -1,43 +1,51 @@
-<h2>Ingredients</h2>
-
 <div *ngIf="form" class="add-form" [formGroup]="form">
+    <h2>Ingredients</h2>
     <ng-container formArrayName="ingredients">
         <ng-container *ngFor="let ingredientForm of ingredientsFormArray.controls; let i = index">
-            <div class="form-container" [formGroup]="getIngredientFormGroup(ingredientForm)">
-
-                <mat-form-field appearance="outline">
-                    <mat-label>Amount</mat-label>
-                    <input matInput type='number' formControlName="amount">
-                </mat-form-field>
-                
-                <mat-form-field appearance="outline">
-                    <mat-label>Unit</mat-label>
-                    <mat-select formControlName="unit" [compareWith]="compareFn">
-                        <mat-option *ngFor="let unit of units$ | async" [value]="unit">
-                            {{unit.abbreviation}} ({{unit.name}})
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                    <mat-label>Food</mat-label>
-                    <mat-select formControlName="food" [compareWith]="compareFn">
-                        <mat-option *ngFor="let food of foods$ | async" [value]="food" >
-                            {{food.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                    <mat-label>Details</mat-label>
-                    <input matInput
-                           formControlName="details"
-                           placeholder="i.e. chopped, thinly sliced, etc">
-                </mat-form-field>
-                <button mat-mini-fab class="form-centralized-button" color="warn" (click)="deleteIngredient(i)">
+            <div class="form-container gradient-shadow padded">
+                <div class="ingredient-form-wrapper" [formGroup]="getIngredientFormGroup(ingredientForm)">
+                    <div class="form-container" >
+    
+                        <mat-form-field appearance="outline">
+                            <mat-label>Amount</mat-label>
+                            <input matInput type='number' formControlName="amount">
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="outline">
+                            <mat-label>Unit</mat-label>
+                            <mat-select formControlName="unit" [compareWith]="compareFn">
+                                <mat-option *ngFor="let unit of units$ | async" [value]="unit">
+                                    {{unit.abbreviation}} ({{unit.name}})
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+        
+                    </div>
+                    <div class="form-container" >
+                        <mat-form-field appearance="outline">
+                            <mat-label>Food</mat-label>
+                            <mat-select formControlName="food" [compareWith]="compareFn">
+                                <mat-option *ngFor="let food of foods$ | async" [value]="food" >
+                                    {{food.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+        
+                        <mat-form-field appearance="outline">
+                            <mat-label>Details</mat-label>
+                            <input matInput
+                                   formControlName="details"
+                                   placeholder="i.e. chopped, thinly sliced, etc">
+                        </mat-form-field>
+                        
+                    </div>
+                </div>
+                <button mat-mini-fab color="warn" (click)="deleteIngredient(i)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
+            
+            
         </ng-container>
     </ng-container>
   

@@ -15,6 +15,10 @@
     gap: var(--space)
 }
 
+.padded {
+    padding: var(--space);
+}
+
 .gradient-shadow {
     -webkit-box-shadow: 0px 7px 15px 1px var(--color-neutral-light); 
     box-shadow: 0px 7px 15px 1px var(--color-neutral-light);

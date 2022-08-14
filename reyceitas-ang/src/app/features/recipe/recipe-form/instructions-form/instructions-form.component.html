@@ -1,17 +1,15 @@
-
-<h2>Instructions</h2>
-
 <div *ngIf="form" class="add-form" [formGroup]="form">
+    <h2>Instructions</h2>
     <ng-container formArrayName="instructions">
         <ng-container *ngFor="let instructionForm of instructionsFormArray.controls; let i = index">
-            <div class="form-container" [formGroup]="getInstructionFormGroup(instructionForm)">
+            <div class="form-container gradient-shadow padded" [formGroup]="getInstructionFormGroup(instructionForm)">
                 <mat-form-field appearance="outline">
                     <mat-label>Step {{i + 1}} </mat-label>
                     <textarea matInput
                            formControlName="description"
                            placeholder="Describe the step"></textarea>
                 </mat-form-field>
-                <button mat-mini-fab class="form-centralized-button" color="warn" (click)="deleteInstruction(i)">
+                <button mat-mini-fab color="warn" (click)="deleteInstruction(i)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>

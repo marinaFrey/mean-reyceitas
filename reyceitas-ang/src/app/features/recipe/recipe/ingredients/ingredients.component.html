@@ -1,5 +1,8 @@
 <div class="ingredients-container">
-    <tr *ngFor="let ingredient of ingredients" class="ingredient gradient-shadow">
+    <tr *ngFor="let ingredient of ingredients; let i = index" 
+        class="ingredient gradient-shadow"
+        [ngClass]="{'done': doneIngredients[i]}"
+        (click)="doneIngredients[i]=!doneIngredients[i]">
         <td> {{ingredient.amount}}</td>
         <td class="unit-cell"> {{ingredient.unit?.name}} of</td> 
         <td> {{ingredient.food?.name}}</td> 

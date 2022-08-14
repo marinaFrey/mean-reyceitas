@@ -5,7 +5,7 @@
     </mat-form-field>
     <app-pictures-form [form]="form" [pictures]="recipe?.pictures" ></app-pictures-form>
 
-    <div class="flex-col">
+    <div class="flex-col gapped">
         <h2>Basic Information</h2>
         <mat-form-field appearance="outline">
             <mat-label>Servings</mat-label>
@@ -22,12 +22,12 @@
     <app-ingredients-form [form]="form" [ingredients]="recipe?.ingredients"></app-ingredients-form>
 
     <app-instructions-form [form]="form" [instructions]="recipe?.instructions"></app-instructions-form>
-    <div class="flex-col">
-        <h2>Notes</h2>
-        <mat-form-field appearance="outline">
-            <textarea matInput></textarea>
-        </mat-form-field>
-    </div>
+
+    <h2>Notes</h2>
+    <mat-form-field appearance="outline">
+        <textarea matInput></textarea>
+    </mat-form-field>
+    
     
     
     <button mat-flat-button color="primary" (click)="submit()">

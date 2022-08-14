@@ -8,10 +8,15 @@ import { Ingredient } from '@models/recipe/ingredient.model';
 })
 export class IngredientsComponent implements OnInit {
   @Input() ingredients!: Ingredient[];
+
+  doneIngredients: boolean[] = [];
   
   constructor() { }
 
   ngOnInit(): void {
+    for(let i = 0; i < this.ingredients.length; i++) {
+      this.doneIngredients[i] = false;
+    }
   }
 
 }

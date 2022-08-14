@@ -1,11 +1,14 @@
+@import 'variables';
+
 .add-form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space);
 }
 
 .form-container {
-    width: 100%;
+    width: -webkit-fill-available;
     display: flex;
     gap: var(--space);
     height: fit-content;
@@ -13,6 +16,10 @@
 
     mat-form-field {
         width: 100%;
+    }
+
+    @media only screen and (max-width: $mobile-breakpoint) {
+        flex-direction: column;
     }
 }
 

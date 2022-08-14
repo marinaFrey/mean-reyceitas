@@ -8,9 +8,19 @@
     .ingredient {
         border-radius: var(--border-radius);
         padding: var(--space);
+        cursor: pointer;
 
         td {
             padding: var(--space);
+        }
+
+        &.done {
+            color: var(--color-neutral);
+            box-shadow: none;
+
+            .unit-cell {
+                background-color: var(--color-primary-light);
+            }
         }
     }
 
