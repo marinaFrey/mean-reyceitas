@@ -1,0 +1,25 @@
+:host {
+    .ingredients-container {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 0 16px;
+    }
+
+    .ingredient {
+        border-radius: var(--border-radius);
+        padding: var(--space);
+
+        td {
+            padding: var(--space);
+        }
+    }
+
+    .unit-cell {
+        background-color: var(--color-primary);
+        color: white;
+    }
+
+    .details-cell {
+        color: var(--color-neutral);
+    }
+}

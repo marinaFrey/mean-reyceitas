@@ -1,0 +1,8 @@
+<div class="ingredients-container">
+    <tr *ngFor="let ingredient of ingredients" class="ingredient gradient-shadow">
+        <td> {{ingredient.amount}}</td>
+        <td class="unit-cell"> {{ingredient.unit?.name}} of</td> 
+        <td> {{ingredient.food?.name}}</td> 
+        <td class="details-cell"> {{ ingredient.details }} </td>
+    </tr>
+</div>

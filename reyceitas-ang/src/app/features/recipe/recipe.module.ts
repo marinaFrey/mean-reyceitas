@@ -14,10 +14,10 @@ import { InterfaceModule } from '../shared/interface/interface.module';
 import { RecipeAddComponent } from './recipe-add/recipe-add.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { PicturesFormComponent } from './recipe-form/pictures-form/pictures-form.component';
-import { IngredientComponent } from './recipe/ingredient/ingredient.component';
 import { InstructionComponent } from './recipe/instruction/instruction.component';
 import { ServingsComponent } from './recipe/basic-information/servings/servings.component';
 import { DifficultyComponent } from './recipe/basic-information/difficulty/difficulty.component';
+import { IngredientsComponent } from './recipe/basic-information/ingredients/ingredients.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +30,10 @@ import { DifficultyComponent } from './recipe/basic-information/difficulty/diffi
     RecipeAddComponent,
     RecipeEditComponent,
     PicturesFormComponent,
-    IngredientComponent,
     InstructionComponent,
     ServingsComponent,
-    DifficultyComponent
+    DifficultyComponent,
+    IngredientsComponent
   ],
   imports: [
     CommonModule,

@@ -20,13 +20,11 @@
     </div>
 
     <h2 *ngIf="recipe.ingredients?.length">Ingredients</h2>
-    <div *ngFor="let ingredient of getIngredients()" class="flex-col">
-        <app-ingredient [ingredient]="ingredient"></app-ingredient>
-    </div>
+    <app-ingredients [ingredients]="getIngredients()"></app-ingredients>
 
     <h2 *ngIf="recipe.instructions?.length">Instructions</h2>
-    <div *ngFor="let instruction of recipe.instructions" class="flex-col">
-        <app-instruction [instruction]="instruction"></app-instruction>
+    <div *ngFor="let instruction of recipe.instructions;let i = index" class="flex-col">
+        <app-instruction [instruction]="instruction" [stepNumber]="i+1"></app-instruction>
     </div>
 
     <ng-container *ngIf="recipe.notes">

@@ -1,9 +1,23 @@
 :host {
     .instruction {
         display: flex;
+        flex-direction: column;
         gap: var(--space);
-        background-color: var(--color-primary-light);
         border-radius: var(--border-radius);
         padding: var(--space);
+
+        .header {
+            background: var(--color-primary);
+            color: white;
+            padding-right: var(--space);
+            padding-left: var(--space);
+            margin: calc(-1 * var(--space));
+            -moz-border-radius-topright:var(--border-radius);
+            -moz-border-radius-topleft:var(--border-radius);
+            -webkit-border-top-right-radius:var(--border-radius);
+            -webkit-border-top-left-radius:var(--border-radius);
+            border-top-left-radius:var(--border-radius);
+            border-top-right-radius:var(--border-radius);
+        }
     }
 }
