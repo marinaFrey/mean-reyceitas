@@ -23,10 +23,10 @@ services:
     container_name: NODEJS_SERVER_MEDIUM
     build: './reyceitas-backend'
     volumes:
-      - /node-app
+      - ./reyceitas-backend:/node-app
     #  - ./reyceitas-backend:/node-app
     #  - ./node_modules:/node-app/node_modules
-      - /node-app/node_modules
+      #- /node-app/node_modules
       - /uploads
     environment:
       NODE_ENV: development
