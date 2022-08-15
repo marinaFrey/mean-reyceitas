@@ -38,7 +38,7 @@ services:
       - '8999:8999'
 
   db:
-    image: 'mongo'
+    image: 'mongo:4.4.6'
     container_name: MONGODB_MEDIUM
     ports:
       - '27017:27017'
