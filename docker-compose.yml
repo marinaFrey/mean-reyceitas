@@ -16,7 +16,6 @@ services:
       - server
     ports:
       - '4200:4200'
-      - '8888:80'
     networks:
       - app-network
 
@@ -24,7 +23,8 @@ services:
     container_name: NODEJS_SERVER_MEDIUM
     build: './reyceitas-backend'
     volumes:
-      - ./reyceitas-backend:/node-app
+      - /node-app
+    #  - ./reyceitas-backend:/node-app
     #  - ./node_modules:/node-app/node_modules
       - /node-app/node_modules
       - /uploads
