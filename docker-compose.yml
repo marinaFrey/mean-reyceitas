@@ -10,6 +10,9 @@ services:
       - /node_modules
     environment:
       NODE_ENV: development
+      CLIENT_ID: $CLIENT_ID
+      CLIENT_SECRET: $CLIENT_SECRET
+      CALLBACK_URL: $CALLBACK_URL
     depends_on:
       - server
     links:
@@ -31,6 +34,11 @@ services:
       - /uploads
     environment:
       NODE_ENV: development
+      CLIENT_ID: $CLIENT_ID
+      CLIENT_SECRET: $CLIENT_SECRET
+      CALLBACK_URL: $CALLBACK_URL
+      PRIVATE_KEY: $PRIVATE_KEY
+      CERT: $CERT
     depends_on:
       - db
     links:
