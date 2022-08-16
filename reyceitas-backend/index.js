@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const app = express();
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
+
 
 const verifyJWT = require('./config/auth');
 const seeds = require('./seeders/base');
@@ -51,4 +55,16 @@ mongoose.connect(
 .catch(error => {
     console.log(error);
 });
-app.listen(8999, () => console.log('Server listening on port 8999'));
+
+const { privateKey } = JSON.parse(process.env.PRIVATE_KEY)
+const { certificate } = JSON.parse(process.env.CERT)
+
+var credentials = {key: privateKey , cert: certificate };
+
+//app.listen(8999, () => console.log('Server listening on port 8999'));
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(8998);
+httpsServer.listen(8999);
