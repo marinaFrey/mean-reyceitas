@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const UnitType = require('../models/UnitType');
+const UnitType = require('./UnitType');
 
 const unitSchema = new Schema({
   name:             { type: String, required: true, index: true, unique: true},

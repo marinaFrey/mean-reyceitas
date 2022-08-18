@@ -1,0 +1,88 @@
+type,unit,name
+Macronutrient,units,Calories
+Macronutrient,grams,Carbohydrate
+Macronutrient,grams,Protein
+Macronutrient,grams,Fat
+Macronutrient,grams,Water
+Macronutrient,grams,Net-Carbs
+Macronutrient,grams,Sugars
+Macronutrient,grams,Fiber
+Macronutrient,milligrams,Cholesterol
+Macronutrient,grams,Saturated Fats
+Macronutrient,milligrams,Monounsaturated Fatty Acids
+Macronutrient,milligrams,Polyunsaturated Fatty Acids
+Score,units,PRAL score
+Micronutrient,milligrams,Calcium
+Micronutrient,milligrams,Iron
+Micronutrient,milligrams,Potassium
+Micronutrient,milligrams,Magnesium
+Micronutrient,units,"Vitamin A, IU"
+Micronutrient,micrograms,"Vitamin A, RAE"
+Micronutrient,milligrams,Vitamin C
+Micronutrient,micrograms,Vitamin B-12
+Micronutrient,micrograms,Vitamin D
+Micronutrient,milligrams,Vitamin E
+Micronutrient,milligrams,Omega 3s
+Micronutrient,milligrams,Omega 6s
+Micronutrient,grams,Trans Fatty Acids
+Micronutrient,grams,Sucrose
+Micronutrient,grams,Glucose
+Micronutrient,grams,Fructose
+Micronutrient,grams,Lactose
+Micronutrient,grams,Maltose
+Micronutrient,grams,Galactose
+Micronutrient,grams,Starch
+Micronutrient,milligrams,Phosphorus
+Micronutrient,milligrams,Sodium
+Micronutrient,milligrams,Zinc
+Micronutrient,milligrams,Copper
+Micronutrient,milligrams,Manganese
+Micronutrient,micrograms,Selenium
+Micronutrient,micrograms,Fluoride
+Micronutrient,milligrams,Thiamin
+Micronutrient,milligrams,Riboflavin
+Micronutrient,milligrams,Niacin
+Micronutrient,milligrams,Pantothenic acid
+Micronutrient,milligrams,Vitamin B6
+Micronutrient,micrograms,Folate
+Micronutrient,micrograms,Folic acid
+Micronutrient,micrograms,Food Folate
+Micronutrient,micrograms,Folate DFE
+Micronutrient,milligrams,Choline
+Micronutrient,milligrams,Betaine
+Micronutrient,micrograms,Retinol
+Micronutrient,micrograms,Beta Carotene
+Micronutrient,micrograms,Alpha Carotene
+Micronutrient,micrograms,Lycopene
+Micronutrient,micrograms,Vitamin D2
+Micronutrient,micrograms,Vitamin D3
+Micronutrient,units,Vitamin D
+Micronutrient,micrograms,Vitamin K
+Micronutrient,micrograms,Dihydrophylloquinone
+Micronutrient,micrograms,Menaquinone-4
+Micronutrient,milligrams,ALA
+Micronutrient,milligrams,EPA
+Micronutrient,milligrams,DPA
+Micronutrient,milligrams,DHA
+Micronutrient,milligrams,Tryptophan
+Micronutrient,milligrams,Threonine
+Micronutrient,milligrams,Isoleucine
+Micronutrient,milligrams,Leucine
+Micronutrient,milligrams,Lysine
+Micronutrient,milligrams,Methionine
+Micronutrient,milligrams,Cystine
+Micronutrient,milligrams,Phenylalanine
+Micronutrient,milligrams,Tyrosine
+Micronutrient,milligrams,Valine
+Micronutrient,milligrams,Arginine
+Micronutrient,milligrams,Histidine
+Micronutrient,milligrams,Alanine
+Micronutrient,milligrams,Aspartic acid
+Micronutrient,milligrams,Glutamic acid
+Micronutrient,milligrams,Glycine
+Micronutrient,milligrams,Proline
+Micronutrient,milligrams,Serine
+Micronutrient,milligrams,Hydroxyproline
+Micronutrient,grams,Alcohol
+Micronutrient,milligrams,Caffeine
+Micronutrient,milligrams,Theobromine
