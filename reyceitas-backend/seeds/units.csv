@@ -1,0 +1,11 @@
+name,abbreviation,unitTypeName
+units, ,unit
+grams,g,weight
+milligrams,mg,weight
+micrograms,mcg,weight
+kilograms,kg,weight
+liters,l,volume
+milliliters,ml,volume
+cups,cup,volume
+teaspoons,tsp,volume
+tablespoons,tbsp,volume

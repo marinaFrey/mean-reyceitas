@@ -10,6 +10,13 @@ const Food = require('../models/Food');
 router.use(cors());
 router.get('/', (req, res) => {
   Food.find()
+    .populate({
+      path:'nutrients',
+      populate: {
+        path: "nutrient"
+      },
+      model: 'nutrient'
+    })
     .then(foods => {
       res.json(foods);
     })
@@ -47,6 +54,13 @@ router.put('/edit/:id', jsonParser, (req, res) => {
 
 router.get('/get/:id', jsonParser, (req, res) => {
   Food.findOne({ _id: req.params.id })
+    .populate({
+      path:'nutrients',
+      populate: {
+        path: "nutrient"
+      },
+      model: 'nutrient'
+    })
     .then(food => {
       res.json(food);
     })

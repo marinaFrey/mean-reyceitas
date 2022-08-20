@@ -4,15 +4,15 @@ const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const app = express();
-const fs = require('fs');
 const http = require('http');
 const https = require('https');
 
 
 const verifyJWT = require('./config/auth');
-const seeds = require('./seeders/base');
+const seeds = require('./seeds/base');
 
 const recipes = require('./routes/recipes');
+const nutrients = require('./routes/nutrients');
 const foods = require('./routes/foods');
 const foodTypes = require('./routes/foodTypes');
 const instructionTypes = require('./routes/instructionTypes');
@@ -33,6 +33,7 @@ app.use('/api/food-types', foodTypes);
 app.use('/api/instruction-types', instructionTypes);
 app.use('/api/units', units);
 app.use('/api/unit-types', unitTypes);
+app.use('/api/nutrients', nutrients);
 app.use('/auth', users);
 app.use('/img/', images);
 app.use('/uploads', serveStatic('/uploads'));
