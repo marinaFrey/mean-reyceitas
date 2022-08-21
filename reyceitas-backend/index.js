@@ -26,8 +26,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use('/api/recipes', verifyJWT, recipes);
-//app.use('/api/recipes', recipes);
+//app.use('/api/recipes', verifyJWT, recipes);
+app.use('/api/recipes', recipes);
 app.use('/api/foods', foods);
 app.use('/api/food-types', foodTypes);
 app.use('/api/instruction-types', instructionTypes);
