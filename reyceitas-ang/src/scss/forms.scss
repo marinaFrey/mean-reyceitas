@@ -13,6 +13,8 @@
     gap: var(--space);
     height: fit-content;
     align-items: center;
+    background: white;
+    border-radius: var(--border-radius);
 
     mat-form-field {
         width: 100%;

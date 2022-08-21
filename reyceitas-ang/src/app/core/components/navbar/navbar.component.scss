@@ -47,18 +47,9 @@
             text-align: center;
             color: white;
         }
+        -moz-box-shadow: inset 0 -10px 10px -10px var(--color-neutral);
+        -webkit-box-shadow: inset 0 -10px 10px -10px var(--color-neutral);
+        box-shadow: inset 0 -10px 10px -10px var(--color-neutral);
     }   
-
-    .search-container {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        max-width: 500px;
-        align-items: center;
-        padding: var(--space);
-        mat-form-field {
-            width: 100%;
-        }
-    }
     
 }

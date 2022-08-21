@@ -1,7 +1,7 @@
-<div *ngIf="recipes$ | async as recipes" class="recipe-list">
+<div *ngIf="recipes.length" class="recipe-list">
+    <h2 *ngIf="searchTerm"> Search: {{ searchTerm }} </h2>
     <ng-container *ngFor="let recipe of recipes; let last = last" >
         <app-recipe-card [recipe]="recipe"></app-recipe-card>
         <mat-divider *ngIf="!last"></mat-divider>
     </ng-container>
-    
 </div>

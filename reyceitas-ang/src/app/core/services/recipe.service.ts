@@ -13,8 +13,8 @@ export class RecipeService {
 
   constructor(private api: ApiService) { }
 
-  getRecipes(): Observable<Recipe[]> {
-    return this.api.get(RECIPES_ENDPOINT);
+  getRecipes(searchTerm?: string): Observable<Recipe[]> {
+    return this.api.get(`${RECIPES_ENDPOINT}/search-by-name/${searchTerm}`);
   }
 
   getRecipe(id: string | null): Observable<Recipe> {

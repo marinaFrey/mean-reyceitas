@@ -4,7 +4,7 @@
     <div class="recipe-description">
         <div class="recipe-header">
             <h2>{{recipe.title}}</h2>
-            <div class="servings-counter">
+            <div *ngIf="recipe.servings" class="servings-counter">
                 <mat-icon>people</mat-icon>
                 <p>{{recipe.servings}}</p>
             </div>
