@@ -7,10 +7,10 @@ var jsonParser = bodyParser.json()
  
 const Recipe = require('../models/Recipe');
 const Tag = require('../models/Tag');
-
+const recipeShort =  'title createdAt createdBy difficulty servings pictures tags'
 router.use(cors());
 router.get('/', (req, res) => {
-  Recipe.find().select('title')
+  Recipe.find().select(recipeShort)
     .then(recipes => {
       res.json(recipes);
     })
@@ -38,7 +38,7 @@ router.get('/search-by-tagname/:tag', (req, res) => {
   })
 });
 router.get('/search-by-name', (req, res) => {
-  Recipe.find().select('title')
+  Recipe.find().select(recipeShort)
     .then(recipes => {
       res.json(recipes);
     })
