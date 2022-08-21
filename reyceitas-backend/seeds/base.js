@@ -123,7 +123,6 @@ async function loadRecipes(){
   var cooking = await InstructionType.findOne({ name: "Cooking"}).exec();
   var fishFood = await Food.findOne({ name: {$regex: "Fish"}}).exec();
   var chickenFood = await Food.findOne({ name: {$regex: "Chicken"}}).exec();
-  console.log(fishFood)
   try {
     var fishSoupRecipe = new Recipe({
       title: "Fish Soup",
@@ -149,16 +148,22 @@ async function loadRecipes(){
 }
 
 async function loadSeedDb(){
-  /*
   await loadInstructionTypes();
+  console.log("Seeded Instruction Types");
   await loadUnitTypes();
+  console.log("Seeded Unit Types");
   await loadTags();
+  console.log("Seeded Tags");
   await loadUnits();
+  console.log("Seeded Units");
   await loadUnitStandards();
+  console.log("Seeded Unit Standards");
   await loadNutrients();
+  console.log("Seeded Nutrients");
   await loadFoods();
-  */
+  console.log("Seeded Foods");
   await loadRecipes();
+  console.log("Seeded Recpes");
 }
 
 module.exports = loadSeedDb ;

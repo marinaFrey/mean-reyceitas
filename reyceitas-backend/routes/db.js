@@ -7,6 +7,7 @@ const seeds = require('../seeds/base');
 router.use(cors());
 router.get('/drop', (req, res) => {
     mongoose.connection.db.dropDatabase();
+    res.json("OK");
 });
 router.get('/seed', (req, res) => {
     seeds()
