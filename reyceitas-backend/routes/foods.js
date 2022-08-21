@@ -9,14 +9,7 @@ const Food = require('../models/Food');
 
 router.use(cors());
 router.get('/', (req, res) => {
-  Food.find()
-    .populate({
-      path:'nutrients',
-      populate: {
-        path: "nutrient"
-      },
-      model: 'nutrient'
-    })
+  Food.find().select('name')
     .then(foods => {
       res.json(foods);
     })
