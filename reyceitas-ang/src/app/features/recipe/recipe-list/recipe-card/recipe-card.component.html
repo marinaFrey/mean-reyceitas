@@ -2,14 +2,18 @@
 <div *ngIf="recipe" class="recipe-card" [routerLink]="'recipe/'+ recipe._id">
     <app-image [imageUrl]="getPicture()" imageWidth="200px" imageHeight="150px"></app-image>
     <div class="recipe-description">
-        <div class="recipe-header">
-            <h2>{{recipe.title}}</h2>
-            <div *ngIf="recipe.servings" class="servings-counter">
-                <mat-icon>people</mat-icon>
-                <p>{{recipe.servings}}</p>
+        <div class="flex-col gapped">
+            <div class="recipe-header">
+                <h2>{{recipe.title}}</h2>
+                <div *ngIf="recipe.servings" class="servings-counter">
+                    <mat-icon>people</mat-icon>
+                    <p>{{recipe.servings}}</p>
+                </div>
             </div>
+            
+            <app-difficulty [difficulty]="recipe.difficulty"></app-difficulty>
         </div>
         
-        <app-difficulty [difficulty]="recipe.difficulty"></app-difficulty>
+        <app-tags [tags]="recipe.tags"></app-tags>
     </div>
 </div>

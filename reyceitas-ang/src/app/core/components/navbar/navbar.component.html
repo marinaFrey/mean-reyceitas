@@ -5,7 +5,10 @@
       <div>
         <span class="title" [routerLink]="['/home']">Reyceitas</span>
       </div>
-      <div>
+      <div class="flex-row gapped">
+        <button mat-flat-button color="accent" [routerLink]="['/recipes/new']">
+          <mat-icon>add</mat-icon> New
+        </button>
         <div *ngIf="(isLoggedIn$ | async)">
           <ng-container *ngIf="user$ | async as user">
             <button mat-button class="user-menu" [matMenuTriggerFor]="menu"> 

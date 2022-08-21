@@ -1,0 +1,82 @@
+@import '~@angular/material/theming';
+
+// Be sure that you only ever include 'mat-core' mixin once!
+// it should not be included for each theme.
+@include mat-core(); 
+
+// define a real custom palette (using http://mcg.mbitson.com)
+$bv-brand: (
+    50 : #efeae7,
+    100 : #d6cbc3,
+    200 : #bba89b,
+    300 : #a08572,
+    400 : #8b6a54,
+    500 : #775036,
+    600 : #6f4930,
+    700 : #644029,
+    800 : #5a3722,
+    900 : #472716,
+    A100 : #ffac85,
+    A200 : #ff8952,
+    A400 : #ff661f,
+    A700 : #ff5505,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+$bv-green: (
+    50 : #e7efe8,
+    100 : #c3d6c7,
+    200 : #9bbba1,
+    300 : #72a07b,
+    400 : #548b5f,
+    500 : #367743,
+    600 : #306f3d,
+    700 : #296434,
+    800 : #225a2c,
+    900 : #16471e,
+    A100 : #85ff95,
+    A200 : #52ff69,
+    A400 : #1fff3d,
+    A700 : #05ff27,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// mandatory stuff for theming
+$bv-palette-primary: mat-palette($bv-brand);
+$bv-palette-accent:  mat-palette($bv-green);
+
+// include the custom theme components into a theme object
+$bv-theme: mat-light-theme($bv-palette-primary, $bv-palette-accent);
+
+// include the custom theme object into the angular material theme
+@include angular-material-theme($bv-theme);

@@ -14,10 +14,15 @@ export interface Recipe {
     pictures?: string[];
 
     notes?: string;
-    tags?: string[];
+    tags?: Tag[];
     difficulty?: number;
 }
 
+export interface Tag {
+    _id: string;
+    name: string;
+    color?: string;
+}
 
 
 

@@ -12,6 +12,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatChipsModule} from '@angular/material/chips';
 
 const materialModules = [
   MatToolbarModule,
@@ -25,7 +26,8 @@ const materialModules = [
   MatMenuModule,
   MatSelectModule,
   MatProgressBarModule,
-  MatDividerModule
+  MatDividerModule,
+  MatChipsModule
 ]
 
 @NgModule({

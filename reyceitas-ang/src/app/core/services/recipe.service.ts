@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FOODS_ENDPOINT, RECIPES_ENDPOINT, UNITS_ENDPOINT } from '@constants/endpoints.constant';
+import { FOODS_ENDPOINT, RECIPES_ENDPOINT, TAGS_ENDPOINT, UNITS_ENDPOINT } from '@constants/endpoints.constant';
 import { Food } from '@models/recipe/ingredient.model';
-import { Recipe } from '@models/recipe/recipe.model';
+import { Recipe, Tag } from '@models/recipe/recipe.model';
 import { Unit, UnitType } from '@models/recipe/unit.model';
 import { Observable, of } from 'rxjs';
 import { ApiService } from './api.service';
@@ -39,5 +39,9 @@ export class RecipeService {
 
   getFoods(): Observable<Food[]> {
     return this.api.get(`${FOODS_ENDPOINT}`);
+  }
+
+  getTags(): Observable<Tag[]> {
+    return this.api.get(`${TAGS_ENDPOINT}`);
   }
 }
