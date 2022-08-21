@@ -7,11 +7,12 @@ const app = express();
 const http = require('http');
 const https = require('https');
 
-
 const verifyJWT = require('./config/auth');
 const seeds = require('./seeds/base');
 
 const recipes = require('./routes/recipes');
+const tags= require('./routes/tags');
+const dbs = require('./routes/db');
 const nutrients = require('./routes/nutrients');
 const foods = require('./routes/foods');
 const foodTypes = require('./routes/foodTypes');
@@ -34,6 +35,8 @@ app.use('/api/instruction-types', instructionTypes);
 app.use('/api/units', units);
 app.use('/api/unit-types', unitTypes);
 app.use('/api/nutrients', nutrients);
+app.use('/api/tags', tags);
+app.use('/db', dbs);
 app.use('/auth', users);
 app.use('/img/', images);
 app.use('/uploads', serveStatic('/uploads'));
@@ -50,7 +53,7 @@ mongoose.connect(
 )
 .then(result => {
     console.log('Connected to MongoDB');
-    mongoose.connection.db.dropDatabase(seeds); //Drop and seed
+    //mongoose.connection.db.dropDatabase(seeds); //Drop and seed
     // seeds() //Only seed
 })
 .catch(error => {

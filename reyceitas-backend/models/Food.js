@@ -4,7 +4,7 @@ const FoodType = require('./FoodType');
 const Nutrient = require('./Nutrient');
 
 const foodSchema = new Schema({
-  name:         { type: String, required: true},
+  name:         { type: String, required: true, index: true, unique: true},
   foodType:     { type: Schema.Types.ObjectId, ref: FoodType },
   density:      { type: Number },
   nutrients:    [{
