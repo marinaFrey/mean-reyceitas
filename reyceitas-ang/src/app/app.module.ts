@@ -17,12 +17,14 @@ import { CookieModule } from 'ngx-cookie';
 import { AlertService } from '@services/alert.service';
 import { AlertComponent } from './core/components/alert/alert.component';
 import { firstValueFrom } from 'rxjs';
+import { BannerComponent } from './core/components/banner/banner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     AlertComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,

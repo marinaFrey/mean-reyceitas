@@ -14,6 +14,7 @@ services:
         CERT: $CERT
         PRIVATE_KEY_STR: $PRIVATE_KEY_STR
         CERT_STR: $CERT_STR
+        API_URL: $API_URL
     volumes:
       - /app
       - /node_modules

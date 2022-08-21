@@ -23,6 +23,10 @@
     }
  }
 
- .mat-form-field-wrapper{
-    margin-bottom: -1.25em !important;
+.white-input {
+    .mat-form-field-outline {
+        background: rgba(255, 255, 255, .5) !important;
+        opacity: 1 !important;
+        border-radius: 9px;
+    }
  }
