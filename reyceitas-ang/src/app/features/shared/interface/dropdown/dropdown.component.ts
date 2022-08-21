@@ -16,11 +16,15 @@ export class DropdownComponent implements OnInit {
   @Input() displayProperty: string = 'name';
 
   filteredOptions!: Observable<any> | undefined;
+  autocompleteInput: FormControl;
 
-  constructor() { }
+  constructor() {
+    this.autocompleteInput = new FormControl('');
+  }
 
   ngOnInit() {
-    this.filteredOptions = this.formControl?.valueChanges
+    if(this.formControl.value) this.autocompleteInput.setValue(this.formControl.value)
+    this.filteredOptions = this.autocompleteInput?.valueChanges
       .pipe(
         startWith(''),
         map(val => this.filter(val))
@@ -28,12 +32,17 @@ export class DropdownComponent implements OnInit {
   }
 
   getName(item: any) {
+    if(!this.displayProperty) this.displayProperty = 'name';
     return item?.[this.displayProperty];
   }
 
   filter(val: any): any[] {
-    if(val[this.displayProperty]) this.formControl.setValue(val)
+  
+    if(val[this.displayProperty]) {
+      this.formControl.setValue(val)
+      return [val];
+    }
     return this.options.filter(option =>
-      option[this.displayProperty].toLowerCase().indexOf(val?.toLowerCase()) === 0);
+      option[this.displayProperty].toLowerCase().indexOf(val?.toLowerCase()) === 0).slice(0,100);
   }
 }

@@ -11,10 +11,10 @@
                             <input matInput type='number' formControlName="amount">
                         </mat-form-field>
                         
-                        <mat-form-field appearance="outline">
+                        <mat-form-field *ngIf="units$ | async as units" appearance="outline">
                             <mat-label>Unit</mat-label>
                             <mat-select formControlName="unit" [compareWith]="compareFn">
-                                <mat-option *ngFor="let unit of units$ | async" [value]="unit">
+                                <mat-option *ngFor="let unit of units" [value]="unit">
                                     {{unit.abbreviation}} ({{unit.name}})
                                 </mat-option>
                             </mat-select>
@@ -22,14 +22,11 @@
         
                     </div>
                     <div class="form-container" >
-                        <mat-form-field appearance="outline">
-                            <mat-label>Food</mat-label>
-                            <mat-select formControlName="food" [compareWith]="compareFn">
-                                <mat-option *ngFor="let food of foods$ | async" [value]="food" >
-                                    {{food.name}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                        <app-dropdown *ngIf="foods$ | async as food" ngDefaultControl
+                                [formControl]="getFoodFormControl(ingredientForm)" 
+                                [options]="food"
+                                label="Food" placeholder="Select food name">
+                        </app-dropdown>
         
                         <mat-form-field appearance="outline">
                             <mat-label>Details</mat-label>
