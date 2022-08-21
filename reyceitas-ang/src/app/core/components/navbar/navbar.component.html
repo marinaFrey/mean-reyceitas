@@ -1,4 +1,6 @@
-<mat-toolbar>
+
+<div class="header">
+  <mat-toolbar>
     <div class="navbar-content">
       <div>
         <span class="title" [routerLink]="['/home']">Reyceitas</span>
@@ -22,3 +24,11 @@
     </div>
     
 </mat-toolbar>
+  <div class="search-container white-input">
+      <mat-form-field appearance="outline">
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput type='text' placeholder="Search for a recipe">
+      </mat-form-field>
+  </div>
+  
+</div>
