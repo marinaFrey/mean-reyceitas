@@ -37,6 +37,13 @@ router.get('/search-by-tagname/:tag', (req, res) => {
       .catch(error => res.status(500).json(error));
   })
 });
+router.get('/search-by-name', (req, res) => {
+  Recipe.find().select('title')
+    .then(recipes => {
+      res.json(recipes);
+    })
+    .catch(error => res.status(500).json(error));
+});
 router.get('/search-by-name/:name', (req, res) => {
   Recipe.find({title: {$regex: req.params.name, $options: 'i'}}).select('title')
     .then(recipes => {
