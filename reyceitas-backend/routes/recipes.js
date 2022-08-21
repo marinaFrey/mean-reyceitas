@@ -6,10 +6,39 @@ const router = express.Router();
 var jsonParser = bodyParser.json()
  
 const Recipe = require('../models/Recipe');
+const Tag = require('../models/Tag');
 
 router.use(cors());
 router.get('/', (req, res) => {
-  Recipe.find()
+  Recipe.find().select('title')
+    .then(recipes => {
+      res.json(recipes);
+    })
+    .catch(error => res.status(500).json(error));
+});
+
+router.get('/search-by-tag/:id', jsonParser, (req, res) => {
+  Tag.findOne({ _id: req.params.id }).then(tag => {
+    Recipe.find({tags: { $elemMatch: { $eq: tag} }}).select('title')
+      .then(recipes => {
+        res.json(recipes);
+      })
+      .catch(error => res.status(500).json(error));
+    })
+    .catch(error => res.status(500).json(error));
+});
+
+router.get('/search-by-tagname/:tag', (req, res) => {
+  Tag.findOne({name: req.params.tag}).then(tag =>{
+    Recipe.find({tags: { $elemMatch: { $eq: tag} }}).select('title')
+      .then(recipes => {
+        res.json(recipes);
+      })
+      .catch(error => res.status(500).json(error));
+  })
+});
+router.get('/search-by-name/:name', (req, res) => {
+  Recipe.find({title: {$regex: req.params.name, $options: 'i'}}).select('title')
     .then(recipes => {
       res.json(recipes);
     })
@@ -58,6 +87,7 @@ router.put('/edit/:id', jsonParser, (req, res) => {
 router.get('/get/:id', jsonParser, (req, res) => {
   Recipe.findOne({ _id: req.params.id })
     .populate('createdBy')
+    .populate('tags')
     .populate({
       path:'ingredients.unit',
       populate: {
