@@ -2,21 +2,12 @@
     <mat-label *ngIf="label"> {{label}} </mat-label>
     <input type="text" ngDefaultControl
         [placeholder]="placeholder" matInput 
-        [formControl]="formControl"
+        [formControl]="autocompleteInput"
         [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="getName">
-            <mat-option *ngFor="let option of filteredOptions | async" 
+            <mat-option *ngFor="let option of filteredOptions | async;" 
                     [value]="option" >
             {{option[displayProperty]}}
         </mat-option>
     </mat-autocomplete>
 </mat-form-field>
-
-<!--
-    Example:
-                   <app-dropdown   *ngIf="foods$ | async as food" ngDefaultControl
-                                [formControl]="getFoodFormControl(ingredientForm)" 
-                                [options]="food"
-                                label="Food" placeholder="Select food name">
-                </app-dropdown>
--->

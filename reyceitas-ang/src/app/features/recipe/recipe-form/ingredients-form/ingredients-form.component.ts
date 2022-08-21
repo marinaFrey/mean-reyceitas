@@ -61,7 +61,7 @@ export class IngredientsFormComponent implements OnInit {
   }
 
   compareFn(op1: any, op2: any) {
-    return op1._id === op2._id;
+    return op1?._id === op2?._id;
   }
 
   private getIngredients(ingredients: Ingredient[]): void {
