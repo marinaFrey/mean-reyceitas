@@ -1,18 +1,18 @@
-name
-Fish
-Chicken
-Pork
-Beef
-Soup
-Dessert
-Main Course
-Breakfast
-Snack
-Side Dish
-Vegetarian
-Low Carb
-Pasta
-Risotto
-Asian
-Italian
-Brazilian
+name,color
+Fish,#3f51b5
+Chicken,
+Pork,
+Beef,#E53D00
+Soup,
+Dessert,
+Main Course,
+Breakfast,
+Snack,
+Side Dish,
+Vegetarian,
+Low Carb,
+Pasta,
+Risotto,
+Asian,
+Italian,
+Brazilian,
