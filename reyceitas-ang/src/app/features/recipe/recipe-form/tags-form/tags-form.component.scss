@@ -1,0 +1,11 @@
+:host {
+    mat-form-field {
+        width: 100%;
+    }
+
+    .unselected {
+        background: transparent;
+        border: 1px solid var(--color-neutral);
+        color: var(--color-neutral);
+    }
+}

@@ -1,1 +1,17 @@
-@import "../recipe/recipe.component.scss"
+@import "../recipe/recipe.component.scss";
+
+:host {
+    .save-floating-button {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        
+        padding: var(--space) 0;
+        background-color: var(--color-background);
+
+        button {
+            width: calc(100% - var(--space)*2);
+            max-width: var(--max-content-width);
+        }
+    }
+}
