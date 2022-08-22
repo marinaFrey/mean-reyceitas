@@ -1,0 +1,24 @@
+<div *ngIf="recipe" class="flex-col">
+    <h1> {{recipe.title}} </h1>
+    <p> 
+        <span *ngIf="recipe.servings"> {{recipe.servings}} Servings </span>
+    </p>
+    <p *ngIf="recipe?.ingredients.length"><b>Ingredients</b></p>
+    <ul>
+        <li *ngFor="let ingredient of recipe?.ingredients">
+            {{ingredient.amount}} 
+            {{ingredient?.unit?.abbreviation}} 
+            {{ingredient?.food?.name}} 
+            <ng-container *ngIf="ingredient?.details">( {{ingredient?.details}} )</ng-container>
+        </li>
+    </ul>
+
+    <p *ngIf="recipe?.instructions.length"><b>Instructions</b></p>
+    <ul>
+        <li *ngFor="let instruction of recipe?.instructions">
+            {{instruction.description}}
+        </li>
+    </ul>
+
+    <p *ngIf="recipe.notes"><b>Notes:</b>{{recipe.notes}}</p>
+</div>

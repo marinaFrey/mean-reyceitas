@@ -16,6 +16,7 @@
     <app-image-carousel [images]="recipe.pictures"></app-image-carousel>
 
     <div class="recipe-basic-info-container">
+        <button mat-button color="accent" (click)="goToPrintPage()"><mat-icon>print</mat-icon>Print recipe</button>
         <p *ngIf="recipe.createdBy">Created by {{recipe.createdBy?.firstName}} {{recipe.createdBy?.lastName}}</p>
         <app-servings [recipe]="recipe" (recalculatedIngredientAmounts)="calculatedIngredients = $event"></app-servings>
         <app-difficulty [difficulty]="recipe.difficulty"></app-difficulty>

@@ -1,0 +1,18 @@
+:host {
+    
+
+    .main {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background: var(--color-background);
+
+        .main-container {
+            display: flex;
+            padding: var(--space);
+            width: -webkit-fill-available;
+            max-width: var(--max-content-width);
+            margin: auto;
+        }
+    }
+}

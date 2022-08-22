@@ -18,6 +18,7 @@ import { AlertService } from '@services/alert.service';
 import { AlertComponent } from './core/components/alert/alert.component';
 import { firstValueFrom } from 'rxjs';
 import { BannerComponent } from './core/components/banner/banner.component';
+import { RegularLayoutComponent } from './core/components/layouts/regular-layout/regular-layout.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { BannerComponent } from './core/components/banner/banner.component';
     NavbarComponent,
     AlertComponent,
     BannerComponent,
+    RegularLayoutComponent,
   ],
   imports: [
     BrowserModule,

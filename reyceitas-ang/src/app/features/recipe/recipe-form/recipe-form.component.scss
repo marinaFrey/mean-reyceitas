@@ -2,12 +2,14 @@
 
 :host {
     .save-floating-button {
+        display: flex;
         position: fixed;
         bottom: 0;
         width: 100%;
-        
+        left: 0;
         padding: var(--space) 0;
         background-color: var(--color-background);
+        justify-content: center;
 
         button {
             width: calc(100% - var(--space)*2);

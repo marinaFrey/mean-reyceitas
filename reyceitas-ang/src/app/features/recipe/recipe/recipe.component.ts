@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '@models/recipe/recipe.model';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 import { take } from 'rxjs';
-import { RECIPE_LIST_ROUTE } from '@constants/routes.constant';
+import { PRINT_ROUTE, RECIPE_LIST_ROUTE } from '@constants/routes.constant';
 import { AlertService } from '@services/alert.service';
 import { Ingredient } from '@models/recipe/ingredient.model';
 
@@ -37,6 +37,10 @@ export class RecipeComponent implements OnInit {
   getIngredients(): Ingredient[] | undefined {
     if(this.calculatedIngredients.length) return this.calculatedIngredients;
     return this.recipe?.ingredients;
+  }
+
+  goToPrintPage() {
+    this.router.navigate([`${PRINT_ROUTE}/recipe/${this.recipe._id}`])
   }
 
   private getRecipe(id: string | null): void {
