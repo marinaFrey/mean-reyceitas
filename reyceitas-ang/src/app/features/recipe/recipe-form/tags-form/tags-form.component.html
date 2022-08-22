@@ -1,0 +1,10 @@
+<div *ngIf="form" class="add-form" [formGroup]="form">
+    <h2>Tags</h2>
+    <ng-container *ngIf="allTags$ | async as tags" >
+        <mat-chip-list>
+            <mat-chip *ngFor="let tag of tags" (click)="toggleTag(tag)" [ngClass]="getClass(tag)">
+              {{ tag.name }}
+            </mat-chip>
+        </mat-chip-list>
+    </ng-container>
+</div>

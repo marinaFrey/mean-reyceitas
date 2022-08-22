@@ -19,6 +19,7 @@ import { ServingsComponent } from './recipe/basic-information/servings/servings.
 import { DifficultyComponent } from './recipe/basic-information/difficulty/difficulty.component';
 import { IngredientsComponent } from './recipe/ingredients/ingredients.component';
 import { TagsComponent } from './recipe/basic-information/tags/tags.component';
+import { TagsFormComponent } from './recipe-form/tags-form/tags-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TagsComponent } from './recipe/basic-information/tags/tags.component';
     ServingsComponent,
     DifficultyComponent,
     IngredientsComponent,
-    TagsComponent
+    TagsComponent,
+    TagsFormComponent
   ],
   imports: [
     CommonModule,

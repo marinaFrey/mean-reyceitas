@@ -23,14 +23,18 @@
 
     <app-instructions-form [form]="form" [instructions]="recipe?.instructions"></app-instructions-form>
 
+    <app-tags-form [form]="form" [tags]="recipe?.tags"></app-tags-form>
+
     <h2>Notes</h2>
     <mat-form-field appearance="outline">
         <textarea matInput></textarea>
     </mat-form-field>
     
     
+    <div class="save-floating-button">
+        <button mat-flat-button  color="primary" (click)="submit()">
+            <mat-icon>save</mat-icon> Save
+        </button>
+    </div>
     
-    <button mat-flat-button color="primary" (click)="submit()">
-        <mat-icon>save</mat-icon> Save
-    </button>
 </div>

@@ -11,22 +11,6 @@ export class TagsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.tags = [{
-      _id: 'sdfdsf',
-      name: 'this is a blue tag',
-      color: 'blue'
-    },
-    {
-      _id: 'sdfdsf',
-      name: 'this is a red tag',
-      color: 'red'
-    },
-    {
-      _id: 'sdfdsf',
-      name: 'this is a yellow tag',
-      color: 'yellow'
-    }]
-  }
+  ngOnInit(): void {}
 
 }
