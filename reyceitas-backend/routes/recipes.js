@@ -11,6 +11,7 @@ const recipeShort =  'title createdAt createdBy difficulty servings pictures tag
 router.use(cors());
 router.get('/', (req, res) => {
   Recipe.find().select(recipeShort)
+    .populate('tags')
     .then(recipes => {
       res.json(recipes);
     })
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
 router.get('/search-by-tag/:id', jsonParser, (req, res) => {
   Tag.findOne({ _id: req.params.id }).then(tag => {
     Recipe.find({tags: { $elemMatch: { $eq: tag} }}).select('title')
+      .populate('tags')
       .then(recipes => {
         res.json(recipes);
       })
@@ -31,6 +33,7 @@ router.get('/search-by-tag/:id', jsonParser, (req, res) => {
 router.get('/search-by-tagname/:tag', (req, res) => {
   Tag.findOne({name: req.params.tag}).then(tag =>{
     Recipe.find({tags: { $elemMatch: { $eq: tag} }}).select('title')
+      .populate('tags')
       .then(recipes => {
         res.json(recipes);
       })
@@ -39,13 +42,15 @@ router.get('/search-by-tagname/:tag', (req, res) => {
 });
 router.get('/search-by-name', (req, res) => {
   Recipe.find().select(recipeShort)
+    .populate('tags')
     .then(recipes => {
       res.json(recipes);
     })
     .catch(error => res.status(500).json(error));
 });
 router.get('/search-by-name/:name', (req, res) => {
-  Recipe.find({title: {$regex: req.params.name, $options: 'i'}}).select('title')
+  Recipe.find({title: {$regex: req.params.name, $options: 'i'}}).select(recipeShort)
+    .populate('tags')
     .then(recipes => {
       res.json(recipes);
     })
