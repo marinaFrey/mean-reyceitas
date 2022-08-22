@@ -35,11 +35,12 @@ services:
     build: './reyceitas-backend'
     volumes:
       - /node-app
-      #- ./reyceitas-backend:/node-app
+    #- ./reyceitas-backend:/node-app
     #  - ./reyceitas-backend:/node-app
     #  - ./node_modules:/node-app/node_modules
       #- /node-app/node_modules
-      - /uploads
+      #- /uploads
+      - ./reyceitas-backend/uploads:/uploads
     environment:
       NODE_ENV: development
       CLIENT_ID: $CLIENT_ID
