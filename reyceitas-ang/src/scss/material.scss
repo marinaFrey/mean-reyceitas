@@ -10,14 +10,14 @@
  }
 
  .alert-success {
-    background-color: var(--color-success);
+    background-color: var(--color-success) !important;
     .mat-button-wrapper {
         color: white;
     }
  }
 
  .alert-error {
-    background-color: var(--color-danger);
+    background-color: var(--color-danger) !important;
     .mat-button-wrapper {
         color: white;
     }
