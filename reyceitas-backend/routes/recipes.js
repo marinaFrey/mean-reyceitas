@@ -60,6 +60,7 @@ router.post('/new', jsonParser,(req, res) => {
     ingredients: req.body.ingredients, 
     difficulty: req.body.difficulty,
     pictures: req.body.pictures,
+    tags: req.body.tags,
     instructions: req.body.instructions
   });
 
@@ -81,6 +82,7 @@ router.put('/edit/:id', jsonParser, (req, res) => {
     ingredients: req.body.ingredients, 
     pictures: req.body.pictures,
     difficulty: req.body.difficulty,
+    tags: req.body.tags,
     instructions: req.body.instructions
   };
 
