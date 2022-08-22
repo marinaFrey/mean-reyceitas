@@ -42,7 +42,12 @@ export class DropdownComponent implements OnInit {
       this.formControl.setValue(val)
       return [val];
     }
-    return this.options.filter(option =>
-      option[this.displayProperty].toLowerCase().indexOf(val?.toLowerCase()) === 0).slice(0,100);
+    return this.filterOptions(val)
+      .sort((a,b) => a[this.displayProperty]?.length - b[this.displayProperty].length).slice(0,100);
+  }
+
+  private filterOptions(val: any): any[] {
+    return this.options.filter(option => 
+      option[this.displayProperty].toLowerCase().indexOf(val?.toLowerCase()) != -1)
   }
 }
