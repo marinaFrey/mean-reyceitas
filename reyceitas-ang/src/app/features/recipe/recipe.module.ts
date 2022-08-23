@@ -20,6 +20,7 @@ import { DifficultyComponent } from './recipe/basic-information/difficulty/diffi
 import { IngredientsComponent } from './recipe/ingredients/ingredients.component';
 import { TagsComponent } from './recipe/basic-information/tags/tags.component';
 import { TagsFormComponent } from './recipe-form/tags-form/tags-form.component';
+import { AuthGuard } from '@guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TagsFormComponent } from './recipe-form/tags-form/tags-form.component';
     ReactiveFormsModule,
   ],
   providers: [
-    RecipeService
+    RecipeService,
+    AuthGuard
   ]
 })
 export class RecipeModule { }

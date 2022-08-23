@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@guards/auth.guard';
 import { RecipeAddComponent } from './recipe-add/recipe-add.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
@@ -11,13 +12,18 @@ const routes: Routes = [
     path: '', component: RecipeListComponent,
   },
   {
-    path: 'new', component: RecipeAddComponent,
+    canActivate: [AuthGuard],
+    path: 'new', 
+    component: RecipeAddComponent,
   },
   {
-    path: 'edit/:id', component: RecipeEditComponent,
+    canActivate: [AuthGuard],
+    path: 'edit/:id', 
+    component: RecipeEditComponent,
   },
   {
-    path: 'recipe/:id', component: RecipeComponent
+    path: 'recipe/:id', 
+    component: RecipeComponent
   }
 ];
 
