@@ -3,7 +3,10 @@
   <mat-toolbar>
     <div class="navbar-content">
       <div>
-        <span class="title" [routerLink]="['/home']">Reyceitas</span>
+        <span class="title" [routerLink]="['/home']">
+          <img src="/assets/logos/logo-white.svg" width="32px" height="32px" />
+          Reyceitas
+        </span>
       </div>
       <div class="flex-row gapped">
         
@@ -18,6 +21,7 @@
                 <mat-icon>expand_more</mat-icon>
               </button>
             <mat-menu #menu="matMenu">
+              <button mat-menu-item  [routerLink]="['/admin-panel']"><mat-icon>admin_panel_settings</mat-icon> Admin Panel</button>
               <button mat-menu-item  (click)="logout()"><mat-icon>logout</mat-icon> Logout</button>
             </mat-menu>
           </ng-container>

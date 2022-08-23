@@ -21,12 +21,20 @@
         .title {
             cursor: pointer;
             color: white;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            img {
+                padding-bottom: 4px;
+            }
         }
 
         .user-menu {
             display: flex;
             gap: var(--space);
             align-items: center;
+            color: white;
 
             img {
                 height: 32px;
