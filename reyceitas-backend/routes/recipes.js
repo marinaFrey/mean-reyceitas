@@ -5,8 +5,10 @@ const router = express.Router();
 
 var jsonParser = bodyParser.json()
  
+const verifyJWT = require('../config/auth');
 const Recipe = require('../models/Recipe');
 const Tag = require('../models/Tag');
+
 const recipeShort =  'title createdAt createdBy difficulty servings pictures tags'
 router.use(cors());
 router.get('/', (req, res) => {
@@ -57,7 +59,7 @@ router.get('/search-by-name/:name', (req, res) => {
     .catch(error => res.status(500).json(error));
 });
 
-router.post('/new', jsonParser,(req, res) => {
+router.post('/new',[verifyJWT, jsonParser],(req, res) => {
   const newRecipe= new Recipe({ 
     title: req.body.title,
     createdBy: req.userId,
@@ -75,11 +77,12 @@ router.post('/new', jsonParser,(req, res) => {
       res.json(unitType);
     })
     .catch(error => {
+      console.log(error)
       res.status(500).json(error);
     });
 });
 
-router.put('/edit/:id', jsonParser, (req, res) => {
+router.put('/edit/:id',[verifyJWT, jsonParser], (req, res) => {
   const newData = { 
     title: req.body.title,
     createdBy: req.body.createdBy,
