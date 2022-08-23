@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ADMIN_PANEL_ROUTE, HOME_ROUTE, PRINT_ROUTE, RECIPE_LIST_ROUTE } from '@constants/routes.constant';
+import { ADMIN_PANEL_ROUTE, HOME_ROUTE, PRINT_ROUTE, PROFILE_ROUTE, RECIPE_LIST_ROUTE } from '@constants/routes.constant';
 import { RegularLayoutComponent } from './core/components/layouts/regular-layout/regular-layout.component';
 
 const routes: Routes = [
@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: RECIPE_LIST_ROUTE,
         loadChildren: () => import('./features/recipe/recipe.module').then(m => m.RecipeModule)
+      },
+      {
+        path: PROFILE_ROUTE,
+        loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
       },
       {
         path: ADMIN_PANEL_ROUTE,
