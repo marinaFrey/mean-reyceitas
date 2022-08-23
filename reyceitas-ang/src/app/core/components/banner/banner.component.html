@@ -1,6 +1,5 @@
 <div class="search-container white-input">
     <mat-form-field appearance="outline">
-      <mat-icon matPrefix>search</mat-icon>
       <input matInput type='text' [(ngModel)]="searchTerm" (keyup.enter)="searchRecipe()">
     </mat-form-field>
     <button mat-mini-fab color="primary" (click)="searchRecipe()">
