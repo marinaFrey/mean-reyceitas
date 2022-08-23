@@ -10,7 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './core/interceptors/http.interceptor';
 import { ApiService } from './core/services/api.service';
 import { AuthService } from '@services/auth.service';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { SocialLoginModule, GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { CookieModule } from 'ngx-cookie';
@@ -66,7 +66,8 @@ import { RegularLayoutComponent } from './core/components/layouts/regular-layout
     },
     ApiService,
     AuthService,
-    AlertService
+    AlertService,
+    FormBuilder
   ],
   bootstrap: [AppComponent]
 })
