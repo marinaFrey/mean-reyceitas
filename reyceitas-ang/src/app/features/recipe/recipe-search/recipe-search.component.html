@@ -1,0 +1,4 @@
+<div *ngIf="recipes" class="flex-col gapped">
+    <h2 *ngIf="searchTerm"> Search: {{ searchTerm }} </h2>
+    <app-recipe-list [recipes]="recipes"></app-recipe-list>
+</div>

@@ -2,25 +2,27 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Tag } from '@models/recipe/recipe.model';
 import { RecipeService } from '@services/recipe.service';
+import { TagService } from '@services/tag.service';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tags-form',
   templateUrl: './tags-form.component.html',
-  styleUrls: ['./tags-form.component.scss']
+  styleUrls: ['./tags-form.component.scss'],
+  providers: [TagService]
 })
 export class TagsFormComponent implements OnInit {
   @Input() form!: FormGroup;
   @Input() tags: Tag[] | undefined;
 
-  allTags$: Observable<Tag[]> = this.recipeService.getTags();
+  allTags$: Observable<Tag[]> = this.tagService.getTags();
   
   constructor(private formBuilder: FormBuilder,
-              private recipeService: RecipeService) { }
+              private tagService: TagService) { }
 
   ngOnInit(): void {
     if(this.tags)
-      this.getTags(this.tags);
+      this.tagService.populateTagsForm(this.tags, this.tagsFormArray);
   }
 
   get tagsFormArray() {
@@ -29,23 +31,8 @@ export class TagsFormComponent implements OnInit {
 
   toggleTag(tag: Tag) {
     const selectedTag = this.tagsFormArray.value.find((t: Tag) => t._id == tag._id)
-    if(!selectedTag) this.addTag(tag);
-    else this.deleteTag(tag);
-  }
-
-  addTag(tag: Tag) {
-    const tagForm = this.formBuilder.group({
-      _id: [tag._id],
-      name: [tag.name],
-      color: [tag.color]
-    });
-
-    this.tagsFormArray.push(tagForm);
-  }
-
-  deleteTag(tag: Tag) {
-    const index = this.tagsFormArray.value.findIndex((t: Tag) => t._id == tag._id);
-    this.tagsFormArray.removeAt(index);
+    if(!selectedTag) this.tagService.addTag(tag,this.tagsFormArray);
+    else this.tagService.deleteTag(tag,this.tagsFormArray);
   }
 
   getClass(tag: Tag) {
@@ -57,27 +44,4 @@ export class TagsFormComponent implements OnInit {
   getTagsFormGroup(tag: any) {
     return tag as FormGroup;
   }
-
-  private getTags(tags: Tag[]) {
-    tags.forEach(tag => {
-      this.addTag(tag);
-    });
-  }
-
-
-
-  /*
-  onTagRemoved(topping: string) {
-    const toppings = this.toppingsControl.value as string[];
-    this.removeFirst(toppings, topping);
-    //this.toppingsControl.setValue(toppings); // To trigger change detection
-  }
-
-  private removeFirst<T>(array: T[], toRemove: T): void {
-    const index = array.indexOf(toRemove);
-    if (index !== -1) {
-      array.splice(index, 1);
-    }
-  }*/
-
 }

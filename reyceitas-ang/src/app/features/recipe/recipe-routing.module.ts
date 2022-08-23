@@ -3,21 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@guards/auth.guard';
 import { RecipeAddComponent } from './recipe-add/recipe-add.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
-import { RecipeFormComponent } from './recipe-form/recipe-form.component';
-import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 import { RecipeComponent } from './recipe/recipe.component';
 
 const routes: Routes = [
   {
-    path: '', component: RecipeListComponent,
+    path: '', component: RecipeSearchComponent,
   },
   {
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     path: 'new', 
     component: RecipeAddComponent,
   },
   {
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     path: 'edit/:id', 
     component: RecipeEditComponent,
   },

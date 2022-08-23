@@ -1,5 +1,4 @@
-<div *ngIf="recipes.length" class="recipe-list">
-    <h2 *ngIf="searchTerm"> Search: {{ searchTerm }} </h2>
+<div class="flex-col gapped">
     <ng-container *ngFor="let recipe of recipes; let last = last" >
         <app-recipe-card [recipe]="recipe"></app-recipe-card>
         <mat-divider *ngIf="!last"></mat-divider>

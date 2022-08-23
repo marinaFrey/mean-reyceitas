@@ -1,9 +1,0 @@
-:host {
-    width: 100%;
-    
-    .recipe-list {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space)
-    }
-}

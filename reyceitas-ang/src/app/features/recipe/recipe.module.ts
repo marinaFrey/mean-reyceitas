@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeComponent } from './recipe/recipe.component';
-import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeRoutingModule } from './recipe-routing.module';
-import { RecipeCardComponent } from './recipe-list/recipe-card/recipe-card.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
@@ -16,17 +14,15 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { PicturesFormComponent } from './recipe-form/pictures-form/pictures-form.component';
 import { InstructionComponent } from './recipe/instruction/instruction.component';
 import { ServingsComponent } from './recipe/basic-information/servings/servings.component';
-import { DifficultyComponent } from './recipe/basic-information/difficulty/difficulty.component';
 import { IngredientsComponent } from './recipe/ingredients/ingredients.component';
-import { TagsComponent } from './recipe/basic-information/tags/tags.component';
 import { TagsFormComponent } from './recipe-form/tags-form/tags-form.component';
 import { AuthGuard } from '@guards/auth.guard';
+import { SharedRecipeModule } from '../shared/shared-recipe/shared-recipe.module';
+import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 
 @NgModule({
   declarations: [
-    RecipeListComponent,
     RecipeComponent,
-    RecipeCardComponent,
     RecipeFormComponent,
     InstructionsFormComponent,
     IngredientsFormComponent,
@@ -35,10 +31,9 @@ import { AuthGuard } from '@guards/auth.guard';
     PicturesFormComponent,
     InstructionComponent,
     ServingsComponent,
-    DifficultyComponent,
     IngredientsComponent,
-    TagsComponent,
-    TagsFormComponent
+    TagsFormComponent,
+    RecipeSearchComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +41,7 @@ import { AuthGuard } from '@guards/auth.guard';
     InterfaceModule,
     MaterialModule,
     ReactiveFormsModule,
+    SharedRecipeModule
   ],
   providers: [
     RecipeService,
