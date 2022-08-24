@@ -32,6 +32,17 @@
     }
  }
 
- .mat-form-field-wrapper{
+.mat-form-field-wrapper{
     margin-bottom: -1.25em !important;
- }
+}
+
+.mat-tab-body.mat-tab-body-active, .mat-tab-body-content {
+    overflow-y: inherit !important;
+}
+
+.centered {
+    .mat-chip-list-wrapper {
+        justify-content: center !important;
+    }
+}
+ 
