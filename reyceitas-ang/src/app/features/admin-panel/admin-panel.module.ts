@@ -6,6 +6,7 @@ import { DatabaseManagementComponent } from './database-management/database-mana
 import { UserManagementComponent } from './user-management/user-management.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { AdminPanelRoutingModule } from './admin-panel-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,8 @@ import { AdminPanelRoutingModule } from './admin-panel-routing.module';
   imports: [
     CommonModule,
     AdminPanelRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminPanelModule { }

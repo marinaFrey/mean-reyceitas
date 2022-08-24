@@ -1,7 +1,42 @@
 <div class="flex-col gapped">
-    <app-user-management></app-user-management>
+    <mat-tab-group mat-stretch-tabs>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">manage_accounts</mat-icon>
+            User Management
+          </ng-template>
+          <app-user-management></app-user-management>
+        </mat-tab>
+      
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">dashboard_customize</mat-icon>
+            Editors
+          </ng-template>
+          <app-tag-editor></app-tag-editor>
+        </mat-tab>
+      
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">storage</mat-icon>
+            Database Management
+          </ng-template>
+      
+          <app-database-management></app-database-management>
+        </mat-tab>
 
-    <app-tag-editor></app-tag-editor>
+        <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="example-tab-icon">assessment</mat-icon>
+              Analytics
+            </ng-template>
+        
+            <app-database-management></app-database-management>
+          </mat-tab>
+      </mat-tab-group>
+    
 
-    <app-database-management></app-database-management>
+    
+
+    
 </div>

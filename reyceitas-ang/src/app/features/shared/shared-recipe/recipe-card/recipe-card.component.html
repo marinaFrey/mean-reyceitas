@@ -1,5 +1,5 @@
 
-<div *ngIf="recipe" class="recipe-card" [routerLink]="'recipe/'+ recipe._id">
+<div *ngIf="recipe" class="recipe-card" (click)="goToRecipe()">
     <app-image [imageUrl]="getPicture()" imageWidth="200px" imageHeight="150px"></app-image>
     <div class="recipe-description">
         <div class="flex-col gapped">

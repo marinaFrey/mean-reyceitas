@@ -1,4 +1,31 @@
 <div class="flex-col gapped">
     <h2>Tags</h2>
+    <div class="gradient-shadow">
+        <table class="management-table">
+            <tr>
+              <th>Name</th>
+              <th>Color</th>
+              <th>Preview</th>
+            </tr>
+            <tr *ngFor="let tagForm of tagsFormArray.controls; let i = index" 
+                [formGroup]="getFormGroup(tagForm)">
+                <td>
+                    <mat-form-field appearance="outline">
+                        <input matInput type='text' formControlName="name">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <input type="color" formControlName="color"> 
+                </td>
+                <td>
+                    <mat-chip-list class="centered" aria-label="recipe tags">
+                        <mat-chip [ngStyle]="{'background-color': tagForm.get('color').value}">
+                            {{tagForm.get('name').value}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </td>
+            </tr>
+        </table>
+    </div>
     
 </div>
