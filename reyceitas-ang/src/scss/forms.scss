@@ -28,3 +28,33 @@
 .form-centralized-button {
     margin-bottom: 1.34375em !important;
 }
+
+.form-color-input {
+    height: 32px;
+    width: 32px;
+    border-radius: var(--border-radius);
+    background-color: var(--color-neutral);
+
+    input {
+        opacity: 0;
+        width: 32px;
+        height: 32px;
+        border: none;
+    }
+}
+
+.save-floating-button {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    padding: var(--space) 0;
+    background-color: var(--color-background);
+    justify-content: center;
+
+    button {
+        width: calc(100% - var(--space)*2);
+        max-width: var(--max-content-width);
+    }
+}

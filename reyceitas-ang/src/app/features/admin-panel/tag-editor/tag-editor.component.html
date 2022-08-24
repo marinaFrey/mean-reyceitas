@@ -15,7 +15,9 @@
                     </mat-form-field>
                 </td>
                 <td>
-                    <input type="color" formControlName="color"> 
+                    <div class="form-color-input" [ngStyle]="{'background-color': tagForm.get('color').value}">
+                        <input type="color" formControlName="color"> 
+                    </div>
                 </td>
                 <td>
                     <mat-chip-list class="centered" aria-label="recipe tags">
@@ -28,4 +30,10 @@
         </table>
     </div>
     
+</div>
+
+<div class="save-floating-button">
+    <button mat-flat-button  color="primary" >
+        <mat-icon>save</mat-icon> Save
+    </button>
 </div>

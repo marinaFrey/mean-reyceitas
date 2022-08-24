@@ -10,6 +10,7 @@
         .main-container {
             display: flex;
             padding: var(--space);
+            padding-bottom: 80px;
             width: -webkit-fill-available;
             max-width: var(--max-content-width);
             margin: auto;
