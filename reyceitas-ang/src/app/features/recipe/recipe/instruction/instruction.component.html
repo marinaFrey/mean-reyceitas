@@ -1,4 +1,4 @@
-<div class="instruction gradient-shadow">
+<div class="instruction gradient-shadow" [ngClass]="{'done': isDone}" (click)="isDone = !isDone">
     <p class="header">Step {{stepNumber}}</p>
     <p> {{instruction.description}} </p>
 </div>

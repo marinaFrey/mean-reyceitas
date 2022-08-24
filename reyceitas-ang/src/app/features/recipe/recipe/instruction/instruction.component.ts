@@ -10,6 +10,8 @@ export class InstructionComponent implements OnInit {
   @Input() instruction!: Instruction;
   @Input() stepNumber: number = 0;
 
+  isDone: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {

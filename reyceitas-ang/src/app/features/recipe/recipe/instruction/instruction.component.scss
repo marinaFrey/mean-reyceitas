@@ -6,6 +6,18 @@
         border-radius: var(--border-radius);
         padding: var(--space);
         background-color: white;
+        cursor: pointer;
+
+        &.done {
+            color: var(--color-neutral);
+            box-shadow: none;
+            background: transparent;
+
+            .header {
+                background-color: unset !important;
+                color: var(--color-neutral);
+            }
+        }
 
         .header {
             background: var(--color-primary);
