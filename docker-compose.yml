@@ -54,6 +54,7 @@ services:
       - db
     ports:
       - '8999:8999'
+      - '8998:8998'
 
   db:
     image: 'mongo:4.4.6'
