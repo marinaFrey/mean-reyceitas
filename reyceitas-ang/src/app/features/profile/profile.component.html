@@ -1,1 +1,6 @@
-<p>profile works!</p>
+<div *ngIf="user$ | async as user" class="flex-col gapped">
+    <h1>Your Profile</h1>
+    <app-profile-info [user]="user" ></app-profile-info>
+    <app-fave-recipes></app-fave-recipes>
+    <app-my-recipes></app-my-recipes>
+</div>

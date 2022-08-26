@@ -5,6 +5,8 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { MaterialModule } from '../shared/material/material.module';
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { FaveRecipesComponent } from './fave-recipes/fave-recipes.component';
+import { ProfileInfoComponent } from './profile-info/profile-info.component';
+import { InterfaceModule } from '../shared/interface/interface.module';
 
 
 
@@ -12,12 +14,14 @@ import { FaveRecipesComponent } from './fave-recipes/fave-recipes.component';
   declarations: [
     ProfileComponent,
     MyRecipesComponent,
-    FaveRecipesComponent
+    FaveRecipesComponent,
+    ProfileInfoComponent
   ],
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    MaterialModule
+    MaterialModule,
+    InterfaceModule
   ]
 })
 export class ProfileModule { }

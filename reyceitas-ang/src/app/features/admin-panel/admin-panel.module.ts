@@ -7,6 +7,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { MaterialModule } from '../shared/material/material.module';
 import { AdminPanelRoutingModule } from './admin-panel-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InterfaceModule } from '../shared/interface/interface.module';
 
 
 
@@ -21,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AdminPanelRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InterfaceModule
   ]
 })
 export class AdminPanelModule { }

@@ -1,0 +1,8 @@
+:host {
+    .profile-container {
+        display: flex;
+        gap: var(--space);
+        padding: var(--space);
+        width: 100%;
+    }
+}

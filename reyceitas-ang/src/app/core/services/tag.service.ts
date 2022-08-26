@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { TAGS_ENDPOINT } from '@constants/endpoints.constant';
 import { Tag } from '@models/recipe/recipe.model';
 import { Observable } from 'rxjs';
@@ -17,11 +17,11 @@ export class TagService {
     return this.api.get(`${TAGS_ENDPOINT}`);
   }
 
-  addTag(tag: Tag, tagsFormArray: FormArray) {
+  addTag(tag: Tag | null, tagsFormArray: FormArray) {
     const tagForm = this.formBuilder.group({
-      _id: [tag._id],
-      name: [tag.name],
-      color: [tag.color]
+      _id: [tag?._id],
+      name: [tag?.name, Validators.required],
+      color: [tag?.color]
     });
 
     tagsFormArray.push(tagForm);

@@ -6,6 +6,7 @@
               <th>Name</th>
               <th>Color</th>
               <th>Preview</th>
+              <th>Delete</th>
             </tr>
             <tr *ngFor="let tagForm of tagsFormArray.controls; let i = index" 
                 [formGroup]="getFormGroup(tagForm)">
@@ -20,20 +21,28 @@
                     </div>
                 </td>
                 <td>
-                    <mat-chip-list class="centered" aria-label="recipe tags">
+                    <mat-chip-list *ngIf="tagForm.get('name').value" class="centered" aria-label="recipe tags">
                         <mat-chip [ngStyle]="{'background-color': tagForm.get('color').value}">
                             {{tagForm.get('name').value}}
                         </mat-chip>
                     </mat-chip-list>
                 </td>
+                <td>
+                    <button mat-mini-fab color="warn" (click)="deleteTag(tagForm)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
             </tr>
         </table>
     </div>
+    <button mat-flat-button color="primary" (click)="addTag()">
+        <mat-icon class="add-button">add</mat-icon> New tag
+    </button>
     
 </div>
 
 <div class="save-floating-button">
-    <button mat-flat-button  color="primary" >
+    <button mat-flat-button color="primary" (click)="submit()" >
         <mat-icon>save</mat-icon> Save
     </button>
 </div>

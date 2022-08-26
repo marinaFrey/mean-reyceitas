@@ -1,3 +1,46 @@
-<div class="flex-col gapped">
+<div *ngIf="users" class="flex-col gapped">
     <h2>Users</h2>
+    <div class="gradient-shadow">
+        <table class="management-table">
+            <tr>
+              <th>Picture</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Last Seen</th>
+              <th>Authorization</th>
+              <th>Delete</th>
+            </tr>
+            <tr *ngFor="let user of users; let i = index">
+                <td>
+                    <app-image [imageUrl]="user?.profilePicture" 
+                        [getFromServer]="false" 
+                        imageWidth="50px">
+                    </app-image>
+                </td>
+                <td>
+                    {{ user.firstName }} {{ user.lastName }}
+                </td>
+                <td>
+                    {{ user.email }}
+                </td>
+                <td>
+                   {{ user.lastSeen }}
+                </td>
+                <td>
+                </td>
+                <td>
+                    <button mat-mini-fab color="warn" >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+
+<div class="save-floating-button">
+    <button mat-flat-button color="primary" >
+        <mat-icon>save</mat-icon> Save
+    </button>
 </div>

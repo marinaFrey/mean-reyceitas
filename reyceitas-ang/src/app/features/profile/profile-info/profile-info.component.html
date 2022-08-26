@@ -1,0 +1,9 @@
+<div *ngIf="user" class="profile-container gradient-shadow">
+    <app-image [imageUrl]="user?.profilePicture" [getFromServer]="false"></app-image>
+    <div class="flex-col gapped">
+        <h2> {{user?.firstName}} {{user?.lastName}} </h2>
+        <p> {{user?.email}} </p>
+        <!-- TODO: Show user authentication level if admin -->
+        <!-- TODO: Show user groups -->
+    </div>
+</div>
