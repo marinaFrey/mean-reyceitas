@@ -22,6 +22,7 @@
               </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item  [routerLink]="['/admin-panel']"><mat-icon>admin_panel_settings</mat-icon> Admin Panel</button>
+              <button mat-menu-item  [routerLink]="['/profile']"><mat-icon>person</mat-icon> Profile</button>
               <button mat-menu-item  (click)="logout()"><mat-icon>logout</mat-icon> Logout</button>
             </mat-menu>
           </ng-container>

@@ -26,6 +26,11 @@
         }
     }
 
+    .amount {
+        border-top-left-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
+    }
+
     .unit-cell {
         background-color: var(--color-primary);
         color: white;
@@ -33,5 +38,8 @@
 
     .details-cell {
         color: var(--color-neutral);
+        border-top-right-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
     }
+      
 }

@@ -3,7 +3,7 @@
         class="ingredient gradient-shadow"
         [ngClass]="{'done': doneIngredients[i]}"
         (click)="doneIngredients[i]=!doneIngredients[i]">
-        <td> {{ingredient.amount}}</td>
+        <td class="amount"> {{ingredient.amount}}</td>
         <td class="unit-cell"> {{ingredient.unit?.name}} of</td> 
         <td> {{ingredient.food?.name}}</td> 
         <td class="details-cell"> {{ ingredient.details }} </td>
