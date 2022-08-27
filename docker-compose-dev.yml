@@ -20,8 +20,8 @@ services:
         API_URL: $API_URL
       dockerfile: Dockerfile.dev
     volumes:
-      #- ./reyceitas-ang/:/app
-      - /app
+      - ./reyceitas-ang/:/app
+      #- /app
       - /node_modules
     environment:
       NODE_ENV: development
