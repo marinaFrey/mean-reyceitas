@@ -1,2 +1,4 @@
 reyceitas-backend/.env
 .env
+cert.crt
+cert.key

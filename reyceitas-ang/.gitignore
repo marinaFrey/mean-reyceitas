@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
+./cert.crt
+./cert.key
 
 # Node
 /node_modules

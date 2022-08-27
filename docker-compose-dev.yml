@@ -1,0 +1,36 @@
+
+version: '3' # Docker Compose Version
+
+services:
+  angular:
+    profiles:
+      - dontStart
+  angular-dev:
+    container_name: ANGULAR_DEV
+    build: 
+      context: './reyceitas-ang'
+      args:
+        CLIENT_ID: $CLIENT_ID
+        CLIENT_SECRET: $CLIENT_SECRET
+        CALLBACK_URL: $CALLBACK_URL
+        PRIVATE_KEY: $PRIVATE_KEY
+        CERT: $CERT
+        PRIVATE_KEY_STR: $PRIVATE_KEY_STR
+        CERT_STR: $CERT_STR
+        API_URL: $API_URL
+      dockerfile: Dockerfile.dev
+    volumes:
+      #- ./reyceitas-ang/:/app
+      - /app
+      - /node_modules
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - server
+    links:
+      - server
+    ports:
+      - '4200:443'
+      - '4201:4201'
+    networks:
+      - app-network
