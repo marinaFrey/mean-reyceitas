@@ -1,4 +1,5 @@
 <div *ngIf="difficulty" class="difficulty-wrapper">
+    <p>Difficulty:</p>
     <div class="difficulty-container">
         <div *ngFor="let marker of markers" 
             [ngClass]="{'marked': marker}" class="difficulty-marker">

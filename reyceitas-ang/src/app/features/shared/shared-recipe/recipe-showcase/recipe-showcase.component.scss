@@ -1,0 +1,19 @@
+@import 'variables';
+
+:host {
+    .img-showcase-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%/3, max(64px, 100%/5)), 1fr));
+        grid-column-gap: 16px;
+        grid-row-gap: 16px;
+        @media only screen and  (max-width: $tablet-breakpoint) {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%/2, max(64px, 100%/4)), 1fr));
+        }
+        @media only screen and  (max-width: $mobile-breakpoint) {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%/1, max(64px, 100%/3)), 1fr));
+        }
+        @media only screen and  (max-width: $mobile-small-breakpoint) {
+            grid-template-columns: 1fr;
+        }
+      }
+}

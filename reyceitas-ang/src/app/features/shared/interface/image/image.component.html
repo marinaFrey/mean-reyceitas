@@ -1,5 +1,12 @@
-<img class="image" 
-    onerror="this.onerror=null; this.src='assets/images/img-placeholder.jpg'"
-    [ngStyle]="{'width': imageWidth ? imageWidth : 'auto', 
-                'height': imageHeight ? imageHeight : 'auto'}"
-    [src]="getImageUrl()" />
+<div class="parent">
+    <div class="img-container" [ngClass]="{'with-shadow': description}">
+    
+    <img class="image" 
+        onerror="this.onerror=null; this.src='assets/images/img-placeholder.jpg'"
+        [ngStyle]="{'width': imageWidth ? imageWidth : '-webkit-fill-available', 
+                    'height': imageHeight ? imageHeight : '-webkit-fill-available'}"
+        [src]="getImageUrl()" />
+    <div *ngIf="description" class="image-description">{{description}}</div>
+</div>
+</div>
+

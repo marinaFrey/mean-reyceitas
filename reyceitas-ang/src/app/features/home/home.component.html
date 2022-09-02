@@ -6,4 +6,7 @@
     <button mat-flat-button color="accent" [routerLink]="['/recipes/new']">
         <mat-icon>add</mat-icon> Add new recipe
     </button>
+
+    <app-recipe-showcase *ngIf="recipes$ | async as recipes" [recipes]="recipes"></app-recipe-showcase>
 </div>
+

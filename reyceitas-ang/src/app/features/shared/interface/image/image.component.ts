@@ -11,6 +11,7 @@ export class ImageComponent implements OnInit {
   @Input() imageWidth: string | undefined;
   @Input() imageHeight: string | undefined;
   @Input() getFromServer: boolean = true;
+  @Input() description: string | undefined;
 
   constructor() { }
 

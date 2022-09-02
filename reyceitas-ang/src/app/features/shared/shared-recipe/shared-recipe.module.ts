@@ -6,16 +6,18 @@ import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { InterfaceModule } from '../interface/interface.module';
 import { TagsComponent } from './tags/tags.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipeShowcaseComponent } from './recipe-showcase/recipe-showcase.component';
 
 const components = [
   DifficultyComponent,
   RecipeCardComponent,
   TagsComponent,
-  RecipeListComponent
+  RecipeListComponent,
+  RecipeShowcaseComponent
 ]
 
 @NgModule({
-  declarations: [components],
+  declarations: [components ],
   exports: [components],
   imports: [
     CommonModule,

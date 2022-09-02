@@ -1,0 +1,9 @@
+<div class="img-showcase-container">
+    <app-image *ngFor="let recipe of recipes" 
+        (click)="goToRecipe(recipe)"
+        class="child clickable" 
+        [imageUrl]="getPicture(recipe)" 
+        imageHeight="350px"
+        description="{{recipe.title}}">
+    </app-image>
+</div>
