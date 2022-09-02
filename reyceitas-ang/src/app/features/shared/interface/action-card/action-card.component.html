@@ -1,0 +1,9 @@
+<div class="action-banner gradient-shadow">
+    <div class="flex-col gapped">
+        <img src="{{imageUrl}}"/>
+        <p *ngIf="description">{{description}}</p>
+        <button mat-flat-button color="{{buttonColor}}" (click)="clicked.emit()">
+            <mat-icon *ngIf="buttonIcon">{{buttonIcon}}</mat-icon> {{buttonText}}
+        </button>
+    </div>
+</div>

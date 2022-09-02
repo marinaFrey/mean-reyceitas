@@ -7,16 +7,18 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { ImageComponent } from './image/image.component';
+import { ActionCardComponent } from './action-card/action-card.component';
 
 const components = [
   ImageCarouselComponent,
   ImageUploadComponent,
   DropdownComponent,
-  ImageComponent
+  ImageComponent,
+  ActionCardComponent
 ]
 
 @NgModule({
-  declarations: [components, ],
+  declarations: [components],
   exports: [components],
   imports: [
     CommonModule,

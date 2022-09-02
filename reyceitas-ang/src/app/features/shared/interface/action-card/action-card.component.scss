@@ -1,0 +1,18 @@
+:host {
+    .action-banner {
+        display: flex;
+        gap: var(--space);
+        padding: var(--space);
+        background-color: white;
+        flex-direction: column;
+        align-self: center;
+        max-width: calc(350px + var(--space) * 2);
+        cursor: pointer;
+
+        img {
+            max-width: 350px;
+            width: 100%;
+            align-self: center;
+        }
+    }
+}

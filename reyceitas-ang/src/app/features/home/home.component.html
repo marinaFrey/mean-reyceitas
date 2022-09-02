@@ -1,12 +1,26 @@
 <div class="home-container">
-    
-    <button mat-flat-button color="primary" [routerLink]="['/recipes']">
-        <mat-icon>menu_book</mat-icon> Check recipes
-    </button>
-    <button mat-flat-button color="accent" [routerLink]="['/recipes/new']">
-        <mat-icon>add</mat-icon> Add new recipe
-    </button>
 
+    <div class="welcome-banner">
+        <h1>Welcome to Reyceitas</h1>
+    </div>
+
+    <div class="action-banners-container">
+        <app-action-card [routerLink]="['/recipes']"
+            imageUrl="assets/images/check-recipes.jpg"
+            description="Want to see our special recipes? Check our full list here."
+            buttonIcon="menu_book"
+            buttonText="Check recipes">
+        </app-action-card>
+        <app-action-card *ngIf="isLoggedIn$ | async" [routerLink]="['/recipes/new']"
+            imageUrl="assets/images/add-recipe.jpg"
+            description="Want to share your cooking secrets? Add a recipe."
+            buttonIcon="add"
+            buttonText="Add new recipe"
+            buttonColor="accent">
+        </app-action-card>
+    </div>
+
+    <h2>Featured Recipes</h2>
     <app-recipe-showcase *ngIf="recipes$ | async as recipes" [recipes]="recipes"></app-recipe-showcase>
 </div>
 

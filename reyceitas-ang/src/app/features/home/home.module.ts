@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { MaterialModule } from '../shared/material/material.module';
 import { SharedRecipeModule } from '../shared/shared-recipe/shared-recipe.module';
+import { InterfaceModule } from '../shared/interface/interface.module';
 
 
 
@@ -15,7 +16,8 @@ import { SharedRecipeModule } from '../shared/shared-recipe/shared-recipe.module
     CommonModule,
     HomeRoutingModule,
     MaterialModule,
-    SharedRecipeModule
+    SharedRecipeModule,
+    InterfaceModule
   ]
 })
 export class HomeModule { }

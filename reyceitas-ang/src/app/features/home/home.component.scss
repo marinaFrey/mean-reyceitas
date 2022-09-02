@@ -1,3 +1,5 @@
+@import 'variables';
+
 :host {
     width: 100%;
     
@@ -7,4 +9,27 @@
         gap: var(--space);
         flex-direction: column;
     } 
+
+    .welcome-banner {
+        display: flex;
+        padding: var(--space);
+        border: 2px solid var(--color-primary);
+        color: var(--color-primary);
+        text-align: center;
+        align-self: center;
+        margin: var(--space);
+        text-transform: uppercase;
+    }
+
+    .action-banners-container {
+        display: flex;
+        gap: var(--space);
+        justify-content: center;
+        align-items: center;
+        @media only screen and  (max-width: $mobile-breakpoint) {
+            flex-direction: column;
+        }
+
+    }
+    
 }
