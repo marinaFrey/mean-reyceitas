@@ -7,8 +7,7 @@ const app = express();
 const http = require('http');
 const https = require('https');
 
-const verifyJWT = require('./config/auth');
-const seeds = require('./seeds/base');
+const { verifyJWT, verifyAdmin } = require('./config/auth');
 
 const recipes = require('./routes/recipes');
 const tags= require('./routes/tags');
@@ -21,6 +20,11 @@ const units = require('./routes/units');
 const unitTypes = require('./routes/unitTypes');
 const users = require('./routes/users');
 const images = require('./routes/images');
+const userGroups = require('./routes/userGroups');
+const recipeAccesses = require('./routes/recipeAccess');
+const userFavoriteRecipes = require('./routes/userFavoriteRecipes');
+const adminEmails = require('./routes/adminEmails');
+
 const serveStatic = require('serve-static')
 
 app.use(bodyParser.json());
@@ -38,6 +42,10 @@ app.use('/api/nutrients', nutrients);
 app.use('/api/tags', tags);
 app.use('/db', dbs);
 app.use('/auth', users);
+app.use('/user-groups', userGroups);
+app.use('/recipe-access', recipeAccesses);
+app.use('/user-favorite-recipes', userFavoriteRecipes);
+app.use('/admin-emails', adminEmails);
 app.use('/img/', images);
 app.use('/uploads', serveStatic('/uploads'));
   
