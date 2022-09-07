@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors');
-const { json } = require('body-parser');
 const router = express.Router();
 const {OAuth2Client} = require('google-auth-library');
 const jwt = require('jsonwebtoken');

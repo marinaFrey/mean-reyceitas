@@ -84,47 +84,17 @@ router.post('/new',[verifyJWT, jsonParser],(req, res) => {
 });
 
 router.put('/edit/:id',[verifyJWT, jsonParser], (req, res) => {
-  const newData = { 
-    title: req.body.title,
-    createdBy: req.body.createdBy,
-    servings: req.body.servings,
-    ingredients: req.body.ingredients, 
-    pictures: req.body.pictures,
-    isPublic: req.body.isPublic,
-    difficulty: req.body.difficulty,
-    tags: req.body.tags,
-    instructions: req.body.instructions
-  };
-
-  Recipe.findOneAndUpdate({ _id: req.params.id }, newData, { new: true })
-    .then(newRecipe => {
-      res.json(newRecipe ); //Returning only the id
+  Recipe.edit(req.params.id, req.body)
+    .then(recipe => {
+      res.json(recipe);
     })
-    .catch(error => res.status(500).json(error));
+    .catch(error => {
+      return res.status(500).json(error)
+    });
 });
 
 router.get('/get/:id', jsonParser, (req, res) => {
-  Recipe.findOne({ _id: req.params.id })
-    .populate('createdBy')
-    .populate('tags')
-    .populate({
-      path:'ingredients.unit',
-      populate: {
-        path: "unitType"
-      },
-      model: 'unit'
-    })
-    .populate({
-      path:'ingredients.food',
-      populate: {
-        path: "foodType"
-      },
-      model: 'food'
-    })
-    .populate({
-      path:'instructions.instructionType',
-      model: 'instructionType'
-    })
+  Recipe.load(req.params.id)
     .then(recipe => {
       res.json(recipe);
     })
@@ -133,7 +103,7 @@ router.get('/get/:id', jsonParser, (req, res) => {
 
 
 router.delete('/delete/:id', jsonParser, (req, res) => {
-  Recipe.findOneAndDelete({ _id: req.params.id })
+  Recipe.delete(req.params.id)
     .then(recipe => {
       res.json(recipe);
     })
