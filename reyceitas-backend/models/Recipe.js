@@ -21,6 +21,7 @@ const recipeSchema = new Schema({
     details: String
   }],
   tags: [ { type: Schema.Types.ObjectId, ref: Tag, index: true } ],
+  isPublic:   { type: Boolean, default: true },
   instructions: [{
     description: String,
     instructionType: { type: Schema.Types.ObjectId, ref: InstructionType },

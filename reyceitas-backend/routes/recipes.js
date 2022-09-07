@@ -66,6 +66,7 @@ router.post('/new',[verifyJWT, jsonParser],(req, res) => {
     servings: req.body.servings,
     ingredients: req.body.ingredients, 
     difficulty: req.body.difficulty,
+    isPublic: req.body.isPublic,
     pictures: req.body.pictures,
     tags: req.body.tags,
     instructions: req.body.instructions
@@ -73,8 +74,8 @@ router.post('/new',[verifyJWT, jsonParser],(req, res) => {
 
   newRecipe
     .save()
-    .then(unitType => {
-      res.json(unitType);
+    .then(recipe => {
+      res.json(recipe);
     })
     .catch(error => {
       console.log(error)
@@ -89,6 +90,7 @@ router.put('/edit/:id',[verifyJWT, jsonParser], (req, res) => {
     servings: req.body.servings,
     ingredients: req.body.ingredients, 
     pictures: req.body.pictures,
+    isPublic: req.body.isPublic,
     difficulty: req.body.difficulty,
     tags: req.body.tags,
     instructions: req.body.instructions
