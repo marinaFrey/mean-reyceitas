@@ -47,7 +47,8 @@ router.post("/login", jsonParser, (req,res,next) => {
             email : payload['email'],
             profilePicture : payload['picture'],
             firstName : payload['given_name'],
-            lastName : payload['family_name']
+            lastName : payload['family_name'],
+            lastVisited : Date.now()
         }
         const user = await User.findOne({email: payload['email']}).exec()
         if(user){

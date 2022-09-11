@@ -11,6 +11,10 @@ const userGroupSchema = new Schema({
   groupWriteAccess:   { type: Boolean, default: false },
 });
 
-var userGroupModel = mongoose.model("userGroup", userGroupSchema);
+userGroupSchema.statics = {
+  getGroupsByUser: function(id){
+  }
+}
 
+var userGroupModel = mongoose.model("userGroup", userGroupSchema);
 module.exports = userGroupModel;
