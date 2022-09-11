@@ -28,7 +28,7 @@
                     </mat-form-field>
                 </td>
                 <td data-label="Name">
-                    934039
+                    {{userGroupForm.get('users')?.value?.length || 0}}
                 </td>
                 <td data-label="Can Alter Recipes">
                     <mat-checkbox class="example-margin" (change)="setHasChanges(userGroupForm)"
