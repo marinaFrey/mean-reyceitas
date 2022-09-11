@@ -5,59 +5,14 @@ const router = express.Router();
 
 var jsonParser = bodyParser.json()
  
-const FoodType = require('../models/FoodType');
+const foodTypeController = require('../controllers/foodTypes');
 
 router.use(cors());
-router.get('/', (req, res) => {
-  FoodType.find()
-    .then(foodTypes => {
-      res.json(foodTypes);
-    })
-    .catch(error => res.status(500).json(error));
-});
 
-router.post('/new', jsonParser,(req, res) => {
-  const newFoodType = new FoodType({
-    name: req.body.name
-  });
-
-  newFoodType
-    .save()
-    .then(foodType => {
-      res.json(foodType);
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
-});
-
-router.put('/edit/:id', jsonParser, (req, res) => {
-  const newData = { 
-    name: req.body.name
-  };
-
-  FoodType.findOneAndUpdate({ _id: req.params.id }, newData, { new: true })
-    .then(foodType => {
-      res.json(foodType);
-    })
-    .catch(error => res.status(500).json(error));
-});
-
-router.get('/get/:id', jsonParser, (req, res) => {
-  FoodType.findOne({ _id: req.params.id })
-    .then(foodType => {
-      res.json(foodType);
-    })
-    .catch(error => res.status(500).json(error));
-});
-
-
-router.delete('/delete/:id', jsonParser, (req, res) => {
-  FoodType.findOneAndDelete({ _id: req.params.id })
-    .then(foodType => {
-      res.json(foodType);
-    })
-    .catch(error => res.status(500).json(error));
-});
+router.get('/', foodTypeController.find)
+router.post('/new', jsonParser, foodTypeController.new)
+router.put('/edit/:id', jsonParser, foodTypeController.edit)
+router.get('/get/:id', jsonParser, foodTypeController.get)
+router.delete('/delete/:id', jsonParser, foodTypeController.delete)
 
 module.exports = router;
