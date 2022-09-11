@@ -50,32 +50,23 @@ router.post("/login", jsonParser, (req,res,next) => {
             lastName : payload['family_name'],
             lastVisited : Date.now()
         }
-        const user = await User.findOne({email: payload['email']}).exec()
-        if(user){
-            user.update()
-                .then(user => {
-                    userDetails.id = user._id
-                    let token = jwt.sign(userDetails, process.env.CLIENT_SECRET, {expiresIn: 1440});
-                    res.status(200).json({ token: token, ...userDetails })
-                })
-                .catch(error => {
-                    res.status(500).json(error);
-                });
-        } else {
-            const newUser = new User({ 
+        var user = await User.findOne({email: payload['email']}).exec().catch()
+
+        if(!user){
+            user = new User({ 
                 ...userDetails,
                 source: payload['iss']
             })
-            newUser.insert()
-                .then(user => {
-                    userDetails.id = user._id
-                    let token = jwt.sign(userDetails, process.env.CLIENT_SECRET, {expiresIn: 1440});
-                    res.status(200).json({ token: token, ...userDetails })
-                })
-                .catch(error => {
-                    res.status(500).json(error);
-                });
         }
+        user.save()
+        .then(user => {
+            userDetails.id = user._id
+            let token = jwt.sign(userDetails, process.env.CLIENT_SECRET, {expiresIn: 1440});
+            res.status(200).json({ token: token, ...userDetails })
+        })
+        .catch(error => {
+            res.status(500).json(error);
+        });
     }
     verify().catch((e) => {res.status(401).json({"Error":"Not authorized"})});
 })

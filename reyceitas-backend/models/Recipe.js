@@ -54,7 +54,6 @@ RecipeSchema.statics = {
   edit: function(id, body){
     const newData = { 
       title: body.title,
-      createdBy: body.createdBy,
       servings: body.servings,
       ingredients: body.ingredients, 
       pictures: body.pictures,
@@ -75,7 +74,7 @@ RecipeSchema.statics = {
   },
   load: function(_id){
     return this.findOne({ _id })
-      .populate('createdBy')
+      .populate('createdBy', 'firstName lastName profilePicture')
       .populate('tags')
       .populate({
         path:'ingredients.unit',
