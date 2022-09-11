@@ -1,7 +1,10 @@
+import { User } from "./user.model";
+
 export interface UserGroup {
     _id: string;
     name: string;
     createdBy: string;
+    users: User[];
     recipeWriteAccess: boolean;
     groupWriteAccess: boolean;
 }

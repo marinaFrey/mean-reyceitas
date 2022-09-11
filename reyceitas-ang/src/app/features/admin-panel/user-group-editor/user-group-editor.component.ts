@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { UserGroup } from '@models/user/user-group.model';
+import { AlertService } from '@services/alert.service';
 import { UserManagementService } from '@services/user-management.service';
-import { map, take } from 'rxjs';
+import { catchError, forkJoin, map, take } from 'rxjs';
 
 @Component({
   selector: 'app-user-group-editor',
@@ -15,15 +16,40 @@ export class UserGroupEditorComponent implements OnInit {
   userGroupsFormArray: FormArray = this.fb.array([]);
 
   constructor(private userService: UserManagementService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private alert: AlertService) { }
 
   ngOnInit(): void {
-    this.userService.getUserGroups().pipe(
-      take(1),
-      map(userGroups => {
-        this.userService.populateUserGroupForm(userGroups, this.userGroupsFormArray)
-      })
-    ).subscribe()
+    this.getUserGroups();
+  }
+
+  submit(): void {
+    if(this.userGroupsFormArray.invalid) {
+      this.alert.error('invalid form')
+      return;
+    }
+    let changes = [];
+    for (let userGroup of this.userGroupsFormArray.controls) {
+      if (userGroup instanceof FormGroup) {
+        const value = userGroup?.value;
+        if(value.hasChanges) {
+          if(!value._id)
+            changes.push(this.userService.newUserGroup(value));
+          else
+            changes.push(this.userService.editUserGroup(value));
+        }
+      }
+   }
+   console.log(changes)
+   if(changes.length) {
+    forkJoin(changes)
+      .pipe(take(1))
+      .subscribe((changes) => {
+        console.log(changes)
+        this.alert.success('changes saved')
+        this.getUserGroups();
+      });
+   }
   }
 
   getFormGroup(userGroup: any) {
@@ -36,6 +62,16 @@ export class UserGroupEditorComponent implements OnInit {
 
   addGroup(): void {
     this.userService.addUserGroup(null,this.userGroupsFormArray);
+  }
+
+  private getUserGroups(): void {
+    this.userGroupsFormArray = this.fb.array([]);
+    this.userService.getUserGroups().pipe(
+      take(1),
+      map(userGroups => {
+        this.userService.populateUserGroupForm(userGroups, this.userGroupsFormArray)
+      })
+    ).subscribe()
   }
 
 }

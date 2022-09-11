@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserGroupEditorComponent } from './user-group-editor/user-group-editor.component';
 
 @Component({
   selector: 'app-admin-panel-screen',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPanelScreenComponent implements OnInit {
 
+  @ViewChild('groupEditor') groupEditor!: UserGroupEditorComponent;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  saveAll(): void {
+    this.groupEditor?.submit();
   }
 
 }

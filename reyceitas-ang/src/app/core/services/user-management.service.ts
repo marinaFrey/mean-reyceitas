@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { AUTH_ENDPOINT } from '@constants/endpoints.constant';
+import { AUTH_ENDPOINT, USERGROUPS_ENDPOINT } from '@constants/endpoints.constant';
 import { RecipeAccess, RecipeGroupAccess, UserGroup } from '@models/user/user-group.model';
 import { User } from '@models/user/user.model';
 import { Observable, of } from 'rxjs';
@@ -18,18 +18,19 @@ export class UserManagementService {
     }
 
     getUserGroups(): Observable<UserGroup[]> {
-      return of( [
-        {_id: 'df5645df', name: 'familia pritsch', createdBy: 'fulaninho', 
-        recipeWriteAccess: true,groupWriteAccess: true},
-        {_id: 'df5645df', name: 'familia rey', createdBy: 'fulaninho', 
-        recipeWriteAccess: false,groupWriteAccess: false},
-        {_id: 'df5645df', name: 'amigos', createdBy: 'fulaninho', 
-        recipeWriteAccess: true,groupWriteAccess: false},
-        {_id: 'df5645df', name: 'conhecidos', createdBy: 'fulaninho', 
-        recipeWriteAccess: true,groupWriteAccess: true},
-        {_id: 'df5645df', name: 'creeps', createdBy: 'fulaninho', 
-        recipeWriteAccess: false,groupWriteAccess: true}
-      ])
+      return this.api.get<UserGroup[]>(`${USERGROUPS_ENDPOINT}`);
+    }
+
+    editUserGroup(userGroup: UserGroup): Observable<UserGroup> {
+      return this.api.put<UserGroup>(`${USERGROUPS_ENDPOINT}/edit/${userGroup._id}`, userGroup)
+    }
+
+    newUserGroup(userGroup: UserGroup): Observable<UserGroup> {
+      return this.api.post<UserGroup>(`${USERGROUPS_ENDPOINT}/new`, userGroup)
+    }
+
+    deleteUserGroup(index: string): Observable<UserGroup> {
+      return this.api.delete<UserGroup>(`${USERGROUPS_ENDPOINT}/delete/${index}`)
     }
 
     getUserGroupAccess(recipeId: number | null): Observable<RecipeGroupAccess[]> {

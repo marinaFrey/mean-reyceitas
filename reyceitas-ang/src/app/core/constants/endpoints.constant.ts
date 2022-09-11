@@ -5,5 +5,6 @@ export const INSTRUCTIONSTYPE_ENDPOINT = '/api/instruction-types';
 export const UNITS_ENDPOINT = '/api/units';
 export const UNITTYPES_ENDPOINT = '/api/unit-types';
 export const TAGS_ENDPOINT = '/api/tags';
-export const AUTH_ENDPOINT = '/auth'
+export const AUTH_ENDPOINT = '/auth';
+export const USERGROUPS_ENDPOINT = '/user-groups';
 export const VALIDATE_TOKEN_ENDPOINT = '/token-validate';

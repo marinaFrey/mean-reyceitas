@@ -3,9 +3,11 @@ import { HttpInterceptor, HttpEvent, HttpResponse, HttpRequest, HttpHandler, Htt
 import {Observable, throwError} from 'rxjs';
 import {catchError} from "rxjs/operators";
 import { AUTH_TOKEN_KEY } from '@constants/cookies.constant';
+import { AlertService } from '@services/alert.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
+  constructor(private alert: AlertService) {}
 
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const API_KEY = localStorage.getItem(AUTH_TOKEN_KEY) ?? ''; 
@@ -26,7 +28,7 @@ export class RequestInterceptor implements HttpInterceptor {
         console.log('This is server side error');
         errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
     }
-    console.log(errorMsg);
+    this.alert.error(errorMsg);
     return throwError(() => error);
   }
 }

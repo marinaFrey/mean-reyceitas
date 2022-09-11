@@ -6,7 +6,7 @@
             User Management
           </ng-template>
           <div class="tab-container">
-            <app-user-group-editor></app-user-group-editor>
+            <app-user-group-editor #groupEditor></app-user-group-editor>
             <app-user-management></app-user-management>
           </div>
           
@@ -42,7 +42,7 @@
 </div>
 
 <div class="save-floating-button">
-  <button mat-flat-button color="primary" >
+  <button mat-flat-button color="primary" (click)="saveAll()">
       <mat-icon>save</mat-icon> Save
   </button>
 </div>
