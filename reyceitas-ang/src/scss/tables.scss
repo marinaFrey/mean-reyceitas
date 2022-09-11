@@ -5,8 +5,7 @@
 }
 
 .management-table {
-    border-radius: 5px;
-    font-size: 12px;
+    border-radius: var(--border-radius);
     font-weight: normal;
     border: none;
     border-collapse: collapse;
@@ -16,10 +15,15 @@
     background-color: var(--color-background);
     border: 1px solid var(--color-primary);
 
+    mat-form-field {
+        width: 100%;
+    }
+
     th {
         background: var(--color-primary);
         color: white;
         text-transform: uppercase;
+        min-width: 50px;
     }
 
     td,  th {
@@ -32,4 +36,32 @@
         background: var(--color-background-darker);
     }
 
+}
+
+@media only screen and  (max-width: $mobile-breakpoint) {
+    td, tr { display: block; }
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    tr + tr { margin-top: 1.5em; }
+    td {
+      /* make like a "row" */
+      border: none;
+      position: relative;
+      padding-left: 50%;
+      text-align: left;
+      display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    td:before {
+      content: attr(data-label);
+      display: inline-block;
+      line-height: 1.5;
+      white-space: nowrap;
+      font-weight: bold;
+    }
 }
