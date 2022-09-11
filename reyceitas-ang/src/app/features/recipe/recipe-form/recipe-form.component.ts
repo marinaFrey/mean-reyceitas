@@ -39,7 +39,8 @@ export class RecipeFormComponent implements OnInit {
       instructions: this.formBuilder.array([]),
       pictures: this.formBuilder.array([]),
       tags: this.formBuilder.array([]),
-      notes: [this.recipe?.notes]
+      notes: [this.recipe?.notes],
+      isPublic: [this.recipe?.isPublic ?? true]
     });
   }
 

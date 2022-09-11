@@ -2,7 +2,7 @@ import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/an
 import { Injectable } from '@angular/core';
 import { AUTH_TOKEN_KEY } from '@constants/cookies.constant';
 import { AUTH_ENDPOINT, VALIDATE_TOKEN_ENDPOINT } from '@constants/endpoints.constant';
-import { User } from '@models/user.model';
+import { User } from '@models/user/user.model';
 import { BehaviorSubject, lastValueFrom, map, Observable, of, switchMap } from 'rxjs';
 import { ApiService } from './api.service';
 

@@ -1,0 +1,49 @@
+<div class="flex-col gapped">
+    <h2>User Groups</h2>
+    <div class="gradient-shadow">
+        <table class="management-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Member count</th>
+                    <th><mat-icon>edit</mat-icon></th>
+                    <th><mat-icon>group_add</mat-icon></th>
+                  </tr>
+            </thead>
+            
+            <tr *ngFor="let userGroupForm of userGroupsFormArray.controls; let i = index" 
+                [formGroup]="getFormGroup(userGroupForm)">
+                <td data-label="Status">
+                    <mat-icon *ngIf="!userGroupForm.get('_id')?.value || 
+                        userGroupForm.get('hasChanges')?.value" 
+                        class="has-changes-icon">
+                        {{!userGroupForm.get('_id')?.value ? 'library_add': 'edit_square'}}
+                    </mat-icon>
+                </td>
+                <td data-label="Name">
+                    <mat-form-field appearance="outline">
+                        <input matInput type='text' formControlName="name" 
+                            (change)="setHasChanges(userGroupForm)">
+                    </mat-form-field>
+                </td>
+                <td data-label="Name">
+                    934039
+                </td>
+                <td data-label="Can Alter Recipes">
+                    <mat-checkbox class="example-margin" (change)="setHasChanges(userGroupForm)"
+                        formControlName="recipeWriteAccess">
+                    </mat-checkbox>
+                </td>
+                <td data-label="Can Add Groups">
+                    <mat-checkbox class="example-margin" (change)="setHasChanges(userGroupForm)"
+                        formControlName="groupWriteAccess">
+                    </mat-checkbox>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <button mat-flat-button color="primary" (click)="addGroup()">
+        <mat-icon class="add-button">add</mat-icon> New Group
+    </button>
+</div>

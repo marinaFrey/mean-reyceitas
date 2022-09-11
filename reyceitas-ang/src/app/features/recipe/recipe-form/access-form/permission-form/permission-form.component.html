@@ -1,0 +1,33 @@
+<div *ngIf="userGroupsFormArray.controls.length" class="flex-col gapped">
+    <div class="gradient-shadow">
+        <table class="management-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th><mat-icon>visibility</mat-icon></th>
+                    <th><mat-icon>edit</mat-icon></th>
+                  </tr>
+            </thead>
+            
+            <tr *ngFor="let userGroupForm of userGroupsFormArray.controls; let i = index" 
+                [formGroup]="getFormGroup(userGroupForm)">
+                <td data-label="Name">
+                    {{userGroupForm.get('name')?.value}}
+                </td>
+                <td data-label="Can View">
+                    <mat-checkbox class="example-margin"
+                        formControlName="canView"
+                        (change)="canViewChecked($event.checked, userGroupForm)">
+                    </mat-checkbox>
+                </td>
+                <td data-label="Can Alter">
+                    <mat-checkbox class="example-margin"
+                        formControlName="canEdit"
+                        (change)="canEditChecked($event.checked, userGroupForm)">
+                    </mat-checkbox>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>

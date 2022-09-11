@@ -19,6 +19,8 @@ import { TagsFormComponent } from './recipe-form/tags-form/tags-form.component';
 import { AuthGuard } from '@guards/auth.guard';
 import { SharedRecipeModule } from '../shared/shared-recipe/shared-recipe.module';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
+import { AccessFormComponent } from './recipe-form/access-form/access-form.component';
+import { PermissionFormComponent } from './recipe-form/access-form/permission-form/permission-form.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
     ServingsComponent,
     IngredientsComponent,
     TagsFormComponent,
-    RecipeSearchComponent
+    RecipeSearchComponent,
+    PermissionFormComponent,
+    AccessFormComponent
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,7 @@ export interface Recipe {
     
     title: string;
     servings: number;
+    isPublic?: boolean;
 
     ingredients?: Ingredient[];
     instructions?: Instruction[];

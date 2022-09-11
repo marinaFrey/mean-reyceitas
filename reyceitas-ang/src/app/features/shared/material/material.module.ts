@@ -14,6 +14,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSliderModule} from '@angular/material/slider'
 
 const materialModules = [
   MatToolbarModule,
@@ -29,7 +32,10 @@ const materialModules = [
   MatProgressBarModule,
   MatDividerModule,
   MatChipsModule,
-  MatTabsModule
+  MatTabsModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatSliderModule
 ]
 
 @NgModule({

@@ -22,8 +22,7 @@
         .header {
             background: var(--color-primary);
             color: white;
-            padding-right: var(--space);
-            padding-left: var(--space);
+            padding: var(--space-small) var(--space);
             margin: calc(-1 * var(--space));
             -moz-border-radius-topright:var(--border-radius);
             -moz-border-radius-topleft:var(--border-radius);
