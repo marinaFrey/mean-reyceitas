@@ -25,7 +25,8 @@ export class UserGroupEditorComponent implements OnInit {
 
   submit(): void {
     if(this.userGroupsFormArray.invalid) {
-      this.alert.error('invalid form')
+      this.alert.error('invalid form');
+      this.userGroupsFormArray.markAllAsTouched();
       return;
     }
     let changes = [];
@@ -40,16 +41,29 @@ export class UserGroupEditorComponent implements OnInit {
         }
       }
    }
-   console.log(changes)
+
    if(changes.length) {
     forkJoin(changes)
       .pipe(take(1))
       .subscribe((changes) => {
-        console.log(changes)
         this.alert.success('changes saved')
         this.getUserGroups();
       });
    }
+  }
+
+  deleteGroup(userGroup: FormGroup, formArrayIndex: number) {
+    const value = userGroup?.value;
+    this.userGroupsFormArray.removeAt(formArrayIndex)
+    if(value?._id) {
+      this.userService.deleteUserGroup(value._id)
+        .subscribe(() => {
+          this.alert.success(`group '${value.name}' deleted permanently`);
+        })
+    }
+    else {
+      this.alert.success(`new group '${value.name}' was removed`)
+    }
   }
 
   getFormGroup(userGroup: any) {

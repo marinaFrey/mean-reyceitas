@@ -7,27 +7,34 @@
                     <th>Picture</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Last Seen</th>
-                    <th>Deactivate</th>
+                    <th>Groups</th>
+                    <th><mat-icon>delete</mat-icon></th>
                   </tr>
             </thead>
             
-            <tr *ngFor="let user of users; let i = index">
+            <tr *ngFor="let userForm of usersFormArray.controls; let i = index" 
+                [formGroup]="getFormGroup(userForm)">
                 <td data-label="Picture">
-                    <app-image [imageUrl]="user?.profilePicture" 
+                    <app-image [imageUrl]="userForm?.get('profilePicture').value" 
                         [getFromServer]="false" 
                         imageWidth="50px">
                     </app-image>
                 </td>
                 <td data-label="Name">
-                    {{ user.firstName }} {{ user.lastName }}
+                    {{ userForm?.get('fullName').value }}
                 </td>
                 <td data-label="Email">
-                    {{ user.email }}
+                    {{ userForm?.get('email').value }}
                 </td>
-                <td data-label="Last Seen">
-                   {{ user.lastSeen }}
-                </td>
+                <td data-label="Groups">
+                    <mat-form-field *ngIf="groups" appearance="outline">
+                        <mat-select formControlName="groups" multiple>
+                            <mat-option *ngFor="let group of groups" [value]="group._id">
+                                {{group.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td> 
                 <td data-label="Deactivate">
                     <button mat-mini-fab color="warn" >
                         <mat-icon>delete</mat-icon>

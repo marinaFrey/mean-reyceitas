@@ -45,6 +45,11 @@ export class UserManagementService {
 
     addUser(user: User, formArray: FormArray) {
         const userForm = this.formBuilder.group({
+          _id: [user?._id],
+          profilePicture: [user?.profilePicture],
+          fullName: [`${user?.firstName} ${user?.lastName}`],
+          email: [user?.email],
+          groups: []
         });
     
         formArray.push(userForm);

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { UserGroup } from '@models/user/user-group.model';
 import { User } from '@models/user/user.model';
 import { UserManagementService } from '@services/user-management.service';
-import { map, take } from 'rxjs';
+import { forkJoin, map, take } from 'rxjs';
 
 @Component({
   selector: 'app-user-management',
@@ -12,19 +14,36 @@ import { map, take } from 'rxjs';
 export class UserManagementComponent implements OnInit {
 
   users: User[] = [];
-  groups: any[] = [];
+  usersFormArray: FormArray = this.fb.array([]);
+  groups: UserGroup[] = [];
 
-  constructor(private userService: UserManagementService) { }
+  constructor(private userService: UserManagementService,
+              private fb: FormBuilder,) { }
 
   ngOnInit(): void {
     this.getUsers();
   }
 
-  getUsers(): void {
-    this.userService.getUsers().pipe(
-      take(1),
-      map((users => this.users = users))
-    ).subscribe()
+  submit(): void {
+
+  }
+
+  deactivateUser(): void {
+    
+  }
+
+  getFormGroup(userGroup: any) {
+    return userGroup as FormGroup;
+  }
+
+  private getUsers(): void {
+    forkJoin({
+      users: this.userService.getUsers(),
+      groups: this.userService.getUserGroups()
+    }).pipe(take(1)).subscribe((({users, groups}) => {
+      this.userService.populateUserForm(users, this.usersFormArray)
+      this.groups = groups;
+    }))
   }
 
 }

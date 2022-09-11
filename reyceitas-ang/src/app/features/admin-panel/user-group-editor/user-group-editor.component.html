@@ -9,6 +9,7 @@
                     <th>Member count</th>
                     <th><mat-icon>edit</mat-icon></th>
                     <th><mat-icon>group_add</mat-icon></th>
+                    <th><mat-icon>delete</mat-icon></th>
                   </tr>
             </thead>
             
@@ -39,6 +40,11 @@
                     <mat-checkbox class="example-margin" (change)="setHasChanges(userGroupForm)"
                         formControlName="groupWriteAccess">
                     </mat-checkbox>
+                </td>
+                <td data-label="Delete Group">
+                    <button mat-mini-fab color="warn" (click)="deleteGroup(userGroupForm, i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </td>
             </tr>
         </table>
