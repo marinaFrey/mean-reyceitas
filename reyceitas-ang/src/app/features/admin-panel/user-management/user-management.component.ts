@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '@models/user.model';
+import { User } from '@models/user/user.model';
 import { UserManagementService } from '@services/user-management.service';
 import { map, take } from 'rxjs';
 
@@ -12,6 +12,7 @@ import { map, take } from 'rxjs';
 export class UserManagementComponent implements OnInit {
 
   users: User[] = [];
+  groups: any[] = [];
 
   constructor(private userService: UserManagementService) { }
 

@@ -1,0 +1,32 @@
+<div class="flex-col gapped" [formGroup]="form">
+    <h2>Access</h2>
+    <mat-radio-group class="flex-row gapped"
+        formControlName="isPublic"
+        aria-label="Select an access option">   
+        <div class="access-option-container"
+            [ngClass]="{'selected gradient-shadow': form.get('isPublic')?.value}">
+            <mat-radio-button [value]="true">
+                <div class="flex-row items-centered">
+                    <mat-icon>public</mat-icon>
+                    <h3>Public</h3>
+                </div>
+                
+                <p>Everyone can see your recipe</p>
+            </mat-radio-button>
+            
+        </div>
+        <div class="access-option-container" 
+            [ngClass]="{'selected gradient-shadow': !form.get('isPublic')?.value}">
+            <mat-radio-button [value]="false">
+                <div class="flex-row items-centered">
+                    <mat-icon>lock</mat-icon>
+                    <h3>Private</h3>
+                </div>
+                <p>Only you and users from selected groups can access</p>
+            </mat-radio-button>
+        </div>
+    </mat-radio-group>
+
+    <app-permission-form [isPublic]="form.get('isPublic')?.value" [form]="form"></app-permission-form>
+
+</div>

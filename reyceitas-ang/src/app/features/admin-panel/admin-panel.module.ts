@@ -8,6 +8,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { AdminPanelRoutingModule } from './admin-panel-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InterfaceModule } from '../shared/interface/interface.module';
+import { UserGroupEditorComponent } from './user-group-editor/user-group-editor.component';
 
 
 
@@ -16,7 +17,8 @@ import { InterfaceModule } from '../shared/interface/interface.module';
     AdminPanelScreenComponent,
     TagEditorComponent,
     DatabaseManagementComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    UserGroupEditorComponent
   ],
   imports: [
     CommonModule,

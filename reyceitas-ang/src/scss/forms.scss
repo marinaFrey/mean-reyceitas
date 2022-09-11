@@ -52,6 +52,7 @@
     padding: var(--space) 0;
     background-color: var(--color-background);
     justify-content: center;
+    z-index: 100;
 
     button {
         width: calc(100% - var(--space)*2);

@@ -1,3 +1,10 @@
 :host {
     width: 100%;
+
+    .tab-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space);
+        overflow-x: clip;
+    }
 }

@@ -5,7 +5,11 @@
             <mat-icon class="example-tab-icon">manage_accounts</mat-icon>
             User Management
           </ng-template>
-          <app-user-management></app-user-management>
+          <div class="tab-container">
+            <app-user-group-editor></app-user-group-editor>
+            <app-user-management></app-user-management>
+          </div>
+          
         </mat-tab>
       
         <mat-tab>
@@ -35,4 +39,10 @@
           </mat-tab>
       </mat-tab-group>
     
+</div>
+
+<div class="save-floating-button">
+  <button mat-flat-button color="primary" >
+      <mat-icon>save</mat-icon> Save
+  </button>
 </div>

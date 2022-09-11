@@ -3,7 +3,7 @@
 html {
     /* Change default typefaces here */
     font-family: serif;
-    font-size: 137.5%;
+    font-size: 100%;
     -webkit-font-smoothing: antialiased;
   }
   /* Copy & Lists */
@@ -41,40 +41,33 @@ html {
   h6 {
     /* Change heading typefaces here */
     font-family: sans-serif;
-    margin-top: 1.5rem;
     margin-bottom: 0 !important;
     line-height: 1.5rem;
   }
   h1 {
-    font-size: 4.242rem;
-    line-height: 4.5rem;
-    margin-top: 3rem;
+    font-size: 2.242rem !important;
+    line-height: 2.5rem !important;
   }
   h2 {
-    font-size: 2.828rem;
-    line-height: 3rem;
-    margin-top: 3rem;
+    font-size: 1.828rem !important;
+    line-height: 2rem !important;
   }
   h3 {
-    font-size: 1.414rem;
+    font-size: 1.414rem !important;
   }
   h4 {
-    font-size: 0.707rem;
+    font-size: 0.707rem !important;
   }
   h5 {
-    font-size: 0.4713333333333333rem;
+    font-size: 0.4713333333333333rem !important;
   }
   h6 {
-    font-size: 0.3535rem;
+    font-size: 0.3535rem !important;
   }
   /* Tables */
   table {
     border-spacing: 0px;
     border-collapse: collapse;
-  }
-  /* Code blocks */
-  code {
-    vertical-align: bottom;
   }
   /* Leading paragraph text */
   .lead {

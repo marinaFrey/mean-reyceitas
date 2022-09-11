@@ -2,32 +2,35 @@
     <h2>Tags</h2>
     <div class="gradient-shadow">
         <table class="management-table">
-            <tr>
-              <th>Name</th>
-              <th>Color</th>
-              <th>Preview</th>
-              <th>Delete</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Color</th>
+                    <th>Preview</th>
+                    <th>Delete</th>
+                  </tr>
+            </thead>
+            
             <tr *ngFor="let tagForm of tagsFormArray.controls; let i = index" 
                 [formGroup]="getFormGroup(tagForm)">
-                <td>
+                <td data-label="Name">
                     <mat-form-field appearance="outline">
                         <input matInput type='text' formControlName="name">
                     </mat-form-field>
                 </td>
-                <td>
+                <td data-label="Color">
                     <div class="form-color-input" [ngStyle]="{'background-color': tagForm.get('color').value}">
                         <input type="color" formControlName="color"> 
                     </div>
                 </td>
-                <td>
+                <td data-label="Preview">
                     <mat-chip-list *ngIf="tagForm.get('name').value" class="centered" aria-label="recipe tags">
                         <mat-chip [ngStyle]="{'background-color': tagForm.get('color').value}">
                             {{tagForm.get('name').value}}
                         </mat-chip>
                     </mat-chip-list>
                 </td>
-                <td>
+                <td data-label="Delete">
                     <button mat-mini-fab color="warn" (click)="deleteTag(tagForm)">
                         <mat-icon>delete</mat-icon>
                     </button>
@@ -39,10 +42,4 @@
         <mat-icon class="add-button">add</mat-icon> New tag
     </button>
     
-</div>
-
-<div class="save-floating-button">
-    <button mat-flat-button color="primary" (click)="submit()" >
-        <mat-icon>save</mat-icon> Save
-    </button>
 </div>
