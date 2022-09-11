@@ -32,7 +32,7 @@ export class UserManagementService {
       ])
     }
 
-    getUserGroupAccess(): Observable<RecipeGroupAccess[]> {
+    getUserGroupAccess(recipeId: number | null): Observable<RecipeGroupAccess[]> {
       return of( [
         {_id: 'df5645df', name: 'familia pritsch', access: RecipeAccess.CAN_VIEW},
         {_id: 'df5645df', name: 'familia rey', access: RecipeAccess.CAN_VIEW},

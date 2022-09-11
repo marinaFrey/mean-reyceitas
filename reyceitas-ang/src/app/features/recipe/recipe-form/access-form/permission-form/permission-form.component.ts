@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { RecipeGroupAccess, UserGroup } from '@models/user/user-group.model';
 import { UserManagementService } from '@services/user-management.service';
@@ -9,16 +9,21 @@ import { map, take } from 'rxjs';
   templateUrl: './permission-form.component.html',
   styleUrls: ['./permission-form.component.scss']
 })
-export class PermissionFormComponent implements OnInit {
+export class PermissionFormComponent implements OnInit, OnChanges {
+  @Input() isPublic: boolean = false;
+  @Input() recipeId: number | null = null;
   @Input() form!: FormGroup;
-  @Input() userGroupsVisibility: RecipeGroupAccess[] = [];
-  // this should come prepopulated with all user groups. 
-  // if this is a new recipe, we should get all user groups.
   
   userGroupsFormArray: FormArray = this.fb.array([]);
 
   constructor(private userService: UserManagementService,
               private fb: FormBuilder) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['isPublic'].currentValue != changes['isPublic'].previousValue) {
+      this.setPublicVisibility();
+    }
+  }
 
   ngOnInit(): void {
     this.getUserGroups();
@@ -41,17 +46,26 @@ export class PermissionFormComponent implements OnInit {
   }
 
   private getUserGroups(): void {
-    if(this.userGroupsVisibility?.length) {
-      this.userService.populateUserGroupVisibilityForm(this.userGroupsVisibility, this.userGroupsFormArray);
-    }
-    else {
-      this.userService.getUserGroupAccess().pipe(
-        take(1),
-        map(userGroups => {
-          this.userService.populateUserGroupVisibilityForm(userGroups, this.userGroupsFormArray)
-        })
-      ).subscribe()
-    }
+    this.userService.getUserGroupAccess(this.recipeId).pipe(
+      take(1),
+      map(userGroups => {
+        this.userService.populateUserGroupVisibilityForm(userGroups, this.userGroupsFormArray)
+        this.setPublicVisibility();
+      })
+    ).subscribe()
+  }
+
+  private setPublicVisibility() {
+    for (let userGroup of this.userGroupsFormArray.controls) {
+      if (userGroup instanceof FormGroup) {
+        if(this.isPublic) {
+          userGroup.get('canView')?.setValue(true);
+          userGroup.get('canView')?.disable();
+        } else {
+          userGroup.get('canView')?.enable();
+        }
+      }
+   }
   }
 
 }
