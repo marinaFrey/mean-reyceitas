@@ -47,7 +47,8 @@ exports.new = function(req, res){
     isPublic: req.body.isPublic,
     pictures: req.body.pictures,
     tags: req.body.tags,
-    instructions: req.body.instructions
+    instructions: req.body.instructions,
+    notes: req.body.notes
   });
 
   newRecipe
