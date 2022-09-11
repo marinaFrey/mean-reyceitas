@@ -12,6 +12,8 @@ exports.new = function (req, res) {
   const newuserGroup = new UserGroup({
     name: req.body.name,
     users: req.body.users,
+    recipeWriteAccess: req.body.recipeWriteAccess,
+    groupWriteAccess: req.body.groupWriteAccess,
   });
 
   newuserGroup
@@ -28,6 +30,8 @@ exports.edit = function (req, res) {
   const newData = { 
     name: req.body.name,
     users: req.body.users,
+    recipeWriteAccess: req.body.recipeWriteAccess,
+    groupWriteAccess: req.body.groupWriteAccess,
   };
 
   UserGroup.findOneAndUpdate({ _id: req.params.id }, newData, { new: true })
