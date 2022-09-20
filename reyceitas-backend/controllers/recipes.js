@@ -1,14 +1,23 @@
 const Recipe = require('../models/Recipe');
 
+// For the specialized search
+const User = require('../models/User');
+const UserGroup = require('../models/UserGroup');
+const UserFavoriteRecipe = require('../models/UserFavoriteRecipe');
+const RecipeAccess = require('../models/RecipeAccess');
+
 const recipeShort =  'title createdAt createdBy difficulty servings pictures tags'
 
+//Parameters to add inside recipe: isFavorite, canEdit
 exports.searchByName = function(req, res){
+  //UserGroup.find().select('name').then(userGroups => {console.log(userGroups)})
+  //Recipe.find().select('title isPublic createdBy').then(userGroups => {console.log(userGroups)})
   if(req.params.name)
     searchParameters = { title: {$regex: req.params.name, $options: 'i'}}
   else
     searchParameters = {};
 
-  Recipe.find(searchParameters)
+  Recipe.find({ $and:[ searchParameters, { $or: [ {'isPublic': true}, {'createdBy': req.userId }] } ]})
     .select(recipeShort)
     .populate('tags')
     .then(recipes => {
@@ -38,6 +47,7 @@ exports.searchByTag = function(tag){
 
 
 exports.new = function(req, res){
+//  console.log(req.body)
   const newRecipe= new Recipe({ 
     title: req.body.title,
     createdBy: req.userId,
@@ -62,6 +72,7 @@ exports.new = function(req, res){
 }
 
 exports.edit = function (req, res) {
+//  console.log(req.body)
   Recipe.edit(req.params.id, req.body)
     .then(recipe => {
       res.json(recipe);
