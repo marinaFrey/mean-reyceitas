@@ -5,8 +5,8 @@ const User = require('./User');
 const Recipe = require('./Recipe');
 
 const userFavoriteRecipeSchema = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: User },
-  recipe : { type: Schema.Types.ObjectId, ref: Recipe } 
+  user: { type: Schema.Types.ObjectId, ref: User, required: true, index: true },
+  recipe : { type: Schema.Types.ObjectId, ref: Recipe, required: true, index: true } 
 });
 
 var userFavoriteRecipeModel = mongoose.model("userFavoriteRecipe", userFavoriteRecipeSchema);
