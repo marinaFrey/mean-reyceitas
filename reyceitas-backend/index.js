@@ -44,7 +44,7 @@ app.use('/db', dbs);
 app.use('/auth', users);
 app.use('/user-groups', userGroups);
 app.use('/recipe-access', recipeAccesses);
-app.use('/user-favorite-recipes', userFavoriteRecipes);
+app.use('/api/user-favorite-recipes',verifyJWT, userFavoriteRecipes);
 app.use('/admin-emails', adminEmails);
 app.use('/img/', images);
 app.use('/uploads', serveStatic('/uploads'));
