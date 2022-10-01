@@ -16,16 +16,27 @@ exports.searchByName = function(req, res){
     searchParameters = { title: {$regex: req.params.name, $options: 'i'}}
   else
     searchParameters = {};
+  UserFavoriteRecipe.find({user: req.userId }).select('recipe')
+  .then(userFavoriteRecipes => {
+    var userFavoriteRecipesList = []
+    userFavoriteRecipes.forEach(u => {userFavoriteRecipesList.push(u.recipe.toString())})
 
-  Recipe.find({ $and:[ searchParameters, { $or: [ {'isPublic': true}, {'createdBy': req.userId }] } ]})
-    .select(recipeShort)
-    .populate('tags')
-    .then(recipes => {
-      res.json(recipes);
-    })
-    .catch(error => {
-      return res.status(500).json(error);
-    });
+    Recipe.find({ $and:[ searchParameters, { $or: [ {'isPublic': true}, {'createdBy': req.userId }] } ]})
+      .select(recipeShort)
+      .populate('tags')
+      .then(recipes => {
+        var recipeList = []
+        recipes.forEach(recipe => {
+          const isFavorite = userFavoriteRecipesList?.includes(recipe._id.toString());
+          recipeList.push({isFavorite, ...recipe._doc })
+        })
+        res.json(recipeList);
+      })
+      .catch(error => {
+        return res.status(500).json(error);
+      });
+  })
+
 }
 
 exports.searchByTag = function(tag){

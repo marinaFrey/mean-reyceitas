@@ -1,7 +1,7 @@
 const UserFavoriteRecipe = require('../models/UserFavoriteRecipe');
 
 exports.find = function (req, res) {
-  UserFavoriteRecipe.find()
+  UserFavoriteRecipe.find({user: req.userId})
     .then(userFavoriteRecipes => {
       res.json(userFavoriteRecipes);
     })
