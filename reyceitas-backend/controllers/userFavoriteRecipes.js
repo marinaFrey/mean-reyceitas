@@ -8,6 +8,38 @@ exports.find = function (req, res) {
     .catch(error => res.status(500).json(error));
 }
 
+//Edit: PUT 
+//User from authorization header
+//Recipe from URL
+//Toggle from body ({toggle})
+
+exports.edit = function(req,res) {
+  const user = req.userId;
+  const recipe = req.params.id;
+  const toggle = req.body.toggle;
+  const userFavoriteRecipe = { user: user, recipe: recipe }
+
+  if(toggle === true){
+    const newuserFavoriteRecipe = new UserFavoriteRecipe(userFavoriteRecipe);
+    newuserFavoriteRecipe
+      .save()
+      .then(userFavoriteRecipe => {
+        res.json(userFavoriteRecipe);
+      })
+      .catch(error => {
+        res.status(400).json(error);
+      });
+  }
+
+  if(toggle === false){
+    UserFavoriteRecipe.findOneAndDelete(userFavoriteRecipe)
+      .then(userFavoriteRecipe => {
+        res.json(userFavoriteRecipe);
+      })
+      .catch(error => res.status(400).json(error));
+  }
+}
+
 exports.new = function (req, res) {
   const newuserFavoriteRecipe = new UserFavoriteRecipe({
     user: req.body.user,
