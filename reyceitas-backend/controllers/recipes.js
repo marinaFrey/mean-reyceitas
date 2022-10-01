@@ -85,7 +85,15 @@ exports.edit = function (req, res) {
 exports.get = function (req, res) {
   Recipe.load(req.params.id)
     .then(recipe => {
-      res.json(recipe);
+      UserFavoriteRecipe.findOne({user: req.userId, recipe: req.params.id })
+      .then(userFavoriteRecipe => {
+        var isFavorite;
+        if(userFavoriteRecipe)
+          isFavorite = true;
+        else
+          isFavorite = false;
+        res.json({isFavorite, ...recipe._doc } );
+      })
     })
     .catch(error => {
       return res.status(500).json(error)
