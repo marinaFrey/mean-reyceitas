@@ -1,0 +1,8 @@
+.star {
+    color: var(--color-neutral-light);
+    cursor: pointer;
+    
+    &.favorite {
+        color: var(--color-accent);
+    }
+}

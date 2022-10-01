@@ -4,7 +4,13 @@
     <div class="recipe-description">
         <div class="flex-col gapped">
             <div class="recipe-header">
-                <h2>{{recipe.title}}</h2>
+                <div class="flex-row gapped items-centered">
+                    <h2>{{recipe.title}}</h2>
+                    <mat-icon *ngIf="recipe.isFavorite" class="star" [ngClass]="{'favorite': recipe.isFavorite}">
+                        star
+                    </mat-icon>
+                </div>
+                
                 <div *ngIf="recipe.servings" class="servings-counter">
                     <mat-icon color="primary">people</mat-icon>
                     <p class="color-primary">{{recipe.servings}}</p>
