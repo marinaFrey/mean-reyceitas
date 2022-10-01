@@ -1,4 +1,5 @@
 export const RECIPES_ENDPOINT = '/api/recipes';
+export const RECIPES_FAVORITE_ENDPOINT = '/api/user-favorite-recipes'
 export const FOODS_ENDPOINT = '/api/foods';
 export const FOODTYPES_ENDPOINT = '/api/food-types';
 export const INSTRUCTIONSTYPE_ENDPOINT = '/api/instruction-types';

@@ -30,6 +30,15 @@
             }
         }
     }
+
+    .star {
+        color: var(--color-neutral-light);
+        cursor: pointer;
+        
+        &.favorite {
+            color: var(--color-accent);
+        }
+    }
     
     img {
         max-width: 500px;

@@ -40,7 +40,8 @@ export class RecipeFormComponent implements OnInit {
       pictures: this.formBuilder.array([]),
       tags: this.formBuilder.array([]),
       notes: [this.recipe?.notes],
-      isPublic: [this.recipe?.isPublic ?? true]
+      isPublic: [this.recipe?.isPublic ?? true],
+      groupAccess: this.formBuilder.array([])
     });
   }
 

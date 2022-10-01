@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FOODS_ENDPOINT, RECIPES_ENDPOINT, TAGS_ENDPOINT, UNITS_ENDPOINT } from '@constants/endpoints.constant';
+import { FOODS_ENDPOINT, RECIPES_ENDPOINT, RECIPES_FAVORITE_ENDPOINT, TAGS_ENDPOINT, UNITS_ENDPOINT } from '@constants/endpoints.constant';
 import { Food } from '@models/recipe/ingredient.model';
 import { Recipe, Tag } from '@models/recipe/recipe.model';
 import { Unit, UnitType } from '@models/recipe/unit.model';
@@ -31,6 +31,10 @@ export class RecipeService {
 
   deleteRecipe(index: string) {
     return this.api.delete(`${RECIPES_ENDPOINT}/delete/${index}`)
+  }
+
+  setRecipeFavorite(index: string, isFavorite: boolean) {
+    return this.api.put(`${RECIPES_FAVORITE_ENDPOINT}/toggle/${index}`,{ toggle: isFavorite });
   }
 
   getUnits(): Observable<Unit[]> {

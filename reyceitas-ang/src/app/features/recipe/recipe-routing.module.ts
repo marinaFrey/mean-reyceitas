@@ -11,12 +11,12 @@ const routes: Routes = [
     path: '', component: RecipeSearchComponent,
   },
   {
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     path: 'new', 
     component: RecipeAddComponent,
   },
   {
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     path: 'edit/:id', 
     component: RecipeEditComponent,
   },

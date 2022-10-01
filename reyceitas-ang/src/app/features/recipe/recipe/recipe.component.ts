@@ -26,6 +26,11 @@ export class RecipeComponent implements OnInit {
     this.getRecipe(id);
   }
 
+  toggleFavorite(): void {
+    this.recipe.isFavorite = this.recipe.isFavorite ? false : true;
+    this.recipeService.setRecipeFavorite(this.recipe?._id, this.recipe?.isFavorite).pipe(take(1)).subscribe();
+  }
+
   deleteRecipe(): void {
     this.recipeService.deleteRecipe(this.recipe._id)
       .pipe(take(1)).subscribe(() => {

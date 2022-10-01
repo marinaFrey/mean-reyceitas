@@ -13,8 +13,6 @@ export class PermissionFormComponent implements OnInit, OnChanges {
   @Input() isPublic: boolean = false;
   @Input() recipeId: number | null = null;
   @Input() form!: FormGroup;
-  
-  userGroupsFormArray: FormArray = this.fb.array([]);
 
   constructor(private userService: UserManagementService,
               private fb: FormBuilder) { }
@@ -27,6 +25,10 @@ export class PermissionFormComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getUserGroups();
+  }
+
+  get userGroupsFormArray() {
+    return this.form?.controls["groupAccess"] as FormArray;
   }
 
   getFormGroup(userGroup: any) {

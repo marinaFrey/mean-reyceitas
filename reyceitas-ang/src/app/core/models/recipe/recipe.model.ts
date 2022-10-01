@@ -17,6 +17,7 @@ export interface Recipe {
     notes?: string;
     tags?: Tag[];
     difficulty?: number;
+    isFavorite?: boolean;
 }
 
 export interface Tag {

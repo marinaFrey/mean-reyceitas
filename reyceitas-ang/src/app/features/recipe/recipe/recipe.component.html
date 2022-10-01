@@ -1,6 +1,11 @@
 <div *ngIf="recipe" class="recipe-container">
     <div class="header-container">
-        <h1>{{recipe.title}}</h1>
+        <div class="flex-row gapped items-centered">
+            <h1>{{recipe.title}}</h1>
+            <mat-icon class="star" [ngClass]="{'favorite': recipe.isFavorite}" (click)="toggleFavorite()">
+                star
+            </mat-icon>
+        </div>
         <div class="flex-row gapped">
             <button mat-flat-button color="primary" [routerLink]="['/recipes/edit/'+ recipe._id]">
                 <mat-icon>edit</mat-icon> Edit
