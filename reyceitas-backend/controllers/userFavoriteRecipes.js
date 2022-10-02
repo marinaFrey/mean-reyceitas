@@ -5,6 +5,7 @@ exports.find = function (req, res) {
   UserFavoriteRecipe.find({user: req.userId})
     .populate('recipe')
     .select(recipeShort)
+    .populate('tags')
     .then(userFavoriteRecipes => {
       var userFavoriteRecipeList = []
       userFavoriteRecipes.map(u => userFavoriteRecipeList.push(u.recipe))
