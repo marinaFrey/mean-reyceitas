@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Recipe } from '@models/recipe/recipe.model';
+import { RecipeService } from '@services/recipe.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-fave-recipes',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FaveRecipesComponent implements OnInit {
 
-  constructor() { }
+  recipes$: Observable<Recipe[]> = this.recipeService.getFavorites();
+
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
   }

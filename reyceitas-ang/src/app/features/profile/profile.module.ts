@@ -7,6 +7,7 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { FaveRecipesComponent } from './fave-recipes/fave-recipes.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { InterfaceModule } from '../shared/interface/interface.module';
+import { SharedRecipeModule } from '../shared/shared-recipe/shared-recipe.module';
 
 
 
@@ -21,7 +22,8 @@ import { InterfaceModule } from '../shared/interface/interface.module';
     CommonModule,
     ProfileRoutingModule,
     MaterialModule,
-    InterfaceModule
+    InterfaceModule,
+    SharedRecipeModule
   ]
 })
 export class ProfileModule { }

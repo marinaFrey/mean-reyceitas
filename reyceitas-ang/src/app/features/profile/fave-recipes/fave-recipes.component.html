@@ -1,3 +1,4 @@
-<div class="flex-col gapped">
+<div *ngIf="recipes$ | async as recipes" class="flex-col gapped">
     <h2>Favorite Recipes</h2>
+    <app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-card>
 </div>

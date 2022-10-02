@@ -33,6 +33,10 @@ export class RecipeService {
     return this.api.delete(`${RECIPES_ENDPOINT}/delete/${index}`)
   }
 
+  getFavorites(): Observable<Recipe[]> {
+    return this.api.get(`${RECIPES_FAVORITE_ENDPOINT}`);
+  }
+
   setRecipeFavorite(index: string, isFavorite: boolean) {
     return this.api.put(`${RECIPES_FAVORITE_ENDPOINT}/toggle/${index}`,{ toggle: isFavorite });
   }
