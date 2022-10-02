@@ -6,8 +6,9 @@ exports.find = function (req, res) {
     .populate('recipe')
     .select(recipeShort)
     .then(userFavoriteRecipes => {
-      console.log(userFavoriteRecipes)
-      res.json(userFavoriteRecipes);
+      var userFavoriteRecipeList = []
+      userFavoriteRecipes.map(u => userFavoriteRecipeList.push(u.recipe))
+      res.json(userFavoriteRecipeList);
     })
     .catch(error => res.status(500).json(error));
 }
