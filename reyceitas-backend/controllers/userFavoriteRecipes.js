@@ -1,12 +1,17 @@
 const UserFavoriteRecipe = require('../models/UserFavoriteRecipe');
+const recipeShort =  'title createdAt createdBy difficulty servings pictures tags'
 
 exports.find = function (req, res) {
   UserFavoriteRecipe.find({user: req.userId})
+    .populate('recipe')
+    .select(recipeShort)
     .then(userFavoriteRecipes => {
+      console.log(userFavoriteRecipes)
       res.json(userFavoriteRecipes);
     })
     .catch(error => res.status(500).json(error));
 }
+
 
 //Edit: PUT 
 //User from authorization header
