@@ -1,0 +1,108 @@
+@startuml
+
+class User {
+  +email : String
+  +firstName : String
+  +lastName : String
+  +profilePicture : String
+  +source: String
+  +lastVisited: Date
+}
+
+class UserGroup {
+  +name : String
+  +users : User[]
+  +createdBy : User
+  +recipeWriteAccess : Boolean
+  +groupWriteAccess : Boolean
+}
+
+class RecipeAccess {
+  +userGroup : UserGroup
+  +recipe : Recipe
+  +accessLevel : Number
+}
+
+class Ingredient {
+  +amount : Number
+  +unit : Unit
+  +food : Food
+  +details : String
+}
+
+
+class Recipe {
+  +title : String
+  +createdAt : Date
+  +createdBy : User
+  +difficulty : Number
+  +pictures : String[]
+  +servings : Number
+  +tags : Tag[]
+  +isPublic : Boolean
+  +instructions : Instruction[]
+  +notes : String
+  +cleanUploads(newImages : String[])
+}
+
+
+class Food {
+  +name : String
+  +foodType : FoodType
+  +density : Number
+  +nutrients : Nutrient[]
+}
+
+class Instruction {
+    +description : String
+    +InstructionType : InstructionType
+}
+
+class Tag {
+  +name : String
+  +color : String
+}
+class FoodType {
+  +name : String
+}
+
+class InstructionType {
+  +name : String
+}
+
+class Nutrient {
+  +name : String
+  +type : String
+  +defaultUnit : Unit
+}
+
+
+class UnitType {
+  +name : String
+}
+class Unit {
+  +name : String
+  +unitType : String
+}
+
+
+class AdminEmail {
+  +email : String
+}
+
+Recipe --> Instruction
+Recipe --> User
+Recipe --> Ingredient
+Recipe --> Tag
+RecipeAccess --> Recipe
+Ingredient --> Food
+Ingredient --> Unit
+Food --> Nutrient
+UserGroup --> User
+UserGroup --> RecipeAccess
+FoodType <-- Food
+Instruction --> InstructionType
+Unit <-- Nutrient
+Unit --> UnitType
+
+@enduml
