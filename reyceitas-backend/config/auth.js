@@ -6,7 +6,7 @@ function verifyJWT(req, res, next){
     const token = authHeader[1];
     
     jwt.verify(token, process.env.CLIENT_SECRET, function(err, decoded) {
-      if (err) return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+      if (err) return res.status(401).json({ auth: false, message: 'Failed to authenticate token.' });
       req.userId = decoded.id;
       next();
     });
