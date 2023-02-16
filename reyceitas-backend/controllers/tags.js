@@ -10,7 +10,8 @@ exports.find = function(req, res){
 
 exports.new = function(req, res){
   const newTag = new Tag({
-    name: req.body.name
+    name: req.body.name,
+    color: req.body.color
   });
 
   newTag
@@ -25,7 +26,8 @@ exports.new = function(req, res){
 
 exports.edit = function(req, res){
   const newTag = { 
-    name: req.body.name
+    name: req.body.name,
+    color: req.body.color
   };
 
   Tag.findOneAndUpdate({ _id: req.params.id }, newTag, { new: true })
