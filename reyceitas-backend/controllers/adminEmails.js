@@ -10,8 +10,7 @@ exports.find = function(req, res){
 
 exports.new = function(req, res){
   const newadminEmail = new AdminEmail({
-    user: req.body.user,
-    recipe: req.body.recipe,
+    email: req.body.email,
   });
 
   newadminEmail
