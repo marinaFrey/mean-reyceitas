@@ -1,0 +1,41 @@
+@startuml
+
+left to right direction
+
+actor User
+actor Admin
+
+    usecase "Create a Recipe" as UC_Create
+    usecase "View a Recipe" as UC_View
+    usecase "Favorite a Recipe" as UC_Favorite
+    usecase "Edit a Recipe" as UC_Edit
+    usecase "Search Recipes" as UC_Search
+    usecase "See Profile Page" as UC_Profile
+    usecase "See My Recipes" as UC_MyRecipes
+    usecase "See My Groups" as UC_MyGroups
+
+  rectangle "Administration" {
+    usecase "Create/Edit Groups" as UC_CreateEditGroups
+    usecase "Create/Edit Tags" as UC_CreateEditTags
+    usecase "Manage Users" as UC_ManageUsers
+    usecase "Clean Database" as UC_CleanDatabase
+  }
+
+  note right of UC_Edit : Only the Owner can alter Access
+  User --> UC_Create
+  User --> UC_View
+  User --> UC_Favorite
+  User --> UC_Edit
+  User --> UC_Search
+  User --> UC_Profile
+  User --> UC_MyRecipes
+  User --> UC_MyGroups
+
+  Admin --> UC_CreateEditGroups
+  Admin --> UC_CreateEditTags
+  Admin --> UC_ManageUsers
+
+  Admin --> UC_CleanDatabase
+
+  
+@enduml

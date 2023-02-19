@@ -7,6 +7,8 @@ class User {
   +profilePicture : String
   +source: String
   +lastVisited: Date
+  +favoriteRecipes: Recipe[]
+  +userGroups : UserGroup[]
 }
 
 class UserGroup {
@@ -15,14 +17,8 @@ class UserGroup {
   +createdBy : User
   +recipeWriteAccess : Boolean
   +groupWriteAccess : Boolean
+  +recipeAccess :RecipeAccess[]
 }
-
-class RecipeAccess {
-  +userGroup : UserGroup
-  +recipe : Recipe
-  +accessLevel : Number
-}
-
 class Ingredient {
   +amount : Number
   +unit : Unit
@@ -42,6 +38,7 @@ class Recipe {
   +isPublic : Boolean
   +instructions : Instruction[]
   +notes : String
+  +groupAccess : GroupAccess[]
   +cleanUploads(newImages : String[])
 }
 
@@ -94,12 +91,14 @@ Recipe --> Instruction
 Recipe --> User
 Recipe --> Ingredient
 Recipe --> Tag
-RecipeAccess --> Recipe
+Recipe --> UserGroup
+User --> Recipe
 Ingredient --> Food
 Ingredient --> Unit
 Food --> Nutrient
 UserGroup --> User
-UserGroup --> RecipeAccess
+User--> UserGroup
+UserGroup --> Recipe
 FoodType <-- Food
 Instruction --> InstructionType
 Unit <-- Nutrient
