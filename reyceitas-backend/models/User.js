@@ -7,7 +7,8 @@ const userSchema = new Schema({
   lastName: String,
   profilePicture: String,
   source: { type: String, required: [true, "source not specified"] },
-  lastVisited: { type: Date, default: new Date() }
+  lastVisited: { type: Date, default: new Date() },
+  userGroups: [ { type: Schema.Types.ObjectId, ref: 'UserGroup' } ],
 });
 
 var userModel = mongoose.model("user", userSchema, "user");
