@@ -1,10 +1,8 @@
 const Recipe = require('../models/Recipe');
 
 // For the specialized search
-const User = require('../models/User');
-const UserGroup = require('../models/UserGroup');
 const UserFavoriteRecipe = require('../models/UserFavoriteRecipe');
-const RecipeAccess = require('../models/RecipeAccess');
+const UserGroup = require('../models/UserGroup');
 
 const recipeShort =  'title createdAt createdBy difficulty servings pictures tags'
 
@@ -84,6 +82,7 @@ exports.new = function(req, res){
 
 exports.edit = function (req, res) {
 //  console.log(req.body)
+ //check if user can edit and if it is owner
   Recipe.edit(req.params.id, req.body)
     .then(recipe => {
       res.json(recipe);
@@ -98,12 +97,15 @@ exports.get = function (req, res) {
     .then(recipe => {
       UserFavoriteRecipe.findOne({user: req.userId, recipe: req.params.id })
       .then(userFavoriteRecipe => {
-        var isFavorite;
-        if(userFavoriteRecipe)
-          isFavorite = true;
-        else
-          isFavorite = false;
-        res.json({isFavorite, ...recipe._doc } );
+        var isFavorite = userFavoriteRecipe ? true : false;
+        if(req.userId == recipe.createdBy.id){
+          UserGroup.find({user: req.userId}).then(userGroups =>{
+            recipe._doc.groupAccess = userGroups
+            res.json({isFavorite, ...recipe._doc } );
+          })
+        } else {
+          res.json({isFavorite, ...recipe._doc } );
+        }
       })
     })
     .catch(error => {

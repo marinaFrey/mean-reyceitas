@@ -21,7 +21,6 @@ const unitTypes = require('./routes/unitTypes');
 const users = require('./routes/users');
 const images = require('./routes/images');
 const userGroups = require('./routes/userGroups');
-const recipeAccesses = require('./routes/recipeAccess');
 const userFavoriteRecipes = require('./routes/userFavoriteRecipes');
 const adminEmails = require('./routes/adminEmails');
 
@@ -43,7 +42,6 @@ app.use('/api/tags', tags);
 app.use('/db', dbs);
 app.use('/auth', users);
 app.use('/user-groups', userGroups);
-app.use('/recipe-access', recipeAccesses);
 app.use('/api/user-favorite-recipes',verifyJWT, userFavoriteRecipes);
 app.use('/admin-emails', adminEmails);
 app.use('/img/', images);
