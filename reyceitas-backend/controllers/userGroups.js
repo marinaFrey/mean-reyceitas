@@ -10,16 +10,17 @@ exports.find = function (req, res) {
 }
 
 exports.new = function (req, res) {
-  const newuserGroup = new UserGroup({
+  const newUserGroup = new UserGroup({
     name: req.body.name,
     users: req.body.users,
     recipeWriteAccess: req.body.recipeWriteAccess,
     groupWriteAccess: req.body.groupWriteAccess,
   });
 
-  newuserGroup
+  newUserGroup
     .save()
     .then(userGroup => {
+    addUsersToGroup(userGroup.users, userGroup._id); 
       res.json(userGroup);
     })
     .catch(error => {
@@ -30,7 +31,6 @@ const removeUsersFromGroup = async (userIds, userGroupId) => {
   const promises = userIds.map(async userId => {
     const user = await User.findById(userId);
     if (!user) { throw new Error(`User with id ${userId} not found`); }
-    console.log("Removing from ", user)
     user.userGroups = user.userGroups.filter(id => !id.equals(userGroupId));
     await user.save();
     return user;
