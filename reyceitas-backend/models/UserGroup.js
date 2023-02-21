@@ -9,6 +9,10 @@ const userGroupSchema = new Schema({
   createdBy: { type: Schema.Types.ObjectId, ref: User }, 
   recipeWriteAccess:   { type: Boolean, default: false },
   groupWriteAccess:   { type: Boolean, default: false },
+  recipeAccess: [{ 
+    recipeId: { type: Schema.Types.ObjectId, ref: 'Recipe' },
+    accessLevel: Number
+  }],
 });
 
 userGroupSchema.statics = {

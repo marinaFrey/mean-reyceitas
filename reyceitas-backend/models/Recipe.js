@@ -28,6 +28,10 @@ const RecipeSchema = new Schema({
     instructionType: { type: Schema.Types.ObjectId, ref: InstructionType },
     //relatedRecipesId: [{ type: Schema.Types.ObjectId, ref: recipeSchema}]
   }],
+  groupAccess: [{ 
+    groupId: { type: Schema.Types.ObjectId, ref: 'UserGroup' },
+    accessLevel: Number
+  }],
   notes:   { type: String },
 });
 function removeImage(path){
@@ -51,27 +55,6 @@ RecipeSchema.method( {
   next();
 });*/
 RecipeSchema.statics = {
-  edit: function(id, body){
-    const newData = { 
-      title: body.title,
-      servings: body.servings,
-      ingredients: body.ingredients, 
-      pictures: body.pictures,
-      isPublic: body.isPublic,
-      difficulty: body.difficulty,
-      tags: body.tags,
-      instructions: body.instructions,
-      notes: body.notes
-    };
-    return this.findOne({_id: id})
-    .then(recipe => {
-      recipe.cleanUploads(body.pictures)
-    })
-    .then(() => {
-      return this.findOneAndUpdate({ _id: id }, newData, { new: true })
-        .populate('createdBy')
-    })
-  },
   load: function(_id){
     return this.findOne({ _id })
       .populate('createdBy', 'firstName lastName profilePicture')

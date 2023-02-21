@@ -3,6 +3,7 @@ const Recipe = require('../models/Recipe');
 // For the specialized search
 const UserFavoriteRecipe = require('../models/UserFavoriteRecipe');
 const UserGroup = require('../models/UserGroup');
+const User= require('../models/User');
 
 const recipeShort =  'title createdAt createdBy difficulty servings pictures tags'
 
@@ -57,7 +58,7 @@ exports.searchByTag = function(tag){
 
 exports.new = function(req, res){
 //  console.log(req.body)
-  const newRecipe= new Recipe({ 
+  const newRecipe = new Recipe({ 
     title: req.body.title,
     createdBy: req.userId,
     servings: req.body.servings,
@@ -67,12 +68,14 @@ exports.new = function(req, res){
     pictures: req.body.pictures,
     tags: req.body.tags,
     instructions: req.body.instructions,
-    notes: req.body.notes
+    notes: req.body.notes,
+    groupAccess: req.body.groupAccess
   });
 
   newRecipe
     .save()
     .then(recipe => {
+      editGroupRecipeAccessLevel(req.body.groupAccess,[],recipe._id)
       res.json(recipe);
     })
     .catch(error => {
@@ -80,16 +83,57 @@ exports.new = function(req, res){
     });
 }
 
-exports.edit = function (req, res) {
-//  console.log(req.body)
+const editGroupRecipeAccessLevel = async (newUserGroups, oldUserGroups, recipeId) => {
+  // Put oldUserGroups in map
+  // Put newUserGroups in map, checking which ones have changed -> toEdit
+  var toEdit = [];
+  var groupAccessMap = new Map(oldUserGroups.map((obj) => [obj.groupId, obj.accessLevel]))
+  newUserGroups.map((obj) => {
+    if(!groupAccessMap.has(obj.groupId) || groupAccessMap[obj.groupId] != obj.accessLevel){
+      toEdit.push(obj)
+    }
+  })
+  console.log("to Edit ", toEdit)
+
+  const promises = toEdit.map(async userGroupAccess => {
+    const userGroup = await UserGroup.findById(userGroupAccess.groupId);
+    if (!userGroup) { throw new Error(`UserGroup with id ${userGroupAccess.groupId} not found`); }
+    console.log("Found group", userGroup)
+    userGroup.recipeAccess = userGroup.recipeAccess.filter(id => !id.recipeId.equals(recipeId));
+    if(userGroupAccess.accessLevel != 0){
+      console.log("Adding recipe - group", userGroupAccess)
+      userGroup.recipeAccess.push({"recipeId": recipeId, "accessLevel": userGroupAccess.accessLevel})
+    }
+    await userGroup.save();
+    return userGroup;
+  });
+  await Promise.all(promises);
+}
+exports.edit = async function (req, res) {
  //check if user can edit and if it is owner
-  Recipe.edit(req.params.id, req.body)
-    .then(recipe => {
-      res.json(recipe);
+    const newData = { 
+      title: req.body.title,
+      servings: req.body.servings,
+      ingredients: req.body.ingredients, 
+      pictures: req.body.pictures,
+      isPublic: req.body.isPublic,
+      difficulty: req.body.difficulty,
+      tags: req.body.tags,
+      instructions: req.body.instructions,
+      notes: req.body.notes
+    };
+    var recipe = await Recipe.findOne({_id: req.params.id}).populate('createdBy', 'firstName lastName profilePicture')
+    if(recipe.createdBy && req.userId == recipe.createdBy.id){
+      //var user = await User.findOne({_id: req.userId})
+      editGroupRecipeAccessLevel(req.body.groupAccess, recipe.groupAccess, recipe._id);
+    }
+    recipe.cleanUploads(req.body.pictures)
+    Object.assign(recipe,newData);
+    recipe.save()
+    .then(saved => {
+      res.json(saved);
     })
-    .catch(error => {
-      return res.status(500).json(error)
-    });
+    .catch(error => res.status(500).json(error));
 }
 
 exports.get = function (req, res) {
@@ -98,12 +142,25 @@ exports.get = function (req, res) {
       UserFavoriteRecipe.findOne({user: req.userId, recipe: req.params.id })
       .then(userFavoriteRecipe => {
         var isFavorite = userFavoriteRecipe ? true : false;
-        if(req.userId == recipe.createdBy.id){
-          UserGroup.find({user: req.userId}).then(userGroups =>{
-            recipe._doc.groupAccess = userGroups
-            res.json({isFavorite, ...recipe._doc } );
+        if(recipe.createdBy && req.userId == recipe.createdBy.id){
+          User.findOne({_id: req.userId}).then(user=>{
+            //recipe._doc.groupAccess = user.userGroups
+            // Put original in a map
+            var groupAccessMap = new Map(recipe._doc.groupAccess.map((obj) => [obj.groupId, obj.accessLevel]))
+            // Put the new ones in the same map
+            user.userGroups.map((obj) => {
+              if(!groupAccessMap.has(obj)){
+                groupAccessMap.set(obj,0);
+              }
+            })
+            // Put the map in the doc
+            recipe._doc.groupAccess = Array.from(groupAccessMap, ([key, value]) => ({
+              ["groupId"]: key, "accessLevel": value 
+            }));
+            res.json({isFavorite,  ...recipe._doc } );
           })
         } else {
+          //Remove groupAccess?
           res.json({isFavorite, ...recipe._doc } );
         }
       })
