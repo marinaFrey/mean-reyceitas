@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { RecipeGroupAccess, UserGroup } from '@models/user/user-group.model';
+import { RecipeAccess, RecipeGroupAccess, UserGroup } from '@models/user/user-group.model';
 import { UserManagementService } from '@services/user-management.service';
 import { map, take } from 'rxjs';
 
@@ -12,7 +12,8 @@ import { map, take } from 'rxjs';
 export class PermissionFormComponent implements OnInit, OnChanges {
   @Input() isPublic: boolean = false;
   @Input() recipeId: number | null = null;
-  @Input() form!: FormGroup;
+  @Input() form!: FormGroup;  
+  @Input() groupAccess: RecipeGroupAccess[] | undefined;
 
   constructor(private userService: UserManagementService,
               private fb: FormBuilder) { }
@@ -24,7 +25,9 @@ export class PermissionFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.getUserGroups();
+    //this.getUserGroups();    
+    if(this.groupAccess)
+      this.getGroupAccess(this.groupAccess);
   }
 
   get userGroupsFormArray() {
@@ -39,22 +42,29 @@ export class PermissionFormComponent implements OnInit, OnChanges {
     if(!checked) {
       userGroupForm.get('canEdit')?.setValue(false);
     }
+    this.updateAccessLevel(userGroupForm);
   }
 
   canEditChecked(checked: boolean, userGroupForm: FormGroup) {
     if(checked) {
       userGroupForm.get('canView')?.setValue(true);
     }
+    this.updateAccessLevel(userGroupForm);
   }
-
-  private getUserGroups(): void {
-    this.userService.getUserGroupAccess(this.recipeId).pipe(
-      take(1),
-      map(userGroups => {
-        this.userService.populateUserGroupVisibilityForm(userGroups, this.userGroupsFormArray)
-        this.setPublicVisibility();
-      })
-    ).subscribe()
+  private updateAccessLevel(userGroupForm: FormGroup){
+    const canView = userGroupForm.get('canView')?.value;
+    const canEdit = userGroupForm.get('canEdit')?.value;
+    if(canEdit){
+      userGroupForm.get('accessLevel')?.setValue(RecipeAccess.CAN_EDIT);
+    } else if(canView){
+      userGroupForm.get('accessLevel')?.setValue(RecipeAccess.CAN_VIEW);
+    } else {
+      userGroupForm.get('accessLevel')?.setValue(RecipeAccess.NO_ACCESS);
+    }
+  }
+  private getGroupAccess(groupAccess: RecipeGroupAccess[]): void {
+      this.userService.populateUserGroupVisibilityForm(groupAccess, this.userGroupsFormArray)
+      this.setPublicVisibility();
   }
 
   private setPublicVisibility() {

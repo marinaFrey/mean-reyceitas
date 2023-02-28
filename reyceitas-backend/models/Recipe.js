@@ -29,7 +29,7 @@ const RecipeSchema = new Schema({
     //relatedRecipesId: [{ type: Schema.Types.ObjectId, ref: recipeSchema}]
   }],
   groupAccess: [{ 
-    groupId: { type: Schema.Types.ObjectId, ref: 'UserGroup' },
+    group: { type: Schema.Types.ObjectId, ref: 'UserGroup' },
     accessLevel: Number
   }],
   notes:   { type: String },
@@ -59,6 +59,7 @@ RecipeSchema.statics = {
     return this.findOne({ _id })
       .populate('createdBy', 'firstName lastName profilePicture')
       .populate('tags')
+      .populate('groupAccess.group', 'name')
       .populate({
         path:'ingredients.unit',
         populate: {

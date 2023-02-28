@@ -12,7 +12,7 @@
             <tr *ngFor="let userGroupForm of userGroupsFormArray.controls; let i = index" 
                 [formGroup]="getFormGroup(userGroupForm)">
                 <td data-label="Name">
-                    {{userGroupForm.get('name')?.value}}
+                    {{userGroupForm.get('group')?.get('name')?.value}}
                 </td>
                 <td data-label="Can View">
                     <mat-checkbox class="example-margin"

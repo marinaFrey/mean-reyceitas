@@ -35,6 +35,7 @@ const removeUsersFromGroup = async (userIds, userGroupId) => {
     await user.save();
     return user;
   });
+
   await Promise.all(promises);
 }
 const addUsersToGroup = async (userIds, userGroupId) => {
@@ -51,20 +52,22 @@ const addUsersToGroup = async (userIds, userGroupId) => {
 exports.edit = function (req, res) {
   const newData = { 
     name: req.body.name,
-    users: req.body.users,
+    users: req.body.users?? [],
     recipeWriteAccess: req.body.recipeWriteAccess,
     groupWriteAccess: req.body.groupWriteAccess,
+
   };
     return UserGroup.findOne({_id: req.params.id })
     .then(userGroup => {
-      var oldUsers = userGroup.users.map(function(e) { return e.toString(); });
+      var oldUsers = userGroup.users?.map(function(e) { return e.toString(); });
+      if(!oldUsers)  oldUsers = []
       removeUsersFromGroup(oldUsers.filter( function( el ) { return newData.users.indexOf( el ) < 0; }), userGroup._id); 
       addUsersToGroup(newData.users.filter( function( el ) { return oldUsers.indexOf( el ) < 0; }), userGroup._id); 
       userGroup.overwrite(newData).save()
       .then(userGroup => {
         res.json(userGroup);
       })})
-    .catch(error => res.status(500).json(error));
+    .catch(error => console.log(error) & res.status(500).json(error));
 }
 
 exports.get = function (req, res) {

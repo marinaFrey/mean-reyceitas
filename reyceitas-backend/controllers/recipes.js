@@ -93,15 +93,15 @@ const editGroupRecipeAccessLevel = async (newUserGroups, oldUserGroups, recipeId
       toEdit.push(obj)
     }
   })
-  console.log("to Edit ", toEdit)
+  //console.log("to Edit ", toEdit)
 
   const promises = toEdit.map(async userGroupAccess => {
-    const userGroup = await UserGroup.findById(userGroupAccess.groupId);
-    if (!userGroup) { throw new Error(`UserGroup with id ${userGroupAccess.groupId} not found`); }
-    console.log("Found group", userGroup)
+    const userGroup = await UserGroup.findById(userGroupAccess.group._id);
+    if (!userGroup) { throw new Error(`UserGroup with id ${userGroupAccess.group_id} not found`); }
+    //console.log("Found group", userGroup)
     userGroup.recipeAccess = userGroup.recipeAccess.filter(id => !id.recipeId.equals(recipeId));
     if(userGroupAccess.accessLevel != 0){
-      console.log("Adding recipe - group", userGroupAccess)
+      //console.log("Adding recipe - group", userGroupAccess)
       userGroup.recipeAccess.push({"recipeId": recipeId, "accessLevel": userGroupAccess.accessLevel})
     }
     await userGroup.save();
@@ -120,7 +120,8 @@ exports.edit = async function (req, res) {
       difficulty: req.body.difficulty,
       tags: req.body.tags,
       instructions: req.body.instructions,
-      notes: req.body.notes
+      notes: req.body.notes,
+      groupAccess: req.body.groupAccess
     };
     var recipe = await Recipe.findOne({_id: req.params.id}).populate('createdBy', 'firstName lastName profilePicture')
     if(recipe.createdBy && req.userId == recipe.createdBy.id){
@@ -143,20 +144,25 @@ exports.get = function (req, res) {
       .then(userFavoriteRecipe => {
         var isFavorite = userFavoriteRecipe ? true : false;
         if(recipe.createdBy && req.userId == recipe.createdBy.id){
-          User.findOne({_id: req.userId}).then(user=>{
+          User.findOne({_id: req.userId}).populate('userGroups', 'name')
+          .then(user=>{
             //recipe._doc.groupAccess = user.userGroups
             // Put original in a map
-            var groupAccessMap = new Map(recipe._doc.groupAccess.map((obj) => [obj.groupId, obj.accessLevel]))
+            var groupAccessMap = new Map(recipe._doc.groupAccess.map((obj) => [obj.group._id.toString(),{ 'accessLevel': obj.accessLevel, 'name': obj.group.name }]))
             // Put the new ones in the same map
+            //console.log("group access map: ", groupAccessMap);
+            
             user.userGroups.map((obj) => {
-              if(!groupAccessMap.has(obj)){
-                groupAccessMap.set(obj,0);
+              if(obj && !groupAccessMap.has(obj._id.toString())){
+                groupAccessMap.set(obj._id.toString(),{ 'accessLevel': 0, 'name' : obj.name });
               }
             })
             // Put the map in the doc
+
             recipe._doc.groupAccess = Array.from(groupAccessMap, ([key, value]) => ({
-              ["groupId"]: key, "accessLevel": value 
+              ["group"]: { '_id': key, 'name': value.name }, "accessLevel": value.accessLevel
             }));
+              //console.log("user groups: ", recipe._doc)
             res.json({isFavorite,  ...recipe._doc } );
           })
         } else {

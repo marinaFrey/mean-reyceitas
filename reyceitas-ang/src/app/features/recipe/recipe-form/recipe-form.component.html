@@ -31,7 +31,7 @@
         <textarea matInput formControlName="notes" ></textarea>
     </mat-form-field>
 
-    <app-access-form [form]="form"></app-access-form>
+    <app-access-form [form]="form" [groupAccess]="recipe?.groupAccess"></app-access-form>
     
     <div class="save-floating-button">
         <button mat-flat-button  color="primary" (click)="submit()">

@@ -46,6 +46,7 @@ app.use('/api/user-favorite-recipes',verifyJWT, userFavoriteRecipes);
 app.use('/admin-emails', adminEmails);
 app.use('/img/', images);
 app.use('/uploads', serveStatic('/uploads'));
+
   
 db = 'mongodb://db:27017/reyceitas-mean'
 mongoose.connect(

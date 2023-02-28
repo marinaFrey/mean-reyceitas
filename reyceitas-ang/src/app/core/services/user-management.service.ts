@@ -5,6 +5,8 @@ import { RecipeAccess, RecipeGroupAccess, UserGroup } from '@models/user/user-gr
 import { User } from '@models/user/user.model';
 import { Observable, of } from 'rxjs';
 import { ApiService } from './api.service';
+import { group } from '@angular/animations';
+import { RequestInterceptor } from '../interceptors/http.interceptor';
 
 @Injectable({
   providedIn: 'root'
@@ -33,15 +35,8 @@ export class UserManagementService {
       return this.api.delete<UserGroup>(`${USERGROUPS_ENDPOINT}/delete/${index}`)
     }
 
-    getUserGroupAccess(recipeId: number | null): Observable<RecipeGroupAccess[]> {
-      return of( [
-        {_id: 'df5645df', name: 'familia pritsch', access: RecipeAccess.CAN_VIEW},
-        {_id: 'df5645df', name: 'familia rey', access: RecipeAccess.CAN_VIEW},
-        {_id: 'df5645df', name: 'amigos', access: RecipeAccess.CAN_VIEW},
-        {_id: 'df5645df', name: 'conhecidos', access: RecipeAccess.CAN_VIEW},
-        {_id: 'df5645df', name: 'creeps', access: RecipeAccess.CAN_VIEW}
-      ])
-    }
+    //getUserGroupAccess(recipeId: number | null): Observable<RecipeGroupAccess[]> {
+   // }
 
     addUser(user: User, formArray: FormArray) {
         const userForm = this.formBuilder.group({
@@ -80,15 +75,18 @@ export class UserManagementService {
         });
       }
 
-      addUserGroupVisibility(userGroup: RecipeGroupAccess | null, formArray: FormArray) {
-        const userForm = this.formBuilder.group({
-          _id: [userGroup?._id],
-          name: [userGroup?.name, Validators.required],
-          canView: [userGroup?.canView ?? false],
-          canEdit: [userGroup?.canEdit ?? false]
+      addUserGroupVisibility(groupAccess: RecipeGroupAccess | null, formArray: FormArray) {
+        const recipeGroupAccessForm = this.formBuilder.group({
+          group: this.formBuilder.group({
+            _id: [groupAccess?.group?._id],
+            name: [groupAccess?.group?.name, Validators.required],
+          }),
+          accessLevel: [groupAccess?.accessLevel],
+          canView: [(groupAccess?.accessLevel == RecipeAccess.CAN_VIEW || groupAccess?.accessLevel == RecipeAccess.CAN_EDIT) ?? false],
+          canEdit: [groupAccess?.accessLevel == RecipeAccess.CAN_EDIT ?? false ]
         });
     
-        formArray.push(userForm);
+        formArray.push(recipeGroupAccessForm);
       }
     
       populateUserGroupVisibilityForm(userGroups: RecipeGroupAccess[], formArray: FormArray) {

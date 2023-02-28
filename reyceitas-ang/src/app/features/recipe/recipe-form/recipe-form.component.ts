@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Recipe } from '@models/recipe/recipe.model';
+import { RecipeAccess } from '@models/user/user-group.model';
 import { AlertService } from '@services/alert.service';
 
 @Component({
@@ -22,12 +23,13 @@ export class RecipeFormComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.form?.getRawValue())
     if(this.form?.invalid) {
       this.alert.error('Please fill all required fields')
       this.form.markAllAsTouched();
       return;
     }
-    this.recipeSubmitted.emit(this.form?.value as Recipe);
+    this.recipeSubmitted.emit(this.form?.getRawValue() as Recipe);
   }
 
   private createForm(): void {
@@ -44,5 +46,4 @@ export class RecipeFormComponent implements OnInit {
       groupAccess: this.formBuilder.array([])
     });
   }
-
 }

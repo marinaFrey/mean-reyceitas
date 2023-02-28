@@ -1,3 +1,4 @@
+import { RecipeGroupAccess } from "@models/user/user-group.model";
 import { Ingredient } from "./ingredient.model";
 import { Instruction } from "./instruction.model";
 
@@ -18,6 +19,7 @@ export interface Recipe {
     tags?: Tag[];
     difficulty?: number;
     isFavorite?: boolean;
+    groupAccess?: RecipeGroupAccess[];
 }
 
 export interface Tag {

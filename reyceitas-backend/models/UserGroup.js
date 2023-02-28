@@ -20,5 +20,5 @@ userGroupSchema.statics = {
   }
 }
 
-var userGroupModel = mongoose.model("userGroup", userGroupSchema);
+var userGroupModel = mongoose.model("UserGroup", userGroupSchema);
 module.exports = userGroupModel;
