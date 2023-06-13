@@ -5,7 +5,7 @@ const router = express.Router();
 const {OAuth2Client} = require('google-auth-library');
 const jwt = require('jsonwebtoken');
 const client = new OAuth2Client(process.env.CLIENT_ID);
-const verifyJWT = require('../config/auth');
+const {verifyJWT} = require('../config/auth');
 
 var jsonParser = bodyParser.json()
 

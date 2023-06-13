@@ -7,7 +7,7 @@ const recipesController = require('../controllers/recipes');
 
 var jsonParser = bodyParser.json()
  
-const verifyJWT = require('../config/auth');
+const {verifyJWT} = require('../config/auth');
 const Recipe = require('../models/Recipe');
 const Tag = require('../models/Tag');
 

@@ -6,8 +6,8 @@ const cors = require('cors');
 const app = express();
 const http = require('http');
 const https = require('https');
+const {verifyJWT, verifyJWTIfPresent}= require('./config/auth');
 
-const verifyJWT = require('./config/auth');
 
 const recipes = require('./routes/recipes');
 const tags= require('./routes/tags');
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 //app.use('/api/recipes', verifyJWT, recipes);
-app.use('/api/recipes', verifyJWT, recipes);
+app.use('/api/recipes', verifyJWTIfPresent, recipes);
 app.use('/api/foods', foods);
 app.use('/api/food-types', foodTypes);
 app.use('/api/instruction-types', instructionTypes);
@@ -42,7 +42,7 @@ app.use('/api/tags', tags);
 app.use('/db', dbs);
 app.use('/auth', users);
 app.use('/user-groups', userGroups);
-app.use('/api/user-favorite-recipes',verifyJWT, userFavoriteRecipes);
+app.use('/api/user-favorite-recipes', verifyJWT, userFavoriteRecipes);
 app.use('/admin-emails', adminEmails);
 app.use('/img/', images);
 app.use('/uploads', serveStatic('/uploads'));
