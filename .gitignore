@@ -2,3 +2,12 @@ reyceitas-backend/.env
 .env
 cert.crt
 cert.key
+.vscode/settings.json
+package-lock.json
+.gitignore
+reyceitas-ang/package-lock.json
+reyceitas-backend/package-lock.json
+.gitignore
+reyceitas-ang/src/app/core/components/navbar/navbar.component.html
+reyceitas-backend/package-lock.json
+reyceitas-ang/package-lock.json
